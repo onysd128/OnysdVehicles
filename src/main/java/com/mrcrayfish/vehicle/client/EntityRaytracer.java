@@ -335,6 +335,7 @@ public class EntityRaytracer
                 MatrixTransformation.createRotation(-22.5, 1, 0, 0),
                 MatrixTransformation.createScale(0.9));
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityMoped.class, mopedParts, mopedTransformGlobal);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityMoped.class, mopedParts, mopedTransformGlobal);
         registerEntityStatic(EntityMoped.class, mopedParts);
 
         // Shopping cart

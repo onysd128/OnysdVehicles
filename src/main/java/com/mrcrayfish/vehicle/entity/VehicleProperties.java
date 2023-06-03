@@ -240,6 +240,7 @@ public class VehicleProperties
         properties.setAxleOffset(-1.0F);
         properties.setWheelOffset(3.5F);
         properties.setBodyPosition(new PartPosition(1.2));
+        properties.setKeyPortPosition(new PartPosition(-2.5, 5, 9.85, -90, 0, 0, 0.5));
         properties.setFuelPortPosition(new PartPosition(-2.5, 4.2, -2.5, 0, -90, 0, 0.2));
         properties.setHeldOffset(new Vec3d(7.0, 2.0, 0.0));
         properties.setTrailerOffset(new Vec3d(0.0, -0.03125, -0.65));
