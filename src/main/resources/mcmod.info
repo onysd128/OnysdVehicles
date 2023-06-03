@@ -1,14 +1,14 @@
 [
 {
   "modid": "vehicle",
-  "name": "MrCrayfish's Vehicle Mod",
-  "description": "A mod developed during Mod Week Season 2. Adds in working Vehicles that you can actually drive!",
+  "name": "Onysd Vehicle Mod",
+  "description": "A new branch of MrCrayfish Vehicle Mod",
   "version": "0.44.1.1",
   "mcversion": "1.12.2",
-  "url": "https://mrcrayfish.com",
+  "url": "https://onysd.pw",
   "updateUrl": "",
-  "authorList": ["MrCrayfish"],
-  "credits": "Phylogeny https://github.com/Phylogeny",
+  "authorList": ["MrCrayfish","onysd"],
+  "credits": "Onysd: https://github.com/onysd128",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
