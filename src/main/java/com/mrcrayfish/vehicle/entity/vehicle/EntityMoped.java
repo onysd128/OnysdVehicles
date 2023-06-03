@@ -304,6 +304,6 @@ public class EntityMoped extends EntityMotorcycle implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        return false;
+        return true;
     }
 }
