@@ -221,6 +221,7 @@ public class EntityRaytracer
         HashMap<RayTracePart, List<MatrixTransformation>> aluminumBoatParts = Maps.newHashMap();
         createTransformListForPart(SpecialModels.ALUMINUM_BOAT_BODY, aluminumBoatParts, aluminumBoatTransformGlobal);
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityAluminumBoat.class, aluminumBoatParts, aluminumBoatTransformGlobal);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityAluminumBoat.class, aluminumBoatParts, aluminumBoatTransformGlobal);
         registerEntityStatic(EntityAluminumBoat.class, aluminumBoatParts);
 
         // ATV

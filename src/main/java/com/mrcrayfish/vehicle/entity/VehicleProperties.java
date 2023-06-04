@@ -50,6 +50,7 @@ public class VehicleProperties
         properties.addSeat(new Seat(new Vec3d(7, 6, -15)));
         properties.addSeat(new Seat(new Vec3d(-7, 6, 3)));
         properties.addSeat(new Seat(new Vec3d(7, 6, 3)));
+        properties.setKeyPortPosition(new PartPosition(10.85, 5, -22.5, -90, 0, 0, 0.5));
         VehicleProperties.setProperties(EntityAluminumBoat.class, properties);
 
         /* ATV */
