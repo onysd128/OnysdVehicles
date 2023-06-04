@@ -1,4 +1,4 @@
-itemGroup.tabVehicle=MrCrayfish's Vehicle Mod
+itemGroup.tabVehicle=Onysd Vehicle Mod
 
 vehicle.engine_type.small.name=Small Engine
 vehicle.engine_type.large.name=Large Engine
@@ -102,7 +102,7 @@ entity.vehicle.tractor.name=Tractor
 entity.vehicle.mini_bus.name=Mini Bus
 entity.vehicle.dirt_bike=Dirt Bike
 
-vehicle.config.title=MrCrayfish's Vehicle Mod Config
+vehicle.config.title=Onysd Vehicle Mod Config
 vehicle.config.client=Client
 vehicle.config.client.tooltip=Client-only configs
 vehicle.config.client.debug=Debug
@@ -164,6 +164,6 @@ vehicle.tooltip.paint_color=Paint Color
 vehicle.tooltip.engine=Engine
 vehicle.tooltip.wheels=Wheels
 
-key.categories.vehicle=MrCrayfish's Vehicle Mod
+key.categories.vehicle=Onysd Vehicle Mod
 key.vehicle.horn=Horn
 key.vehicle.cycle_seats=Cycle Seats

@@ -1,4 +1,4 @@
-itemGroup.tabVehicle=MrCrayfish's Vehicle Mod
+itemGroup.tabVehicle=Onysd Vehicle Mod
 
 vehicle.engine_type.small.name=Motore piccolo
 vehicle.engine_type.large.name=Motore grande
@@ -99,7 +99,7 @@ entity.vehicle.fertilizer_trailer.name=Fertilizzante
 entity.vehicle.fluid_trailer.name=Rimorchio per liquidi
 entity.vehicle.tractor.name=Trattore
 
-vehicle.config.title=Configurazione MrCrayfish's Vehicle Mod
+vehicle.config.title=Configurazione Onysd Vehicle Mod
 vehicle.config.client=Client
 vehicle.config.client.tooltip=Configurazioni solo per client
 vehicle.config.client.debug=Debug
