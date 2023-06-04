@@ -174,6 +174,7 @@ public class VehicleProperties
         properties.setDisplayPosition(new PartPosition(0.0F, 0.0F, -0.45F, 0.0F, 0.0F, 0.0F, 1.5F));
         properties.addSeat(new Seat(new Vec3d(0, 5, 0), true));
         properties.addSeat(new Seat(new Vec3d(0, 5, -7)));
+        properties.setKeyPortPosition(new PartPosition(-3, 6, 5.4, -45.0, 0, 0, 0.5));
         VehicleProperties.setProperties(EntityJetSki.class, properties);
 
         /* Lawn Mower */
@@ -317,6 +318,7 @@ public class VehicleProperties
         properties.setTrailerOffset(new Vec3d(0.0, -0.09375, -0.75));
         properties.setDisplayPosition(new PartPosition(0.0F, 0.0F, -0.65F, 0.0F, 0.0F, 0.0F, 1.25F));
         properties.addSeat(new Seat(new Vec3d(0, 0, 0), true));
+        properties.setKeyPortPosition(new PartPosition(-5, 4, 1.2, -67.5, 0, 0, 0.5));
         VehicleProperties.setProperties(EntitySpeedBoat.class, properties);
 
         /* Sports Plane */

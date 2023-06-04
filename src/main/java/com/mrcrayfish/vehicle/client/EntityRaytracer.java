@@ -294,7 +294,9 @@ public class EntityRaytracer
                 MatrixTransformation.createRotation(-45, 1, 0, 0),
                 MatrixTransformation.createTranslation(0, 0.02, 0));
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_2_CLOSED, EntityJetSki.class, jetSkiParts, jetSkiTransformGlobal);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityJetSki.class, jetSkiParts, jetSkiTransformGlobal);
         registerEntityStatic(EntityJetSki.class, jetSkiParts);
+        
 
         // Lawn mower
         List<MatrixTransformation> lawnMowerTransformGlobal = Lists.newArrayList();
@@ -371,6 +373,7 @@ public class EntityRaytracer
                 MatrixTransformation.createRotation(-45, 1, 0, 0),
                 MatrixTransformation.createTranslation(0, 0.02, 0));
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntitySpeedBoat.class, speedBoatParts, speedBoatTransformGlobal);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntitySpeedBoat.class, speedBoatParts, speedBoatTransformGlobal);
         registerEntityStatic(EntitySpeedBoat.class, speedBoatParts);
 
         // Sports plane
