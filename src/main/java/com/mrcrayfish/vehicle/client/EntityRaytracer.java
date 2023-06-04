@@ -362,6 +362,7 @@ public class EntityRaytracer
                 MatrixTransformation.createRotation(180, 0, 1, 0),
                 MatrixTransformation.createTranslation(0.0, 0.5, 1.35));
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntitySmartCar.class, smartCarParts, smartCarTransformGlobal);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntitySmartCar.class, smartCarParts, smartCarTransformGlobal);
         registerEntityStatic(EntitySmartCar.class, smartCarParts);
 
         // Speed boat

@@ -308,6 +308,7 @@ public class VehicleProperties
         properties.setFrontAxelVec(0, 12);
         properties.setRearAxelVec(0, -12);
         properties.addSeat(new Seat(new Vec3d(0, 0.5, -2), true));
+        properties.setKeyPortPosition(new PartPosition(-5, 5, 7.9, -67.5, 0, 0, 0.5));
         VehicleProperties.setProperties(EntitySmartCar.class, properties);
 
         /* Speed Boat */
