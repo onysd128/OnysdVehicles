@@ -85,6 +85,6 @@ public class EntityMiniBike extends EntityMotorcycle implements IEntityRaytracea
     @Override
     public boolean isLockable()
     {
-        return false;
+        return true;
     }
 }

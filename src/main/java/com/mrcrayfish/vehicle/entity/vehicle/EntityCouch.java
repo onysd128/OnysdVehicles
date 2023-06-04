@@ -41,6 +41,6 @@ public class EntityCouch extends EntityLandVehicle implements IEntityRaytraceabl
     @Override
     public boolean isLockable()
     {
-        return false;
+        return true;
     }
 }

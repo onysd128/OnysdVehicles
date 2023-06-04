@@ -86,6 +86,6 @@ public class EntityGoKart extends EntityLandVehicle implements IEntityRaytraceab
     @Override
     public boolean isLockable()
     {
-        return false;
+        return true;
     }
 }

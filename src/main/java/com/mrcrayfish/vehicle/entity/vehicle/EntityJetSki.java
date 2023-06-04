@@ -83,6 +83,6 @@ public class EntityJetSki extends EntityBoat implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        return false;
+        return true;
     }
 }

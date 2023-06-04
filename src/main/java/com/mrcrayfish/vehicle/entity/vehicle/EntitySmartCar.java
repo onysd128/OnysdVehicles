@@ -73,6 +73,6 @@ public class EntitySmartCar extends EntityLandVehicle implements IEntityRaytrace
     @Override
     public boolean isLockable()
     {
-        return false;
+        return true;
     }
 }

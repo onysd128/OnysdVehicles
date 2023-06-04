@@ -27,7 +27,7 @@ public class EntityAluminumBoat extends EntityBoat implements IEntityRaytraceabl
     @Override
     public boolean isLockable()
     {
-        return false;
+        return true;
     }
 
     @Override
