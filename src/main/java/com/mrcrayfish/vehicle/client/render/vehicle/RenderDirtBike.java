@@ -36,25 +36,25 @@ public class RenderDirtBike extends AbstractRenderVehicle<EntityDirtBike>
 
         this.renderDamagedPart(entity, SpecialModels.DIRT_BIKE_HANDLES.getModel());
 
-        if(entity.hasWheels())
-        {
-            Wheel wheel = entity.getProperties().getWheels().stream().filter(wheel1 -> wheel1.getPosition() == Wheel.Position.FRONT).findFirst().orElse(null);
-            if(wheel != null)
-            {
-                GlStateManager.pushMatrix();
-                GlStateManager.translate(0, -0.5, 0);
-                GlStateManager.translate(wheel.getOffsetX() * 0.0625, wheel.getOffsetY() * 0.0625, wheel.getOffsetZ() * 0.0625);
-                float frontWheelSpin = entity.prevFrontWheelRotation + (entity.frontWheelRotation - entity.prevFrontWheelRotation) * partialTicks;
-                if(entity.isMoving())
-                {
-                    GlStateManager.rotate(-frontWheelSpin, 1, 0, 0);
-                }
-                GlStateManager.scale(wheel.getScaleX(), wheel.getScaleY(), wheel.getScaleZ());
-                GlStateManager.rotate(180F, 0, 1, 0);
-                this.renderDamagedPart(entity, RenderUtil.getWheelModel(entity));
-                GlStateManager.popMatrix();
-            }
-        }
+        // if(entity.hasWheels())
+        // {
+        //     Wheel wheel = entity.getProperties().getWheels().stream().filter(wheel1 -> wheel1.getPosition() == Wheel.Position.FRONT).findFirst().orElse(null);
+        //     if(wheel != null)
+        //     {
+        //         GlStateManager.pushMatrix();
+        //         GlStateManager.translate(0, -0.5, 0);
+        //         GlStateManager.translate(wheel.getOffsetX() * 0.0625, wheel.getOffsetY() * 0.0625, wheel.getOffsetZ() * 0.0625);
+        //         float frontWheelSpin = entity.prevFrontWheelRotation + (entity.frontWheelRotation - entity.prevFrontWheelRotation) * partialTicks;
+        //         if(entity.isMoving())
+        //         {
+        //             GlStateManager.rotate(-frontWheelSpin, 1, 0, 0);
+        //         }
+        //         GlStateManager.scale(wheel.getScaleX(), wheel.getScaleY(), wheel.getScaleZ());
+        //         GlStateManager.rotate(180F, 0, 1, 0);
+        //         this.renderDamagedPart(entity, RenderUtil.getWheelModel(entity));
+        //         GlStateManager.popMatrix();
+        //     }
+        // }
 
         GlStateManager.popMatrix();
     }
