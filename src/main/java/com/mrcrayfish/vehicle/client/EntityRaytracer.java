@@ -260,6 +260,7 @@ public class EntityRaytracer
         createTransformListForPart(SpecialModels.DIRT_BIKE_BODY, dirtBikeParts, dirtBikeTransformGlobal);
         createTransformListForPart(SpecialModels.DIRT_BIKE_HANDLES, dirtBikeParts, dirtBikeTransformGlobal);
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_2_CLOSED, EntityDirtBike.class, dirtBikeParts, dirtBikeTransformGlobal);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityDirtBike.class, dirtBikeParts, dirtBikeTransformGlobal);
         registerEntityStatic(EntityDirtBike.class, dirtBikeParts);
 
         // Dune buggy

@@ -108,6 +108,8 @@ public class VehicleProperties
         properties.setRearAxelVec(0, -11.61);
         properties.addSeat(new Seat(new Vec3d(0, 8, -2), true));
         properties.addSeat(new Seat(new Vec3d(0, 9, -9)));
+        properties.setKeyPortPosition(new PartPosition(-2.4, 9, 4, -90, 0 , 90, 0.5));
+        properties.setKeyPosition(new PartPosition(-2.4, 9, 4, 0, 90 , 0, 0.15));
         VehicleProperties.setProperties(EntityDirtBike.class, properties);
 
         /* Dune Buggy */
