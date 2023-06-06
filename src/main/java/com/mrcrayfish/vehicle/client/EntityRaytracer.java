@@ -322,6 +322,7 @@ public class EntityRaytracer
         createTransformListForPart(SpecialModels.MINI_BIKE_BODY, miniBikeParts, miniBikeTransformGlobal);
         createTransformListForPart(SpecialModels.MINI_BIKE_HANDLE_BAR, miniBikeParts, miniBikeTransformGlobal);
         createPartTransforms(ModItems.SMALL_ENGINE, VehicleProperties.getProperties(EntityMiniBike.class).getEnginePosition(), miniBikeParts, miniBikeTransformGlobal, FUNCTION_FUELING);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityMiniBike.class, miniBikeParts, miniBikeTransformGlobal);
         registerEntityStatic(EntityMiniBike.class, miniBikeParts);
 
         // Moped

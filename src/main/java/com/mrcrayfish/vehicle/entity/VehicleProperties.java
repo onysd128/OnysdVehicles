@@ -214,6 +214,7 @@ public class VehicleProperties
         properties.setFrontAxelVec(0, 13);
         properties.setRearAxelVec(0, -6.7);
         properties.addSeat(new Seat(new Vec3d(0, 7, -2), true));
+        properties.setKeyPortPosition(new PartPosition(0, 6.2, 4.6, 0, 0, 0, 0.5));
         VehicleProperties.setProperties(EntityMiniBike.class, properties);
 
         /* Mini Bus */
