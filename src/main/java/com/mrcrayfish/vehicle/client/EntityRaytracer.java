@@ -284,6 +284,7 @@ public class EntityRaytracer
                 MatrixTransformation.createTranslation(0, -0.02, 0),
                 MatrixTransformation.createScale(0.9));
         createPartTransforms(ModItems.SMALL_ENGINE, VehicleProperties.getProperties(EntityGoKart.class).getEnginePosition(), goKartParts, goKartTransformGlobal, FUNCTION_FUELING);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityGoKart.class, goKartParts, goKartTransformGlobal);
         registerEntityStatic(EntityGoKart.class, goKartParts);
 
         // Jet ski

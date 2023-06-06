@@ -144,6 +144,7 @@ public class VehicleProperties
         properties.setFrontAxelVec(0, 13.5);
         properties.setRearAxelVec(0, -8.5);
         properties.addSeat(new Seat(new Vec3d(0, -2, -1), true));
+        properties.setKeyPortPosition(new PartPosition(-10.5, 0, 1, 0, 0, 0, 0.5));
         VehicleProperties.setProperties(EntityGoKart.class, properties);
 
         /* Golf Cart */
