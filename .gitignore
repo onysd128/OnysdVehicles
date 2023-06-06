@@ -22,3 +22,4 @@ eclipse
 run
 
 classes
+src/main/resources/assets/minecraft/*
