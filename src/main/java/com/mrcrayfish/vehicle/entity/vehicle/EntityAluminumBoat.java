@@ -91,6 +91,7 @@ public class EntityAluminumBoat extends EntityBoat implements IEntityRaytraceabl
     {
         return false;
     }
+    
 
 
 }

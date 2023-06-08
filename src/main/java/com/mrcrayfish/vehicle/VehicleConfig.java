@@ -78,6 +78,12 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.erver.fuel_consumption_modifier")
         @Config.RangeDouble(min = 0.0)
         public double fuelConsumptionFactor = 1.0;
+
+        @Config.Name("Fuel Consumption Factor")
+        @Config.Comment("Change the amount of fuel vehicles consumes by multiplying the consumption rate by this factor")
+        @Config.LangKey(Reference.MOD_ID + ".config.erver.fuel_consumption_modifier")
+        @Config.RangeDouble(min = 0.0)
+        public double fuelConsumptionFactor = 1.0;
     }
 
     public static class Client
