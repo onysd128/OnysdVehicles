@@ -315,6 +315,7 @@ public class EntityRaytracer
                 MatrixTransformation.createRotation(180, 0, 1, 0),
                 MatrixTransformation.createTranslation(0.0, 0.5, 0.6));
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityLawnMower.class, lawnMowerParts, lawnMowerTransformGlobal);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityLawnMower.class, lawnMowerParts, lawnMowerTransformGlobal);
         registerEntityStatic(EntityLawnMower.class, lawnMowerParts);
 
         // Mini bike

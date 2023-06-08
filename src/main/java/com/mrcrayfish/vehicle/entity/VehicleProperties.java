@@ -188,7 +188,7 @@ public class VehicleProperties
         properties.setWheelOffset(2.85F);
         properties.setBodyPosition(new PartPosition(1.25));
         properties.setFuelPortPosition(new PartPosition(-4.50, 9.5, 4.0, 0, -90, 0, 0.2));
-        properties.setKeyPortPosition(new PartPosition(-5, 4.5, 6.5, -45, 0, 0, 0.5));
+        properties.setKeyPortPosition(new PartPosition(-5, 5.5, -8, 0, 0, 0, 0.5));
         properties.setHeldOffset(new Vec3d(12.0, -1.5, 0.0));
         properties.setTowBarPosition(new Vec3d(0.0, 0.0, -20.0));
         properties.setTrailerOffset(new Vec3d(0.0, -0.01, -1.0));
