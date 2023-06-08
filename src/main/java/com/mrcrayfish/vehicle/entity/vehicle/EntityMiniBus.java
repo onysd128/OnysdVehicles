@@ -6,6 +6,7 @@ import com.mrcrayfish.vehicle.entity.EntityLandVehicle;
 import com.mrcrayfish.vehicle.init.ModSounds;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import com.mrcrayfish.vehicle.VehicleConfig;
 
 /**
  * Author: MrCrayfish
@@ -66,6 +67,12 @@ public class EntityMiniBus extends EntityLandVehicle implements EntityRaytracer.
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.miniBusKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

@@ -7,6 +7,7 @@ import com.mrcrayfish.vehicle.init.ModSounds;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import com.mrcrayfish.vehicle.VehicleConfig;
 
 /**
  * Author: MrCrayfish
@@ -27,7 +28,13 @@ public class EntityAluminumBoat extends EntityBoat implements IEntityRaytraceabl
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.aluminumBoatKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 
     @Override

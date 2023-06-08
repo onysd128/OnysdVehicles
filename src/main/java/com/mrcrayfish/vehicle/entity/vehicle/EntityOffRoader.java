@@ -6,6 +6,7 @@ import com.mrcrayfish.vehicle.entity.EntityLandVehicle;
 import com.mrcrayfish.vehicle.init.ModSounds;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import com.mrcrayfish.vehicle.VehicleConfig;
 
 /**
  * Author: MrCrayfish
@@ -65,6 +66,12 @@ public class EntityOffRoader extends EntityLandVehicle implements EntityRaytrace
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.offRoaderKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

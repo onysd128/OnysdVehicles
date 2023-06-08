@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-
+import com.mrcrayfish.vehicle.VehicleConfig;
 /**
  * Author: MrCrayfish
  */
@@ -75,6 +75,12 @@ public class EntityBumperCar extends EntityLandVehicle implements IEntityRaytrac
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.bumperCarKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

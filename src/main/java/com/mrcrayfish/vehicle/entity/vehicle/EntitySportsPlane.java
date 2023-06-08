@@ -7,6 +7,7 @@ import com.mrcrayfish.vehicle.init.ModSounds;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import com.mrcrayfish.vehicle.VehicleConfig;
 
 /**
  * Author: MrCrayfish
@@ -109,6 +110,12 @@ public class EntitySportsPlane extends EntityPlane implements IEntityRaytraceabl
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.sportsPlaneKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

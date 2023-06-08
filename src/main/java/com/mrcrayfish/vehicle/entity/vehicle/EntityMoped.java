@@ -49,6 +49,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
+import com.mrcrayfish.vehicle.VehicleConfig;
 /**
  * Author: MrCrayfish
  */
@@ -303,6 +304,12 @@ public class EntityMoped extends EntityMotorcycle implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.mopedKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

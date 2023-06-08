@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import com.mrcrayfish.vehicle.VehicleConfig;
 
 /**
  * Author: MrCrayfish
@@ -152,6 +153,12 @@ public class EntityLawnMower extends EntityLandVehicle implements IEntityRaytrac
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.lawnMowerKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

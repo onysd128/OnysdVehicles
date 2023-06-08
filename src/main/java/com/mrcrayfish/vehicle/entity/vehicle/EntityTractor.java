@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import com.mrcrayfish.vehicle.VehicleConfig;
 
 /**
  * Author: MrCrayfish
@@ -91,6 +92,12 @@ public class EntityTractor extends EntityLandVehicle implements EntityRaytracer.
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.tractorKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

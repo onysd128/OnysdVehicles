@@ -6,6 +6,7 @@ import com.mrcrayfish.vehicle.entity.EntityLandVehicle;
 import com.mrcrayfish.vehicle.init.ModSounds;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import com.mrcrayfish.vehicle.VehicleConfig;
 
 /**
  * Author: MrCrayfish
@@ -54,6 +55,12 @@ public class EntityATV extends EntityLandVehicle implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.atvKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

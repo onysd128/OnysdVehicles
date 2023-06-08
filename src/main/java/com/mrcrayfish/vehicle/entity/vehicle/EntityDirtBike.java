@@ -7,7 +7,7 @@ import com.mrcrayfish.vehicle.init.ModSounds;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
+import com.mrcrayfish.vehicle.VehicleConfig;
 /**
  * Author: MrCrayfish
  */
@@ -85,6 +85,12 @@ public class EntityDirtBike extends EntityMotorcycle implements EntityRaytracer.
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.dirtBikeKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

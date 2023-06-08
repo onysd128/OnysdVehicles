@@ -7,7 +7,7 @@ import com.mrcrayfish.vehicle.init.ModSounds;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
+import com.mrcrayfish.vehicle.VehicleConfig;
 /**
  * Author: MrCrayfish
  */
@@ -85,6 +85,12 @@ public class EntityMiniBike extends EntityMotorcycle implements IEntityRaytracea
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.miniBikeKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }

@@ -7,6 +7,7 @@ import com.mrcrayfish.vehicle.init.ModSounds;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import com.mrcrayfish.vehicle.VehicleConfig;
 
 /**
  * Author: MrCrayfish
@@ -82,6 +83,12 @@ public class EntityJetSki extends EntityBoat implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        return true;
+        if (VehicleConfig.SERVER.jetSkiKey)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }        
     }
 }
