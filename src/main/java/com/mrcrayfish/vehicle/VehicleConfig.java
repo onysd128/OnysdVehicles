@@ -75,15 +75,90 @@ public class VehicleConfig
 
         @Config.Name("Fuel Consumption Factor")
         @Config.Comment("Change the amount of fuel vehicles consumes by multiplying the consumption rate by this factor")
-        @Config.LangKey(Reference.MOD_ID + ".config.erver.fuel_consumption_modifier")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.fuel_consumption_modifier")
         @Config.RangeDouble(min = 0.0)
         public double fuelConsumptionFactor = 1.0;
 
-        @Config.Name("Fuel Consumption Factor")
-        @Config.Comment("Change the amount of fuel vehicles consumes by multiplying the consumption rate by this factor")
-        @Config.LangKey(Reference.MOD_ID + ".config.erver.fuel_consumption_modifier")
-        @Config.RangeDouble(min = 0.0)
-        public double fuelConsumptionFactor = 1.0;
+        @Config.Name("Aluminum Boat Key")
+        @Config.Comment("Depends on value will enable/disable key system for Aluminum Boat")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.aluminumBoatKey")
+        public boolean aluminumBoatKey = true;
+
+        @Config.Name("ATV Key")
+        @Config.Comment("Depends on value will enable/disable key system for ATV")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.atvKey")
+        public boolean atvKey = true;
+
+        @Config.Name("Bumper Car Key")
+        @Config.Comment("Depends on value will enable/disable key system for Bumper Car")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.bumperCarKey")
+        public boolean bumperCarKey = true;
+
+        @Config.Name("Dirt Bike Key")
+        @Config.Comment("Depends on value will enable/disable key system for Dirt Bike")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.dirtBikeKey")
+        public boolean dirtBikeKey = true;
+
+        @Config.Name("Go Kart Key")
+        @Config.Comment("Depends on value will enable/disable key system for Go Kart")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.goKartKey")
+        public boolean goKartKey = true;
+
+        @Config.Name("Golf Cart Key")
+        @Config.Comment("Depends on value will enable/disable key system for Golf Cart")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.golfCartKey")
+        public boolean golfCartKey = true;
+
+        @Config.Name("Jet Ski Key")
+        @Config.Comment("Depends on value will enable/disable key system for Jet Ski")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.jetSkiKey")
+        public boolean jetSkiKey = true;
+
+        @Config.Name("Lawn Mower Key")
+        @Config.Comment("Depends on value will enable/disable key system for Lawn Mower")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.lawnMowerKey")
+        public boolean lawnMowerKey = true;
+
+        @Config.Name("Mini Bike Key")
+        @Config.Comment("Depends on value will enable/disable key system for Mini Bike")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.miniBikeKey")
+        public boolean miniBikeKey = true;
+
+        @Config.Name("Mini Bus Key")
+        @Config.Comment("Depends on value will enable/disable key system for Mini Bus")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.miniBusKey")
+        public boolean miniBusKey = true;
+
+        @Config.Name("Moped Key")
+        @Config.Comment("Depends on value will enable/disable key system for Moped")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.mopedKey")
+        public boolean mopedKey = true;
+
+        @Config.Name("OffRoader Key")
+        @Config.Comment("Depends on value will enable/disable key system for OffRoader")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.offRoaderKey")
+        public boolean offRoaderKey = true;
+
+        @Config.Name("SmartCar Key")
+        @Config.Comment("Depends on value will enable/disable key system for SmartCar")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.smartCarKey")
+        public boolean smartCarKey = true;
+
+        @Config.Name("Speed Boat Key")
+        @Config.Comment("Depends on value will enable/disable key system for Speed Boat")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.speedBoatKey")
+        public boolean speedBoatKey = true;
+
+        @Config.Name("Sports Plane Key")
+        @Config.Comment("Depends on value will enable/disable key system for Sports Plane")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.sportsPlaneKey")
+        public boolean sportsPlaneKey = true;
+
+        @Config.Name("Tractor Key")
+        @Config.Comment("Depends on value will enable/disable key system for Tractor")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.tractorKey")
+        public boolean tractorKey = true;
+
     }
 
     public static class Client
