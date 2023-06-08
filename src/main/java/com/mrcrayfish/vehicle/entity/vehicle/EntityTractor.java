@@ -87,4 +87,10 @@ public class EntityTractor extends EntityLandVehicle implements EntityRaytracer.
     {
         return true;
     }
+
+    @Override
+    public boolean isLockable()
+    {
+        return true;
+    }
 }

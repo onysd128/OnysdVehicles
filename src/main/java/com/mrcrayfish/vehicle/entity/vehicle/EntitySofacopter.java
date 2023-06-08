@@ -35,4 +35,10 @@ public class EntitySofacopter extends EntityHelicopter implements EntityRaytrace
     {
         return false;
     }
+
+    @Override
+    public boolean isLockable()
+    {
+        return false;
+    }
 }

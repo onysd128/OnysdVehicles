@@ -50,4 +50,10 @@ public class EntityATV extends EntityLandVehicle implements IEntityRaytraceable
     {
         return true;
     }
+
+    @Override
+    public boolean isLockable()
+    {
+        return true;
+    }
 }

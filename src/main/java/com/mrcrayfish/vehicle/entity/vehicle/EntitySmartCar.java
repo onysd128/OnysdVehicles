@@ -69,7 +69,6 @@ public class EntitySmartCar extends EntityLandVehicle implements IEntityRaytrace
         return false;
     }
 
-    //TODO remove and add key support
     @Override
     public boolean isLockable()
     {

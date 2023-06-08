@@ -50,6 +50,6 @@ public class EntityDuneBuggy extends EntityLandVehicle implements IEntityRaytrac
     @Override
     public boolean isLockable()
     {
-        return true;
+        return false;
     }
 }

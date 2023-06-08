@@ -79,10 +79,11 @@ public class EntitySpeedBoat extends EntityBoat implements IEntityRaytraceable
         return true;
     }
 
-    //TODO remove and add key support
     @Override
     public boolean isLockable()
     {
         return true;
     }
+
+    
 }

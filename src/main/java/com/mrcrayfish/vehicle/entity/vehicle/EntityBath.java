@@ -57,6 +57,6 @@ public class EntityBath extends EntityPlane implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        return true;
+        return false;
     }
 }

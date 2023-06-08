@@ -61,4 +61,10 @@ public class EntityOffRoader extends EntityLandVehicle implements EntityRaytrace
     {
         return false;
     }
+
+    @Override
+    public boolean isLockable()
+    {
+        return true;
+    }
 }

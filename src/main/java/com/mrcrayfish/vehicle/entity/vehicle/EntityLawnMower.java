@@ -148,8 +148,7 @@ public class EntityLawnMower extends EntityLandVehicle implements IEntityRaytrac
     {
         return true;
     }
-
-    //TODO remove and add key support
+    
     @Override
     public boolean isLockable()
     {

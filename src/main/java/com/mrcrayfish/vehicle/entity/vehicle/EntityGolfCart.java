@@ -60,4 +60,9 @@ public class EntityGolfCart extends EntityLandVehicle implements EntityRaytracer
     {
         return false;
     }
+    @Override
+    public boolean isLockable()
+    {
+        return true;
+    }
 }

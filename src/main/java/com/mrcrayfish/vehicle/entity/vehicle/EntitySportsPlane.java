@@ -105,4 +105,10 @@ public class EntitySportsPlane extends EntityPlane implements IEntityRaytraceabl
     {
         return false;
     }
+
+    @Override
+    public boolean isLockable()
+    {
+        return true;
+    }
 }
