@@ -90,6 +90,7 @@ public class VehicleProperties
         properties.setFrontAxelVec(0, 8.5);
         properties.setRearAxelVec(0, -8.5);
         properties.addSeat(new Seat(new Vec3d(0, 1, -6), true));
+        properties.setKeyPortPosition(new PartPosition(-4.5, 6, 2, -90, 0 , 0, 0.5));
         VehicleProperties.setProperties(EntityBumperCar.class, properties);
 
         /* Dirt Bike */

@@ -251,6 +251,7 @@ public class EntityRaytracer
                 MatrixTransformation.createTranslation(0, -0.02, 0),
                 MatrixTransformation.createScale(0.9));
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityBumperCar.class, bumperCarParts, bumperCarTransformGlobal);
+        createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityBumperCar.class, bumperCarParts, bumperCarTransformGlobal);
         registerEntityStatic(EntityBumperCar.class, bumperCarParts);
 
         //Dirt bike
