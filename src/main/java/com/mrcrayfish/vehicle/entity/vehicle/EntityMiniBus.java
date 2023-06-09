@@ -67,12 +67,6 @@ public class EntityMiniBus extends EntityLandVehicle implements EntityRaytracer.
     @Override
     public boolean isLockable()
     {
-        if (VehicleConfig.SERVER.miniBusKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+        return VehicleConfig.SERVER.miniBusKey;
     }
 }

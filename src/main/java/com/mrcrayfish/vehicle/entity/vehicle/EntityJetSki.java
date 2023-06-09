@@ -83,12 +83,6 @@ public class EntityJetSki extends EntityBoat implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        if (VehicleConfig.SERVER.jetSkiKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+        return VehicleConfig.SERVER.jetSkiKey;
     }
 }

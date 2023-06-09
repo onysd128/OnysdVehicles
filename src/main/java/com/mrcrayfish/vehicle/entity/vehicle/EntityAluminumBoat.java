@@ -28,13 +28,7 @@ public class EntityAluminumBoat extends EntityBoat implements IEntityRaytraceabl
     @Override
     public boolean isLockable()
     {
-        if (VehicleConfig.SERVER.aluminumBoatKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+        return VehicleConfig.SERVER.aluminumBoatKey;    
     }
 
     @Override

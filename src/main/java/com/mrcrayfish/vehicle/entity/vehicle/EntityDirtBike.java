@@ -84,13 +84,7 @@ public class EntityDirtBike extends EntityMotorcycle implements EntityRaytracer.
 
     @Override
     public boolean isLockable()
-    {
-        if (VehicleConfig.SERVER.dirtBikeKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+    { 
+        return VehicleConfig.SERVER.dirtBikeKey;
     }
 }

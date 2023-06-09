@@ -153,12 +153,6 @@ public class EntityLawnMower extends EntityLandVehicle implements IEntityRaytrac
     @Override
     public boolean isLockable()
     {
-        if (VehicleConfig.SERVER.lawnMowerKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+        return VehicleConfig.SERVER.lawnMowerKey;
     }
 }

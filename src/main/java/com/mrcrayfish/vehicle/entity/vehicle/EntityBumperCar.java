@@ -74,13 +74,7 @@ public class EntityBumperCar extends EntityLandVehicle implements IEntityRaytrac
 
     @Override
     public boolean isLockable()
-    {
-        if (VehicleConfig.SERVER.bumperCarKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+    {   
+        return VehicleConfig.SERVER.bumperCarKey;          
     }
 }

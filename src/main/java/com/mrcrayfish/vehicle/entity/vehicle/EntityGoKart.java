@@ -85,13 +85,7 @@ public class EntityGoKart extends EntityLandVehicle implements IEntityRaytraceab
 
     @Override
     public boolean isLockable()
-    {
-        if (VehicleConfig.SERVER.goKartKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+    {    
+        return VehicleConfig.SERVER.goKartKey;
     }
 }

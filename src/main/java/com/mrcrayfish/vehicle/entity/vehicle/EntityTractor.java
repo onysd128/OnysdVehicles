@@ -92,12 +92,6 @@ public class EntityTractor extends EntityLandVehicle implements EntityRaytracer.
     @Override
     public boolean isLockable()
     {
-        if (VehicleConfig.SERVER.tractorKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+        return VehicleConfig.SERVER.tractorKey;
     }
 }

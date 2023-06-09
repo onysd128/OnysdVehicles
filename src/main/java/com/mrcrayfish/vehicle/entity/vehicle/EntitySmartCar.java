@@ -73,12 +73,6 @@ public class EntitySmartCar extends EntityLandVehicle implements IEntityRaytrace
     @Override
     public boolean isLockable()
     {
-        if (VehicleConfig.SERVER.smartCarKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+        return VehicleConfig.SERVER.smartCarKey;
     }
 }

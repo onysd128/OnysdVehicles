@@ -55,12 +55,6 @@ public class EntityATV extends EntityLandVehicle implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        if (VehicleConfig.SERVER.atvKey)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }        
+        return VehicleConfig.SERVER.atvKey;            
     }
 }
