@@ -85,6 +85,6 @@ public class EntityMiniBike extends EntityMotorcycle implements IEntityRaytracea
     @Override
     public boolean isLockable()
     {
-        return VehicleConfig.SERVER.miniBikeKey;
+        return VehicleConfig.SERVER.VEHICLES.miniBikeKey;
     }
 }

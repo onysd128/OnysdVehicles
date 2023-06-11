@@ -304,6 +304,6 @@ public class EntityMoped extends EntityMotorcycle implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        return VehicleConfig.SERVER.mopedKey;    
+        return VehicleConfig.SERVER.VEHICLES.mopedKey;    
     }
 }

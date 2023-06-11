@@ -66,6 +66,6 @@ public class EntityOffRoader extends EntityLandVehicle implements EntityRaytrace
     @Override
     public boolean isLockable()
     {
-        return VehicleConfig.SERVER.offRoaderKey;      
+        return VehicleConfig.SERVER.VEHICLES.offRoaderKey;      
     }
 }

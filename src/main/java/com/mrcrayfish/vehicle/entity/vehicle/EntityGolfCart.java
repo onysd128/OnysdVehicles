@@ -64,6 +64,6 @@ public class EntityGolfCart extends EntityLandVehicle implements EntityRaytracer
     @Override
     public boolean isLockable()
     {
-        return VehicleConfig.SERVER.golfCartKey;      
+        return VehicleConfig.SERVER.VEHICLES.golfCartKey;      
     }
 }

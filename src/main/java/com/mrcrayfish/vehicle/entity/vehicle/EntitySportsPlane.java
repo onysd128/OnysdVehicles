@@ -110,6 +110,6 @@ public class EntitySportsPlane extends EntityPlane implements IEntityRaytraceabl
     @Override
     public boolean isLockable()
     {
-        return VehicleConfig.SERVER.sportsPlaneKey;
+        return VehicleConfig.SERVER.VEHICLES.sportsPlaneKey;
     }
 }

@@ -83,7 +83,7 @@ public class EntitySpeedBoat extends EntityBoat implements IEntityRaytraceable
     @Override
     public boolean isLockable()
     {
-        return VehicleConfig.SERVER.speedBoatKey;      
+        return VehicleConfig.SERVER.VEHICLES.speedBoatKey;      
     }
 
     

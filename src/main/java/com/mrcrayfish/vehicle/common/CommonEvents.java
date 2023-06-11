@@ -15,6 +15,8 @@ import com.mrcrayfish.vehicle.network.PacketHandler;
 import com.mrcrayfish.vehicle.network.message.MessageThrowVehicle;
 import com.mrcrayfish.vehicle.tileentity.TileEntityGasPump;
 import com.mrcrayfish.vehicle.tileentity.TileEntityJack;
+import com.mrcrayfish.vehicle.util.CommonUtils;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -114,6 +116,7 @@ public class CommonEvents
 
     public static boolean pickUpVehicle(World world, EntityPlayer player, EnumHand hand, Entity targetEntity)
     {
+        //CommonUtils.sendInfoMessage(player, targetEntity.getName());
         if(hand == EnumHand.MAIN_HAND && !world.isRemote && player.isSneaking() && !player.isSpectator() && VehicleConfig.SERVER.pickUpVehicles)
         {
             if(!HeldVehicleDataHandler.isHoldingVehicle(player))
