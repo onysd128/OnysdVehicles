@@ -32,7 +32,7 @@ public class RenderOffRoader extends AbstractRenderVehicle<EntityOffRoader>
         GlStateManager.pushMatrix();
         {
             // Positions the steering wheel in the correct position
-            GlStateManager.translate(-0.3125, 0.35, 0.2);
+            GlStateManager.translate(0.3125, 0.35, 0.2);
             GlStateManager.rotate(-45F, 1, 0, 0);
             GlStateManager.translate(0, -0.02, 0);
             GlStateManager.scale(0.75, 0.75, 0.75);
