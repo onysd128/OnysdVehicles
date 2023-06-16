@@ -278,6 +278,7 @@ public class VehicleProperties
         properties.addSeat(new Seat(new Vec3d(-5, 4, -3)));
         properties.addSeat(new Seat(new Vec3d(5, 11.5, -14.5)));
         properties.addSeat(new Seat(new Vec3d(-5, 3.5, -18.9)));
+        properties.setTowBarPosition(new Vec3d(0.0, 0.0, -35));
         VehicleProperties.setProperties(EntityOffRoader.class, properties);
 
         /* Shopping Cart */

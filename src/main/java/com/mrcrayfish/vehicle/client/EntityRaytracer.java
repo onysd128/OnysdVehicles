@@ -442,6 +442,9 @@ public class EntityRaytracer
                 MatrixTransformation.createScale(0.75));
         createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityOffRoader.class, offRoaderParts, offRoaderTransformGlobal);
         createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityOffRoader.class, offRoaderParts, offRoaderTransformGlobal);
+        createTransformListForPart(SpecialModels.TOW_BAR, offRoaderParts,
+                MatrixTransformation.createRotation(180, 0, 1, 0),
+                MatrixTransformation.createTranslation(0.0, 2, 1.05));
         registerEntityStatic(EntityOffRoader.class, offRoaderParts);
 
         List<MatrixTransformation> tractorTransformGlobal = Lists.newArrayList();

@@ -18,6 +18,12 @@ import java.util.List;
 public class RenderOffRoader extends AbstractRenderVehicle<EntityOffRoader>
 {
     @Override
+    public SpecialModels getTowBarModel()
+    {
+        return SpecialModels.BIG_TOW_BAR;
+    }
+    
+    @Override
     public void render(EntityOffRoader entity, float partialTicks)
     {
         this.renderDamagedPart(entity, SpecialModels.OFF_ROADER_BODY.getModel());
