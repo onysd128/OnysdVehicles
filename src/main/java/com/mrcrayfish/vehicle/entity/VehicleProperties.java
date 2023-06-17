@@ -235,8 +235,8 @@ public class VehicleProperties
         properties.addWheel(Wheel.Side.RIGHT, Wheel.Position.REAR, 9.0F, 0.0F, -13.5F, 1.5F, 1.9F, 1.9F, true, true);
         properties.setFrontAxelVec(0, 14.5);
         properties.setRearAxelVec(0, -14.5);
-        properties.addSeat(new Seat(new Vec3d(4.5, 2, 11), true));
-        properties.addSeat(new Seat(new Vec3d(-4.5, 2, 11)));
+        properties.addSeat(new Seat(new Vec3d(4.5, 2, 11)));
+        properties.addSeat(new Seat(new Vec3d(-4.5, 2, 11),true));
         properties.addSeat(new Seat(new Vec3d(4.5, 2, -3)));
         properties.addSeat(new Seat(new Vec3d(-4.5, 2, -3)));
         properties.addSeat(new Seat(new Vec3d(4.5, 2, -15)));

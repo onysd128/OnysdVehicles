@@ -29,7 +29,7 @@ public class RenderMiniBus extends AbstractRenderVehicle<EntityMiniBus>
         GlStateManager.pushMatrix();
         {
             // Positions the steering wheel in the correct position
-            GlStateManager.translate(-0.2825, 0.225, 1.0625);
+            GlStateManager.translate(0.2825, 0.225, 1.0625);
             GlStateManager.rotate(-67.5F, 1, 0, 0);
             GlStateManager.translate(0, -0.02, 0);
             GlStateManager.scale(0.75, 0.75, 0.75);
