@@ -24,7 +24,7 @@ public class RenderGolfCart extends AbstractRenderVehicle<EntityGolfCart>
         GlStateManager.pushMatrix();
         {
             // Positions the steering wheel in the correct position
-            GlStateManager.translate(-0.345, 0.425, 0.1);
+            GlStateManager.translate(0.345, 0.425, 0.1);
             GlStateManager.rotate(-45F, 1, 0, 0);
             GlStateManager.translate(0, -0.02, 0);
             GlStateManager.scale(0.95, 0.95, 0.95);

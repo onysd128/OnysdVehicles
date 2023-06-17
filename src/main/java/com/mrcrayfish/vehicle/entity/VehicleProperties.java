@@ -163,8 +163,8 @@ public class VehicleProperties
         properties.addWheel(Wheel.Side.RIGHT, Wheel.Position.REAR, 9.0F, -12.5F, 1.75F, true, true);
         properties.setFrontAxelVec(0, 16.0);
         properties.setRearAxelVec(0, -12.5);
-        properties.addSeat(new Seat(new Vec3d(5.5, 5, -6), true));
-        properties.addSeat(new Seat(new Vec3d(-5.5, 5, -6)));
+        properties.addSeat(new Seat(new Vec3d(5.5, 5, -6)));
+        properties.addSeat(new Seat(new Vec3d(-5.5, 5, -6),true));
         properties.addSeat(new Seat(new Vec3d(5.5, 5, -15), 180F));
         properties.addSeat(new Seat(new Vec3d(-5.5, 5, -15), 180F));
         VehicleProperties.setProperties(EntityGolfCart.class, properties);
