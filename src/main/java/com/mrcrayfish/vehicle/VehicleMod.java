@@ -102,9 +102,9 @@ public class VehicleMod
     private void registerVehicles()
     {
         registerVehicle("atv", EntityATV.class);
-        registerVehicle("dune_buggy", EntityDuneBuggy.class);
+        // registerVehicle("dune_buggy", EntityDuneBuggy.class);
         registerVehicle("go_kart", EntityGoKart.class);
-        registerVehicle("shopping_cart", EntityShoppingCart.class);
+        // registerVehicle("shopping_cart", EntityShoppingCart.class);
         registerVehicle("mini_bike", EntityMiniBike.class);
         registerVehicle("bumper_car", EntityBumperCar.class);
         registerVehicle("jet_ski", EntityJetSki.class);
@@ -120,12 +120,12 @@ public class VehicleMod
         registerVehicle("mini_bus", EntityMiniBus.class);
         registerVehicle("dirt_bike", EntityDirtBike.class);
 
-        if(Loader.isModLoaded("cfm"))
-        {
-            registerVehicle("couch", EntityCouch.class);
-            registerVehicle("bath", EntityBath.class);
-            registerVehicle("sofacopter", EntitySofacopter.class);
-        }
+        // if(Loader.isModLoaded("cfm"))
+        // {
+        //     registerVehicle("couch", EntityCouch.class);
+        //     registerVehicle("bath", EntityBath.class);
+        //     registerVehicle("sofacopter", EntitySofacopter.class);
+        // }
 
         registerVehicle("trailer", EntityVehicleTrailer.class);
         registerVehicle("storage_trailer", EntityStorageTrailer.class);
