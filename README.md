@@ -8,14 +8,14 @@ Hi! It's my fork of MrCrayfishVehicleMod, where i will improve mod for 1.12.2 Mi
 
 1. Added tow bar for Off-Roader
 2. Changed driver position to left side for:
-    a. Off-Roader
-    b. Mini Bus
-    c. Golf Cart
+    1. Off-Roader
+    2. Mini Bus
+    3. Golf Cart
 3. Disabled (temporary) some vehicles:
-    a. Dune Buggy
-    b. Shopping Cart
-    c. Couch
-    d. Bath
-    e. Sofacopter
+    1. Dune Buggy
+    2. Shopping Cart
+    3. Couch
+    4. Bath
+    5. Sofacopter
 
 
