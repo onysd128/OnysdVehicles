@@ -114,20 +114,20 @@ public class VehicleProperties
         VehicleProperties.setProperties(EntityDirtBike.class, properties);
 
         /* Dune Buggy */
-        properties = new VehicleProperties();
-        properties.setAxleOffset(-2.3F);
-        properties.setWheelOffset(2.5F);
-        properties.setBodyPosition(new PartPosition(1.3));
-        properties.setFuelPortPosition(new PartPosition(0, 3, -7.0, 0, 180, 0, 0.25));
-        properties.setHeldOffset(new Vec3d(2.0, 0.0, 0.0));
-        properties.setTrailerOffset(new Vec3d(0.0, -0.025, -0.25));
-        properties.setDisplayPosition(new PartPosition(1.75F));
-        properties.addWheel(Wheel.Side.LEFT, Wheel.Position.REAR, 2.4F, -5.7F, 1.0F, true, true);
-        properties.addWheel(Wheel.Side.RIGHT, Wheel.Position.REAR, 2.4F, -5.7F, 1.0F, true, true);
-        properties.setFrontAxelVec(0, 5.3);
-        properties.setRearAxelVec(0, -5.7);
-        properties.addSeat(new Seat(new Vec3d(0, 2, -3), true));
-        VehicleProperties.setProperties(EntityDuneBuggy.class, properties);
+        // properties = new VehicleProperties();
+        // properties.setAxleOffset(-2.3F);
+        // properties.setWheelOffset(2.5F);
+        // properties.setBodyPosition(new PartPosition(1.3));
+        // properties.setFuelPortPosition(new PartPosition(0, 3, -7.0, 0, 180, 0, 0.25));
+        // properties.setHeldOffset(new Vec3d(2.0, 0.0, 0.0));
+        // properties.setTrailerOffset(new Vec3d(0.0, -0.025, -0.25));
+        // properties.setDisplayPosition(new PartPosition(1.75F));
+        // properties.addWheel(Wheel.Side.LEFT, Wheel.Position.REAR, 2.4F, -5.7F, 1.0F, true, true);
+        // properties.addWheel(Wheel.Side.RIGHT, Wheel.Position.REAR, 2.4F, -5.7F, 1.0F, true, true);
+        // properties.setFrontAxelVec(0, 5.3);
+        // properties.setRearAxelVec(0, -5.7);
+        // properties.addSeat(new Seat(new Vec3d(0, 2, -3), true));
+        // VehicleProperties.setProperties(EntityDuneBuggy.class, properties);
 
         /* Go Kart */
         properties = new VehicleProperties();
@@ -281,22 +281,22 @@ public class VehicleProperties
         properties.setTowBarPosition(new Vec3d(0.0, 0.0, -35));
         VehicleProperties.setProperties(EntityOffRoader.class, properties);
 
-        /* Shopping Cart */
-        properties = new VehicleProperties();
-        properties.setAxleOffset(-1.0F);
-        properties.setWheelOffset(2.0F);
-        properties.setBodyPosition(new PartPosition(1.05));
-        properties.setHeldOffset(new Vec3d(4.0, 9.25, 0.0));
-        properties.setTrailerOffset(new Vec3d(0.0, -0.03125, -0.25));
-        properties.setDisplayPosition(new PartPosition(1.45F));
-        properties.addWheel(Wheel.Side.LEFT, Wheel.Position.NONE, 5.75F, -10.5F, 0.75F, false, true);
-        properties.addWheel(Wheel.Side.RIGHT, Wheel.Position.NONE, 5.75F, -10.5F, 0.75F, false, true);
-        properties.addWheel(Wheel.Side.LEFT, Wheel.Position.FRONT, 4.0F, 9.5F, 0.75F, false, true);
-        properties.addWheel(Wheel.Side.RIGHT, Wheel.Position.FRONT, 4.0F, 9.5F, 0.75F, false, true);
-        properties.setFrontAxelVec(0, 9.5);
-        properties.setRearAxelVec(0, -10.5);
-        properties.addSeat(new Seat(new Vec3d(0, 7, -4), true));
-        VehicleProperties.setProperties(EntityShoppingCart.class, properties);
+        // /* Shopping Cart */
+        // properties = new VehicleProperties();
+        // properties.setAxleOffset(-1.0F);
+        // properties.setWheelOffset(2.0F);
+        // properties.setBodyPosition(new PartPosition(1.05));
+        // properties.setHeldOffset(new Vec3d(4.0, 9.25, 0.0));
+        // properties.setTrailerOffset(new Vec3d(0.0, -0.03125, -0.25));
+        // properties.setDisplayPosition(new PartPosition(1.45F));
+        // properties.addWheel(Wheel.Side.LEFT, Wheel.Position.NONE, 5.75F, -10.5F, 0.75F, false, true);
+        // properties.addWheel(Wheel.Side.RIGHT, Wheel.Position.NONE, 5.75F, -10.5F, 0.75F, false, true);
+        // properties.addWheel(Wheel.Side.LEFT, Wheel.Position.FRONT, 4.0F, 9.5F, 0.75F, false, true);
+        // properties.addWheel(Wheel.Side.RIGHT, Wheel.Position.FRONT, 4.0F, 9.5F, 0.75F, false, true);
+        // properties.setFrontAxelVec(0, 9.5);
+        // properties.setRearAxelVec(0, -10.5);
+        // properties.addSeat(new Seat(new Vec3d(0, 7, -4), true));
+        // VehicleProperties.setProperties(EntityShoppingCart.class, properties);
 
         /* Smart Car */
         properties = new VehicleProperties();

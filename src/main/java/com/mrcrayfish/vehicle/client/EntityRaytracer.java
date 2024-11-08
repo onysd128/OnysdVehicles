@@ -265,14 +265,14 @@ public class EntityRaytracer
         registerEntityStatic(EntityDirtBike.class, dirtBikeParts);
 
         // Dune buggy
-        List<MatrixTransformation> duneBuggyTransformGlobal = Lists.newArrayList();
-        createBodyTransforms(duneBuggyTransformGlobal, EntityDuneBuggy.class);
-        HashMap<RayTracePart, List<MatrixTransformation>> duneBuggyParts = Maps.newHashMap();
-        createTransformListForPart(SpecialModels.DUNE_BUGGY_BODY, duneBuggyParts, duneBuggyTransformGlobal);
-        createTransformListForPart(SpecialModels.DUNE_BUGGY_HANDLE_BAR, duneBuggyParts, duneBuggyTransformGlobal,
-                MatrixTransformation.createTranslation(0, 0, -0.0046875));
-        createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityDuneBuggy.class, duneBuggyParts, duneBuggyTransformGlobal);
-        registerEntityStatic(EntityDuneBuggy.class, duneBuggyParts);
+        // List<MatrixTransformation> duneBuggyTransformGlobal = Lists.newArrayList();
+        // createBodyTransforms(duneBuggyTransformGlobal, EntityDuneBuggy.class);
+        // HashMap<RayTracePart, List<MatrixTransformation>> duneBuggyParts = Maps.newHashMap();
+        // createTransformListForPart(SpecialModels.DUNE_BUGGY_BODY, duneBuggyParts, duneBuggyTransformGlobal);
+        // createTransformListForPart(SpecialModels.DUNE_BUGGY_HANDLE_BAR, duneBuggyParts, duneBuggyTransformGlobal,
+        //         MatrixTransformation.createTranslation(0, 0, -0.0046875));
+        // createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityDuneBuggy.class, duneBuggyParts, duneBuggyTransformGlobal);
+        // registerEntityStatic(EntityDuneBuggy.class, duneBuggyParts);
 
         // Go kart
         List<MatrixTransformation> goKartTransformGlobal = Lists.newArrayList();
@@ -346,12 +346,12 @@ public class EntityRaytracer
         createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityMoped.class, mopedParts, mopedTransformGlobal);
         registerEntityStatic(EntityMoped.class, mopedParts);
 
-        // Shopping cart
-        List<MatrixTransformation> cartTransformGlobal = Lists.newArrayList();
-        createBodyTransforms(cartTransformGlobal, EntityShoppingCart.class);
-        HashMap<RayTracePart, List<MatrixTransformation>> cartParts = Maps.newHashMap();
-        createTransformListForPart(SpecialModels.SHOPPING_CART_BODY, cartParts, cartTransformGlobal);
-        registerEntityStatic(EntityShoppingCart.class, cartParts);
+        // // Shopping cart
+        // List<MatrixTransformation> cartTransformGlobal = Lists.newArrayList();
+        // createBodyTransforms(cartTransformGlobal, EntityShoppingCart.class);
+        // HashMap<RayTracePart, List<MatrixTransformation>> cartParts = Maps.newHashMap();
+        // createTransformListForPart(SpecialModels.SHOPPING_CART_BODY, cartParts, cartTransformGlobal);
+        // registerEntityStatic(EntityShoppingCart.class, cartParts);
 
         // Smart car
         List<MatrixTransformation> smartCarTransformGlobal = Lists.newArrayList();

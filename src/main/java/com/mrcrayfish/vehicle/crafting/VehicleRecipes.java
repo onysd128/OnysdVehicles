@@ -61,11 +61,11 @@ public class VehicleRecipes
         mapBuilder.put(EntityDirtBike.class, builder.build());
 
         /* Dune Buggy */
-        builder = new Builder();
-        builder.addMaterial(new ItemStack(Blocks.CONCRETE, 16, EnumDyeColor.YELLOW.getMetadata()));
-        builder.addMaterial(new ItemStack(Blocks.CONCRETE, 8, EnumDyeColor.BLUE.getMetadata()));
-        builder.addMaterial(new ItemStack(Blocks.CONCRETE, 4, EnumDyeColor.RED.getMetadata()));
-        mapBuilder.put(EntityDuneBuggy.class, builder.build());
+        // builder = new Builder();
+        // builder.addMaterial(new ItemStack(Blocks.CONCRETE, 16, EnumDyeColor.YELLOW.getMetadata()));
+        // builder.addMaterial(new ItemStack(Blocks.CONCRETE, 8, EnumDyeColor.BLUE.getMetadata()));
+        // builder.addMaterial(new ItemStack(Blocks.CONCRETE, 4, EnumDyeColor.RED.getMetadata()));
+        // mapBuilder.put(EntityDuneBuggy.class, builder.build());
 
         /* Go Kart */
         builder = new Builder();
@@ -127,12 +127,12 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(ModItems.PANEL, 24));
         mapBuilder.put(EntityOffRoader.class, builder.build());
 
-        /* Shopping Cart */
-        builder = new Builder();
-        builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
-        builder.addMaterial(new ItemStack(Blocks.IRON_BARS, 4));
-        builder.addMaterial(new ItemStack(Items.DYE, 2, EnumDyeColor.RED.getDyeDamage()));
-        mapBuilder.put(EntityShoppingCart.class, builder.build());
+        // /* Shopping Cart */
+        // builder = new Builder();
+        // builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
+        // builder.addMaterial(new ItemStack(Blocks.IRON_BARS, 4));
+        // builder.addMaterial(new ItemStack(Items.DYE, 2, EnumDyeColor.RED.getDyeDamage()));
+        // mapBuilder.put(EntityShoppingCart.class, builder.build());
 
         /* Smart Car */
         builder = new Builder();

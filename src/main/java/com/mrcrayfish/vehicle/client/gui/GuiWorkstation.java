@@ -85,8 +85,10 @@ public class GuiWorkstation extends GuiContainer
         int startY = (this.height - this.ySize) / 2;
         this.buttonList.add(new GuiButton(1, startX, startY, 15, 20, "<"));
         this.buttonList.add(new GuiButton(2, startX + 161, startY, 15, 20, ">"));
+        //TODO: make Craft Button able to translate
         this.buttonList.add(btnCraft = new GuiButton(3, startX + 186, startY + 6, 97, 20, "Craft"));
         this.btnCraft.enabled = false;
+        //TODO: make "Show Remaining" able to translate
         this.checkBoxMaterials = new GuiCheckBox(186, 51, "Show Remaining");
         this.checkBoxMaterials.setToggled(GuiWorkstation.showRemaining);
         this.loadVehicle(currentVehicle);
