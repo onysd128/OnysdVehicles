@@ -1,4 +1,4 @@
-# Onysd Vehicles Mod
+# Onysd Vehicles
 
 Hi! It's my unofficial continuation of MrCrayfish`s Vehicle Mod.
 Here i fixing issues, creating new content and developing new features.

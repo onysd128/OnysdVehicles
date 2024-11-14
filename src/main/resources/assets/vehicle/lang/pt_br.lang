@@ -1,4 +1,4 @@
-itemGroup.tabVehicle=Onysd Vehicle Mod
+itemGroup.tabVehicle=Onysd Vehicles
 
 vehicle.engine_type.small.name=Motor Pequeno
 vehicle.engine_type.large.name=Motor Grande
@@ -101,7 +101,7 @@ entity.vehicle.fluid_trailer.name=Trailer de Fluidos
 entity.vehicle.tractor.name=Trator
 entity.vehicle.mini_bus.name=Mini Ônibus
 
-vehicle.config.title=Onysd Vehicle Mod Configuração
+vehicle.config.title=Onysd Vehicles Configuração
 vehicle.config.client=Cliente
 vehicle.config.client.tooltip=Configurações somente do cliente
 vehicle.config.client.debug=Depurar
@@ -163,6 +163,6 @@ vehicle.tooltip.paint_color=Cor da pintura
 vehicle.tooltip.engine=Motor
 vehicle.tooltip.wheels=Roda
 
-key.categories.vehicle=Onysd Vehicle Mod
+key.categories.vehicle=Onysd Vehicles
 key.vehicle.horn=Buzina
 key.vehicle.cycle_seats=Assento para moto

@@ -1,4 +1,4 @@
-itemGroup.tabVehicle=Onysd Vehicle Mod
+itemGroup.tabVehicle=Onysd Vehicles
 
 vehicle.engine_type.small.name=Малий Двигун
 vehicle.engine_type.large.name=Великий Двигун
@@ -102,7 +102,7 @@ entity.vehicle.tractor.name=Трактор
 entity.vehicle.mini_bus.name=Міні-Бус
 entity.vehicle.dirt_bike.name=Мотобайк
 
-vehicle.config.title=Onysd Vehicle Mod Config
+vehicle.config.title=Onysd Vehicles Config
 vehicle.config.client=Client
 vehicle.config.client.tooltip=Client-only configs
 vehicle.config.client.debug=Debug
@@ -164,6 +164,6 @@ vehicle.tooltip.paint_color=Колір Фарби
 vehicle.tooltip.engine=Двигун
 vehicle.tooltip.wheels=Колеса
 
-key.categories.vehicle=Onysd Vehicle Mod
+key.categories.vehicle=Onysd Vehicles
 key.vehicle.horn=Гудок
 key.vehicle.cycle_seats=Cycle Seats
