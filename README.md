@@ -10,14 +10,14 @@
 # Full Changes List
 ### v1.2
 1. 🇺🇦 Added Ukrainian transaltion. 
-2. 🔨 Fixed issue when disabled in previous release vehicles still shows in Workstation UI.
+2. 🔨 Fixed issue when disabled in previous release vehicles still shows in Workstation UI.<br>
 ### v1.1
 1. 🚘 Added tow bar for Off-Roader.
 2. ↔️ Changed driver position to left side for Off-Roader, Mini Bus and Golf Cart.
-3. 🚫 Disabled some vehicles: Dune Buggy, Shopping Cart, Couch, Bath, Sofacopter.
+3. 🚫 Disabled some vehicles: Dune Buggy, Shopping Cart, Couch, Bath, Sofacopter.<br>
 ### v1.0
 1. 🏍️ Fixed bug with dirt bike colored wheel.
 2. 🔑 Finished Key System, now every vehycle can be locked with a key! 
-3. 📋 Also you can set in config wich kind of vehicles can/not be locked with a key. 
+3. 📋 Also you can set in config wich kind of vehicles can/not be locked with a key.<br>
 
 **Stay tuned for new updates!**
