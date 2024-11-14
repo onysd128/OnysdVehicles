@@ -1,19 +1,23 @@
-# OnysdVehicleMod
+# Onysd Vehicles Mod
 
-Hi! It's my fork of MrCrayfishVehicleMod, where i will improve mod for 1.12.2 Minecraft version with new features and ideas!
+Hi! It's my unofficial continuation of MrCrayfish`s Vehicle Mod.
+Here i fixing issues, creating new content and developing new features.
+I plan to mantain mod only for 1.12.2 version of Minecraft. But who knows ;)
+I'm open for new ideas and suggestions, so don't afraid to contact me!
 
-# Full Changes & Fixes List
+Also check original mod from MrCrayfish [here](https://github.com/MrCrayfish/MrCrayfishVehicleMod).
 
-1) Added Ukrainian transaltion (v1.2)
-2) Fixed bug with dirt bike colored wheel (v1.0)
-3) Finished Key System, now every vehycle can be locked with a key! (v1.0)
-4) Also you can set in config wich kind of vehicles can/not be locked with a key. (v1.0)
-5) Added tow bar for Off-Roader (v1.1)
-6) Changed driver position to left side for Off-Roader, Mini Bus and Golf Cart cause i want to :-) (v1.1)
-7) Disable some vehicles: Dune Buggy, Shopping Cart, Couch, Bath, Sofacopter (v1.1)
+# Full Changes List
+### v1.2
+1. Added Ukrainian transaltion.
+2. Fixed issue when disabled in previous release vehicles still shows in Workstation UI.
+### v1.1
+1. Added tow bar for Off-Roader.
+2. Changed driver position to left side for Off-Roader, Mini Bus and Golf Cart.
+3. Disable some vehicles: Dune Buggy, Shopping Cart, Couch, Bath, Sofacopter.
+### v1.0
+1. Fixed bug with dirt bike colored wheel 
+2. Finished Key System, now every vehycle can be locked with a key! 
+3. Also you can set in config wich kind of vehicles can/not be locked with a key. 
 
-Wait for a new updates!
-
-
-# MrCrayfish's Vehicle Mod
-MrCrayfish's Vehicle Mod is about creating fun and useful vehicles. In this mod you can find an assortment of vehicles that will help you explore, farm, transport, race, and even fly! Every vehicle can be customised with different engines and wheels to change the speed and effective surfaces the vehicles can drive on. Using a spray can you change the colour of your vehicle to any combination of dyes. The mod also includes a simple fuel production system, great for beginners to start learning about machines and fluid pipes.
+Stay tuned for new updates!
