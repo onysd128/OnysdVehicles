@@ -1,11 +1,11 @@
 # Onysd Vehicles
 
-Hi! It's my unofficial continuation of MrCrayfish`s Vehicle Mod.
-Here i fixing issues, creating new content and developing new features.
-I plan to mantain mod only for 1.12.2 version of Minecraft. But who knows ;)
-I'm open for new ideas and suggestions, so don't afraid to contact me!
+Hi! It's my unofficial continuation of MrCrayfish`s Vehicle Mod.\
+Here i fixing issues, creating new content and developing new features.\
+I plan to mantain mod only for 1.12.2 version of Minecraft. But who knows ;) \
+I'm open for new ideas and suggestions, so don't afraid to contact me! \
 
-Also check original mod from MrCrayfish [here](https://github.com/MrCrayfish/MrCrayfishVehicleMod).
+Also check original mod from MrCrayfish **[here](https://github.com/MrCrayfish/MrCrayfishVehicleMod)**. \
 
 # Full Changes List
 ### v1.2
@@ -20,4 +20,4 @@ Also check original mod from MrCrayfish [here](https://github.com/MrCrayfish/MrC
 2. Finished Key System, now every vehycle can be locked with a key! 
 3. Also you can set in config wich kind of vehicles can/not be locked with a key. 
 
-Stay tuned for new updates!
+**Stay tuned for new updates!**
