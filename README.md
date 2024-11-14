@@ -1,11 +1,11 @@
 # Onysd Vehicles
 
-Hi! It's my unofficial continuation of MrCrayfish`s Vehicle Mod.\
-Here i fixing issues, creating new content and developing new features.\
-I plan to mantain mod only for 1.12.2 version of Minecraft. But who knows ;)\
-I'm open for new ideas and suggestions, so don't afraid to contact me!\
+Hi! It's my unofficial continuation of MrCrayfish`s Vehicle Mod.<br>
+Here i fixing issues, creating new content and developing new features.<br>
+I plan to mantain mod only for 1.12.2 version of Minecraft. But who knows ;)<br>
+I'm open for new ideas and suggestions, so don't afraid to contact me!<br>
 
-Also check original mod from MrCrayfish **[here](https://github.com/MrCrayfish/MrCrayfishVehicleMod)**.\
+Also check original mod from MrCrayfish **[here](https://github.com/MrCrayfish/MrCrayfishVehicleMod)**.<br>
 
 # Full Changes List
 ### v1.2
