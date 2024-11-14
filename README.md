@@ -16,7 +16,7 @@
 2. ↔️ Changed driver position to left side for Off-Roader, Mini Bus and Golf Cart.
 3. 🚫 Disabled some vehicles: Dune Buggy, Shopping Cart, Couch, Bath, Sofacopter.
 ### v1.0
-1. 🏍️ Fixed bug with dirt bike colored wheel 
+1. 🏍️ Fixed bug with dirt bike colored wheel.
 2. 🔑 Finished Key System, now every vehycle can be locked with a key! 
 3. 📋 Also you can set in config wich kind of vehicles can/not be locked with a key. 
 
