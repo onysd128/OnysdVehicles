@@ -2,7 +2,7 @@
  ![Minecraft](https://shorturl.at/LiBIk)[![Curseforge](http://cf.way2muchnoise.eu/full_onysdvehicles_downloads.svg?badge_style=for_the_badge)](https://www.curseforge.com/minecraft/mc-mods/onysdvehicles)<br><br>
 👋 Hi! It's my unofficial continuation of MrCrayfish`s Vehicle Mod.<br>
 🏗️ Here i fixing issues, creating new content and developing new features.<br>
-📝 I plan to mantain mod only for 1.12.2 version of Minecraft. But who knows ;)<br>
+📝 I plan to mantain mod only for 1.12.2 version of Minecraft. Don`t ask for another versions ;)<br>
 🤯 I'm open for new ideas and suggestions, so don't afraid to contact me!<br>
 
 🌐 Also check original mod from MrCrayfish **[here](https://github.com/MrCrayfish/MrCrayfishVehicleMod)**.<br>
