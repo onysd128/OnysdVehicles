@@ -357,6 +357,7 @@ public abstract class EntityVehicle extends Entity implements IEntityAdditionalS
                 {
                     this.setTimeSinceHit(10);
                     this.setHealth(this.getHealth() - amount);
+                    world.playSound(null, this.posX, this.posY, this.posZ, ModSounds.VEHICLE_CRATE_PANEL_LAND, SoundCategory.NEUTRAL, 1.0F, 0.6F + 0.1F);
                 }
                 boolean isCreativeMode = trueSource instanceof EntityPlayer && ((EntityPlayer) trueSource).capabilities.isCreativeMode;
                 if(isCreativeMode || this.getHealth() < 0.0F)
