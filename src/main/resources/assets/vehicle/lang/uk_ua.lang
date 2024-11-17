@@ -65,7 +65,7 @@ container.fluid_extractor=Екстрактор рідини
 container.fluid_mixer=Паливний міксер
 container.edit_vehicle.window_help=Натисніть, щоб перемістити або повернути
 
-vehicle.info_help=Утримуйте SHIFT для детальнішої інформації
+vehicle.info_help=Утримуйте SHIFT для подробиць
 tile.vehicle.boost_pad.info=Проїжджаючи по цій плиті ви прискоритесь!
 tile.vehicle.boost_ramp.info=Проїжджаючи по цій рампі ви прискоритесь і трішки політаєте!
 tile.vehicle.steep_boost_ramp.info=Проїжджаючи по цій рампі ви прискоритесь і політаєте трішки більше!
