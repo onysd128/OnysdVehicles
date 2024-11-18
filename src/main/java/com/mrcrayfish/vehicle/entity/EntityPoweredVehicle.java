@@ -162,12 +162,12 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
     private void applyVehicleCollision(Entity entity)
     {
         if (isMoving==1){
-            entity.attackEntityFrom(DamageSource.GENERIC, vehicleMotionZ+vehicleMotionX + 1);
+            entity.attackEntityFrom(DamageSource.GENERIC, 2);
             entity.motionX += vehicleMotionX * 2;
             entity.motionZ += vehicleMotionZ * 2;
             entity.motionY += 0.5;
             world.playSound(null, this.posX, this.posY, this.posZ, ModSounds.VEHICLE_THUD, SoundCategory.NEUTRAL, 1.0F, 0.6F + 0.1F * this.getNormalSpeed());
-            this.currentSpeed *= 0.25F;
+            this.currentSpeed *= 0.9F;
         }    
         
     }
