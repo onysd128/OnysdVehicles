@@ -165,7 +165,9 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             entity.attackEntityFrom(DamageSource.GENERIC, 2);
             entity.motionX += vehicleMotionX * 2;
             entity.motionZ += vehicleMotionZ * 2;
-            entity.motionY += 0.5;
+            if (!(entity instanceof EntityVehicle)){
+                entity.motionY += 0.5;
+            }            
             world.playSound(null, this.posX, this.posY, this.posZ, ModSounds.VEHICLE_THUD, SoundCategory.NEUTRAL, 1.0F, 0.6F + 0.1F * this.getNormalSpeed());
             this.currentSpeed *= 0.9F;
         }    
