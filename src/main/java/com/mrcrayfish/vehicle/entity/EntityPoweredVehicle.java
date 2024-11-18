@@ -62,6 +62,7 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.DamageSource;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -128,6 +129,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
     public float vehicleMotionX;
     public float vehicleMotionY;
     public float vehicleMotionZ;
+    public int isMoving = 0;
 
     private UUID owner;
     private InventoryBasic vehicleInventory;
@@ -146,6 +148,28 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
     {
         this(worldIn);
         this.setPosition(posX, posY, posZ);
+    }
+
+    @Override
+    public void applyEntityCollision(Entity entityIn)
+    {
+        if(entityIn instanceof Entity && this.isBeingRidden())
+        {
+            applyVehicleCollision((Entity) entityIn);
+        }
+    }
+
+    private void applyVehicleCollision(Entity entity)
+    {
+        if (isMoving==1){
+            entity.attackEntityFrom(DamageSource.GENERIC, vehicleMotionZ+vehicleMotionX + 1);
+            entity.motionX += vehicleMotionX * 2;
+            entity.motionZ += vehicleMotionZ * 2;
+            entity.motionY += 0.5;
+            world.playSound(null, this.posX, this.posY, this.posZ, ModSounds.VEHICLE_THUD, SoundCategory.NEUTRAL, 1.0F, 0.6F + 0.1F * this.getNormalSpeed());
+            this.currentSpeed *= 0.25F;
+        }    
+        
     }
 
     @Override
@@ -365,6 +389,14 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         this.updateVehicle();
         this.setSpeed(currentSpeed);
 
+        /* update isMoving state */
+        if (Math.abs(vehicleMotionX)+Math.abs(vehicleMotionZ)>0.1){
+            isMoving=1;
+        }
+        else{
+            isMoving=0; 
+        }
+
         /* Updates the direction of the vehicle */
         VehicleProperties properties = this.getProperties();
         if(properties.getFrontAxelVec() == null || properties.getRearAxelVec() == null)
@@ -428,7 +460,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         this.doBlockCollisions();
 
         /* Checks for collisions with any other vehicles */
-        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox(), entity -> entity instanceof EntityBumperCar);
+        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox(), entity -> (entity instanceof Entity));
         if (!list.isEmpty())
         {
             for(Entity entity : list)
