@@ -10,8 +10,8 @@ public enum WheelType
     RACING("racing", 1.1F, 0.7F, 0.5F),
     OFF_ROAD("off_road", 0.75F, 1.0F, 0.85F),
     SNOW("snow", 0.75F, 0.75F, 0.95F),
-    ALL_TERRAIN("all_terrain", 0.85F, 0.85F, 0.85F),
-    PLASTIC("plastic", 0.5F, 0.5F, 0.5F);
+    ALL_TERRAIN("all_terrain", 0.85F, 0.85F, 0.85F);
+    // PLASTIC("plastic", 0.5F, 0.5F, 0.5F);
 
     String id;
     float roadMultiplier;
