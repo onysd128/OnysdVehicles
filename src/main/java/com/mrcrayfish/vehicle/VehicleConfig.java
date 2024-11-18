@@ -78,11 +78,41 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.server.fuel_consumption_modifier")
         @Config.RangeDouble(min = 0.0)
         public double fuelConsumptionFactor = 1.0;
-
+        
         @Config.Name("Vehicles")
         @Config.Comment("Config for separate vehicle")
         @Config.LangKey(Reference.MOD_ID + ".config.server")
         public final Vehicles VEHICLES = new Vehicles();
+
+        @Config.Name("Collision System")
+        @Config.Comment("Collision system configuration. NOTE: For that moment vehicle collisions don`t work with players. Its calls a lot of bugs, so its need to be implemented another way")
+        @Config.LangKey(Reference.MOD_ID + ".config.server")
+        public final CollisionSystem collision_system = new CollisionSystem();
+
+        public class CollisionSystem{         
+            
+            @Config.Name("Collisions_Damage_Others")
+            @Config.Comment("If true - collisions will damage other entities")
+            @Config.LangKey(Reference.MOD_ID + ".config.server")
+            public boolean collisionsDamageOtherEntities = true;
+
+            @Config.Name("Collisions_Damage_Players")
+            @Config.Comment("If true - collisions will damage players")
+            @Config.LangKey(Reference.MOD_ID + ".config.server")
+            public boolean collisionsDamagePlayers = false;
+
+
+            @Config.Name("Collisions_Damage_Vehicles")
+            @Config.Comment("If true - collisions will damage vehicles")
+            @Config.LangKey(Reference.MOD_ID + ".config.server")
+            public boolean collisionsDamageVehicles = true;
+
+            @Config.Name("Collisions_Enabled")
+            @Config.Comment("If true - collision system will be applied. If false - it will be working only for bumper cars, as in original")
+            @Config.LangKey(Reference.MOD_ID + ".config.server")
+            public boolean collisionSystemEnabled = true;        
+                 
+        }
 
         public class Vehicles{
             @Config.Name("Aluminum Boat Key")
