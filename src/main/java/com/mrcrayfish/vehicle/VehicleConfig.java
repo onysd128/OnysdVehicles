@@ -84,7 +84,7 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.server")
         public final Vehicles VEHICLES = new Vehicles();
 
-        @Config.Name("Collision System")
+        @Config.Name("Collision_System")
         @Config.Comment("Collision system configuration")
         @Config.LangKey(Reference.MOD_ID + ".config.server")
         public final CollisionSystem collision_system = new CollisionSystem();
@@ -99,7 +99,7 @@ public class VehicleConfig
             @Config.Name("Collisions_Damage_Players")
             @Config.Comment("If true - collisions will damage players")
             @Config.LangKey(Reference.MOD_ID + ".config.server")
-            public boolean collisionsDamagePlayers = false;
+            public boolean collisionsDamagePlayers = true;
 
 
             @Config.Name("Collisions_Damage_Vehicles")
