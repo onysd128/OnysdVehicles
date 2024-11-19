@@ -199,6 +199,10 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             if (doDamage){
                 entity.attackEntityFrom(DamageSource.GENERIC, 2);
             }
+
+            if (VehicleConfig.SERVER.collision_system.collisionsDamageVehicles){
+                this.attackEntityFrom(DamageSource.GENERIC, 2);
+            }
             world.playSound(null, this.posX, this.posY, this.posZ, ModSounds.VEHICLE_THUD, SoundCategory.NEUTRAL, 1.0F, 0.6F + 0.1F * this.getNormalSpeed());
             this.currentSpeed *= 0.9F;
         }    
