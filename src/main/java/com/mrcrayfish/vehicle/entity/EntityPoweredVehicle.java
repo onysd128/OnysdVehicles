@@ -186,8 +186,8 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         }
 
         if ((isMoving==1) & (doColision)){
-            float addedMotionX=vehicleMotionX * 2;
-            float addedMotionZ=vehicleMotionZ * 2;
+            float addedMotionX=vehicleMotionX * 3;
+            float addedMotionZ=vehicleMotionZ * 3;
 
             entity.motionX += addedMotionX;            
             entity.motionZ += addedMotionZ;           
@@ -201,10 +201,10 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             }
 
             if (VehicleConfig.SERVER.collision_system.collisionsDamageVehicles){
-                this.attackEntityFrom(DamageSource.GENERIC, 2);
+                this.attackEntityFrom(DamageSource.GENERIC, 1);
             }
             world.playSound(null, this.posX, this.posY, this.posZ, ModSounds.VEHICLE_THUD, SoundCategory.NEUTRAL, 1.0F, 0.6F + 0.1F * this.getNormalSpeed());
-            this.currentSpeed *= 0.9F;
+            this.currentSpeed *= 0.7F;
         }    
         
     }
