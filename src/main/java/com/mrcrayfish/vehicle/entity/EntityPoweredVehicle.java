@@ -161,15 +161,29 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
 
     private void applyVehicleCollision(Entity entity)
     {
-        boolean doColision = true;
-        boolean doDamage = true;
+        boolean doColision = false;
+        boolean doDamage = false;
+
+
+
+        if (VehicleConfig.SERVER.collision_system.collisionSystemEnabled){
+            doColision=true;
+        }
 
         if (((entity instanceof EntityPlayer)|(entity instanceof EntityPlayerMP))){
             if ((entity.isRiding())){
                 doDamage=false;
                 doColision=false;
+            } else if (VehicleConfig.SERVER.collision_system.collisionsDamagePlayers){
+                doDamage = true;
             }
         } 
+        else if ((entity instanceof EntityVehicle) & ( VehicleConfig.SERVER.collision_system.collisionsDamageVehicles)){
+            doDamage = true;
+        }
+        else if ((entity instanceof Entity) & ( VehicleConfig.SERVER.collision_system.collisionsDamageOtherEntities)){
+            doDamage = true;
+        }
 
         if ((isMoving==1) & (doColision)){
             float addedMotionX=vehicleMotionX * 2;
@@ -479,7 +493,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         this.doBlockCollisions();
 
         /* Checks for collisions with any other vehicles */
-        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox(), entity -> (entity instanceof Entity));
+        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox(), entity -> !(entity instanceof EntityItem));
         if (!list.isEmpty())
         {
             for(Entity entity : list)

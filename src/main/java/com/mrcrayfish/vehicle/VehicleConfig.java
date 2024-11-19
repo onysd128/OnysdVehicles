@@ -85,7 +85,7 @@ public class VehicleConfig
         public final Vehicles VEHICLES = new Vehicles();
 
         @Config.Name("Collision System")
-        @Config.Comment("Collision system configuration. NOTE: For that moment vehicle collisions don`t work with players. Its calls a lot of bugs, so its need to be implemented another way")
+        @Config.Comment("Collision system configuration")
         @Config.LangKey(Reference.MOD_ID + ".config.server")
         public final CollisionSystem collision_system = new CollisionSystem();
 
