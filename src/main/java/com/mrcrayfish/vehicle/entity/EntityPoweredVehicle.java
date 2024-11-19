@@ -172,12 +172,14 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         } 
 
         if ((isMoving==1) & (doColision)){
-            
-            entity.motionX += vehicleMotionX * 2;
-            entity.motionZ += vehicleMotionZ * 2;
+            float addedMotionX=vehicleMotionX * 2;
+            float addedMotionZ=vehicleMotionZ * 2;
+
+            entity.motionX += addedMotionX;            
+            entity.motionZ += addedMotionZ;           
 
             if (!(entity instanceof EntityVehicle)){
-                entity.motionY += 0.5;
+                entity.motionY += 0.4;
             }     
             
             if (doDamage){
