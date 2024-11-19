@@ -497,7 +497,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         this.doBlockCollisions();
 
         /* Checks for collisions with any other vehicles */
-        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox(), entity -> !(entity instanceof EntityItem));
+        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox(), entity -> !((entity instanceof EntityItem)|(entity instanceof EntityTrailer)));
         if (!list.isEmpty())
         {
             for(Entity entity : list)
