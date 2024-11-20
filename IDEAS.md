@@ -26,3 +26,4 @@
 11. Fix issue with aluminum boat, you can see water when aluminum boat is on water.
 12. Add spining propeller to aluminum boat.
 13. Add a way to pay for fuel, so this feature can be used for servers.  
+14. Fix issue with chest on moped. When you place it on moped - you still have it in your hand. Seems like a bug.
