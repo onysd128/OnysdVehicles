@@ -265,27 +265,31 @@ public class EntityMoped extends EntityMotorcycle implements IEntityRaytraceable
     @Override
     public void attachChest(ItemStack stack)
     {
-        if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.CHEST))
-        {
-            this.setChest(true);
-            this.initInventory();
+    if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.CHEST))
+    {
+        this.setChest(true);
+        this.initInventory();
 
-            NBTTagCompound itemTag = stack.getTagCompound();
-            if(itemTag != null)
+        NBTTagCompound itemTag = stack.getTagCompound();
+        if(itemTag != null)
+        {
+            NBTTagCompound blockEntityTag = itemTag.getCompoundTag("BlockEntityTag");
+            if(!blockEntityTag.hasNoTags() && blockEntityTag.hasKey("Items", Constants.NBT.TAG_LIST))
             {
-                NBTTagCompound blockEntityTag = itemTag.getCompoundTag("BlockEntityTag");
-                if(!blockEntityTag.hasNoTags() && blockEntityTag.hasKey("Items", Constants.NBT.TAG_LIST))
+                NonNullList<ItemStack> chestInventory = NonNullList.withSize(27, ItemStack.EMPTY);
+                ItemStackHelper.loadAllItems(blockEntityTag, chestInventory);
+                for(int i = 0; i < chestInventory.size(); i++)
                 {
-                    NonNullList<ItemStack> chestInventory = NonNullList.withSize(27, ItemStack.EMPTY);
-                    ItemStackHelper.loadAllItems(blockEntityTag, chestInventory);
-                    for(int i = 0; i < chestInventory.size(); i++)
-                    {
-                        this.inventory.setInventorySlotContents(i, chestInventory.get(i));
-                    }
+                    this.inventory.setInventorySlotContents(i, chestInventory.get(i));
                 }
             }
         }
+        if (!this.world.isRemote)
+        {
+            stack.shrink(1);
+        }
     }
+}
 
     @Override
     public void removeChest()
