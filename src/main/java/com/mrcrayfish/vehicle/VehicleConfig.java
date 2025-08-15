@@ -31,6 +31,11 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.server.fuel_enabled")
         public boolean fuelEnabled = true;
 
+        @Config.Name("Fuel Enabled for Electric Engines")
+        @Config.Comment("If true, vehicles will require fuel for Electric Engines to be driven. If false - the will work without fuel. fuelEnabled must be set as true.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.fuel_enabled_for_electric_engines")
+        public boolean fuelEnabledForElectricEngines = false;
+
         @Config.Name("Vehicle Damage")
         @Config.Comment("If true, vehicles will take damage.")
         @Config.LangKey(Reference.MOD_ID + ".config.server.vehicle_damage")

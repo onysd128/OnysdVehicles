@@ -67,9 +67,9 @@ public class EntityGolfCart extends EntityLandVehicle implements EntityRaytracer
         return VehicleConfig.SERVER.VEHICLES.golfCartKey;      
     }
 
-    // @Override
-    // public boolean requiresFuel()
-    // {
-    //     return false;
-    // }
+    @Override
+    public boolean requiresFuel()
+    {
+        return VehicleConfig.SERVER.fuelEnabledForElectricEngines;
+    }
 }
