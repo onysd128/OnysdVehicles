@@ -12,7 +12,7 @@
 1. 💥 Implemented collision system. Now vehicle can push and damage mobs, players and another vehicles. 
 2. 📋 You can enable/disable collision system, or damage separately for each kind of entities in config file.
 3. ⚙️ Smart Car engine type changed from Electric to Small Engine. Sound changed as well. 
-4. 🛞 Removed plastic wheels from mod, cause for now they are not used.<br>
+4. 🚫 Removed plastic wheels from mod, cause for now they are not used.<br>
 ### v1.2
 1. 🇺🇦 Added Ukrainian transaltion. 
 2. 🔨 Fixed issue when disabled in previous release vehicles still shows in Workstation UI.<br>
