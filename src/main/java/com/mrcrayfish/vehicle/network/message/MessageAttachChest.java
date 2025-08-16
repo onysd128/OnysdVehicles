@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 
 /**
  * Author: MrCrayfish
@@ -59,7 +61,9 @@ public class MessageAttachChest implements IMessage, IMessageHandler<MessageAtta
                     if(!attachableChest.hasChest())
                     {
                         ItemStack stack = player.inventory.getCurrentItem();
-                        if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.CHEST))
+                        // if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.CHEST))
+                        Block block = ((ItemBlock) stack.getItem()).getBlock();
+                        if(!stack.isEmpty() && (stack.getItem() == Item.getItemFromBlock(Blocks.CHEST) || block.getClass().getName().contains("Chest")))
                         {
                             attachableChest.attachChest(stack);
                             world.playSound(null, targetEntity.posX, targetEntity.posY, targetEntity.posZ, SoundType.WOOD.getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);

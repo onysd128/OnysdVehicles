@@ -44,6 +44,8 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -265,7 +267,9 @@ public class EntityMoped extends EntityMotorcycle implements IEntityRaytraceable
     @Override
     public void attachChest(ItemStack stack)
     {
-    if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.CHEST))
+        // if(!stack.isEmpty() && (stack.getItem() == Item.getItemFromBlock(Blocks.CHEST)))
+    Block block = ((ItemBlock) stack.getItem()).getBlock();
+    if(!stack.isEmpty() && (stack.getItem() == Item.getItemFromBlock(Blocks.CHEST) || block.getClass().getName().contains("Chest")))
     {
         this.setChest(true);
         this.initInventory();
