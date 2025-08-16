@@ -6,16 +6,16 @@
         "sounds": [ {"name": "vehicle:horn_stereo"}]
     },
     "atv_engine_mono": {
-        "sounds": [ {"name": "vehicle:atv_engine_mono"}]
+        "sounds": [ {"name": "vehicle:atv_engine_mono_new"}]
     },
     "atv_engine_stereo": {
-        "sounds": [ {"name": "vehicle:atv_engine_stereo"}]
+        "sounds": [ {"name": "vehicle:atv_engine_stereo_new"}]
     },
     "go_kart_engine_mono": {
-        "sounds": [ {"name": "vehicle:go_kart_engine_mono"}]
+        "sounds": [ {"name": "vehicle:go_kart_engine_mono_fixed"}]
     },
     "go_kart_engine_stereo": {
-        "sounds": [ {"name": "vehicle:go_kart_engine_stereo"}]
+        "sounds": [ {"name": "vehicle:go_kart_engine_stereo_fixed"}]
     },
     "electric_engine_mono": {
         "sounds": [ {"name": "vehicle:electric_engine_mono"}]
@@ -30,10 +30,10 @@
         "sounds": [ {"name": "vehicle:pick_up_vehicle"}]
     },
     "speed_boat_engine_mono": {
-        "sounds": [ {"name": "vehicle:speed_boat_engine_mono"}]
+        "sounds": [ {"name": "vehicle:speed_boat_engine_mono_fixed"}]
     },
     "speed_boat_engine_stereo": {
-        "sounds": [ {"name": "vehicle:speed_boat_engine_stereo"}]
+        "sounds": [ {"name": "vehicle:speed_boat_engine_stereo_fixed"}]
     },
     "spray_can_spray": {
         "sounds": [ {"name": "vehicle:spray_can_spray"}]
@@ -42,16 +42,16 @@
         "sounds": [ {"name": "vehicle:spray_can_shake"}]
     },
     "moped_engine_mono": {
-        "sounds": [ {"name": "vehicle:moped_engine_mono"}]
+        "sounds": [ {"name": "vehicle:moped_engine_mono_fixed"}]
     },
     "moped_engine_stereo": {
-        "sounds": [ {"name": "vehicle:moped_engine_stereo"}]
+        "sounds": [ {"name": "vehicle:moped_engine_stereo_fixed"}]
     },
     "sports_plane_engine_mono": {
-        "sounds": [ {"name": "vehicle:sports_plane_engine_mono"}]
+        "sounds": [ {"name": "vehicle:sports_plane_engine_mono_fixed"}]
     },
     "sports_plane_engine_stereo": {
-        "sounds": [ {"name": "vehicle:sports_plane_engine_stereo"}]
+        "sounds": [ {"name": "vehicle:sports_plane_engine_stereo_fixed"}]
     },
     "boost_pad": {
         "sounds": [ {"name": "vehicle:boost_pad"}]
@@ -93,10 +93,10 @@
         "sounds": [ {"name": "vehicle:air_wrench_gun"}]
     },
     "tractor_engine_mono": {
-        "sounds": [ {"name": "vehicle:tractor_engine_mono"}]
+        "sounds": [ {"name": "vehicle:tractor_engine_mono_fixed"}]
     },
     "tractor_engine_stereo": {
-        "sounds": [ {"name": "vehicle:tractor_engine_stereo"}]
+        "sounds": [ {"name": "vehicle:tractor_engine_stereo_fixed"}]
     },
     "nozzle_pick_up": {
         "sounds": [ {"name": "vehicle:nozzle_pick_up"}]
@@ -105,15 +105,15 @@
         "sounds": [ {"name": "vehicle:nozzle_put_down"}]
     },
     "mini_bus_engine_mono": {
-        "sounds": [ {"name": "vehicle:mini_bus_engine_mono"}]
+        "sounds": [ {"name": "vehicle:mini_bus_engine_mono_fixed"}]
     },
     "mini_bus_engine_stereo": {
-        "sounds": [ {"name": "vehicle:mini_bus_engine_stereo"}]
+        "sounds": [ {"name": "vehicle:mini_bus_engine_stereo_fixed"}]
     },
     "dirt_bike_engine_mono": {
-        "sounds": [ {"name": "vehicle:dirt_bike_engine_mono"}]
+        "sounds": [ {"name": "vehicle:dirt_bike_engine_mono_fixed"}]
     },
     "dirt_bike_engine_stereo": {
-        "sounds": [ {"name": "vehicle:dirt_bike_engine_stereo"}]
+        "sounds": [ {"name": "vehicle:dirt_bike_engine_stereo_fixed"}]
     }
 }
