@@ -121,7 +121,9 @@ public class CommonEvents
         {
             if(!HeldVehicleDataHandler.isHoldingVehicle(player))
             {
-                if(targetEntity instanceof EntityVehicle && !targetEntity.isBeingRidden() && !targetEntity.isDead)
+                if(targetEntity instanceof EntityVehicle)
+                { 
+                    if (!targetEntity.isBeingRidden() && !targetEntity.isDead &&  ((EntityVehicle) targetEntity).canBePickedUp())
                 {
                     NBTTagCompound tagCompound = new NBTTagCompound();
                     String id = getEntityString(targetEntity);
@@ -142,6 +144,7 @@ public class CommonEvents
                         return true;
                     }
                 }
+            }
             }
             else if(targetEntity instanceof EntityTrailer && !targetEntity.isBeingRidden() && !targetEntity.isDead)
             {
