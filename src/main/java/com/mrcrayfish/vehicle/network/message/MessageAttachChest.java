@@ -61,9 +61,9 @@ public class MessageAttachChest implements IMessage, IMessageHandler<MessageAtta
                     if(!attachableChest.hasChest())
                     {
                         ItemStack stack = player.inventory.getCurrentItem();
-                        // if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.CHEST))
-                        Block block = ((ItemBlock) stack.getItem()).getBlock();
-                        if(!stack.isEmpty() && (stack.getItem() == Item.getItemFromBlock(Blocks.CHEST) || block.getClass().getName().contains("Chest")))
+                        if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.CHEST))
+                        // Block block = ((ItemBlock) stack.getItem()).getBlock();
+                        // if(!stack.isEmpty() && (stack.getItem() == Item.getItemFromBlock(Blocks.CHEST) || block.getClass().getName().contains("Chest")))
                         {
                             attachableChest.attachChest(stack);
                             world.playSound(null, targetEntity.posX, targetEntity.posY, targetEntity.posZ, SoundType.WOOD.getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
