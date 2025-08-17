@@ -29,6 +29,15 @@ public class RenderAluminumBoat extends AbstractRenderVehicle<EntityAluminumBoat
     public void render(EntityAluminumBoat entity, float partialTicks)
     {
         this.renderDamagedPart(entity,SpecialModels.ALUMINUM_BOAT_BODY.getModel());
+
+        GlStateManager.pushMatrix();
+        {
+            float propellerRotation = entity.prevPropellerRotation + (entity.propellerRotation - entity.prevPropellerRotation) * partialTicks;
+            GlStateManager.translate(0, -5 * 0.0625, -24 * 0.0625);
+            GlStateManager.rotate(propellerRotation, 0, 0, 1);
+            this.renderDamagedPart(entity, SpecialModels.ALUMINUM_BOAT_PROPELLER.getModel());
+        }
+        GlStateManager.popMatrix();
     }
 
     @Override

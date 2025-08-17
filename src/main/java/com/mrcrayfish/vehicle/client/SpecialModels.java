@@ -52,6 +52,7 @@ public enum SpecialModels
     SPORTS_PLANE_WHEEL_COVER("sports_plane_wheel_cover"),
     SPORTS_PLANE_LEG("sports_plane_leg"),
     SPORTS_PLANE_PROPELLER("sports_plane_propeller"),
+    ALUMINUM_BOAT_PROPELLER("aluminum_boat_propeller"),
     GOLF_CART_BODY("golf_cart_body"),
     OFF_ROADER_BODY("off_roader_body"),
     TRACTOR_BODY("tractor_body"),

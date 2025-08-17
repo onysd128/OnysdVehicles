@@ -3,9 +3,9 @@
 	"credit": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
 	"textures": {
 		"3": "vehicle:models/onys_industries",
+		"particle": "vehicle:models/onys_industries",
 		"seat": "blocks/anvil_base",
-		"body": "blocks/concrete_white",
-		"particle": "vehicle:models/onys_industries"
+		"body": "blocks/concrete_white"
 	},
 	"elements": [
 		{
@@ -311,7 +311,7 @@
 		},
 		{
 			"from": [-6, 3, -14.2],
-			"to": [9, 12, -13.2],
+			"to": [8, 12, -13.2],
 			"faces": {
 				"north": {"uv": [0, 0, 15, 9], "texture": "#body"},
 				"south": {"uv": [0, 0, 15, 9], "texture": "#body"},
@@ -319,8 +319,9 @@
 			}
 		},
 		{
-			"from": [9, 3, -14.2],
+			"from": [8, 3, -14.2],
 			"to": [22, 12, -13.2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 0]},
 			"faces": {
 				"north": {"uv": [0, 0, 13, 9], "texture": "#body"},
 				"east": {"uv": [0, 0, 1, 9], "texture": "#body"},
@@ -901,6 +902,19 @@
 				"west": {"uv": [0, 0, 16, 1], "texture": "#missing"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#body"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#missing"}
+			}
+		},
+		{
+			"from": [7, 2, -15],
+			"to": [9, 4, -14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 2, -15]},
+			"faces": {
+				"north": {"uv": [0, 0, 2, 2], "texture": "#seat"},
+				"east": {"uv": [0, 0, 1, 2], "texture": "#seat"},
+				"south": {"uv": [0, 0, 2, 2], "texture": "#seat"},
+				"west": {"uv": [0, 0, 1, 2], "texture": "#seat"},
+				"up": {"uv": [0, 0, 2, 1], "texture": "#seat"},
+				"down": {"uv": [0, 0, 2, 1], "texture": "#seat"}
 			}
 		}
 	]
