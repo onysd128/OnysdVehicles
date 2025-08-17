@@ -69,3 +69,7 @@ task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'
 }
+
+tasks.withType(net.minecraftforge.gradle.tasks.DownloadAssetsTask) {
+    enabled = false
+}
