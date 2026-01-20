@@ -205,6 +205,11 @@ public class VehicleConfig
             @Config.LangKey(Reference.MOD_ID + ".config.server.tractorKey")
             public boolean tractorKey = true;
 
+            @Config.Name("Bicycle Key")
+            @Config.Comment("Depends on value will enable/disable key system for Bicycle")
+            @Config.LangKey(Reference.MOD_ID + ".config.server.bicycleKey")
+            public boolean bicycleKey = true;
+
         }
     }
 
