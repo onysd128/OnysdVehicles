@@ -83,6 +83,11 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.server.fuel_consumption_modifier")
         @Config.RangeDouble(min = 0.0)
         public double fuelConsumptionFactor = 1.0;
+
+        @Config.Name("Wheelie Enabled")
+        @Config.Comment("If true, vehicles can perform wheelies when pressing W & S simultaneously and then releasing S. When false, this feature is disabled.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.wheelie_enabled")
+        public boolean wheelieEnabled = true;
         
         @Config.Name("Vehicles")
         @Config.Comment("Config for separate vehicle")

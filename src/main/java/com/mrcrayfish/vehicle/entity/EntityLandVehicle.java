@@ -1,5 +1,6 @@
 package com.mrcrayfish.vehicle.entity;
 
+import com.mrcrayfish.vehicle.VehicleConfig;
 import com.mrcrayfish.vehicle.VehicleMod;
 import com.mrcrayfish.vehicle.client.render.Wheel;
 import com.mrcrayfish.vehicle.common.entity.PartPosition;
@@ -282,11 +283,11 @@ public abstract class EntityLandVehicle extends EntityPoweredVehicle
     @Override
     protected boolean canCharge()
     {
-        return true;
+        return VehicleConfig.SERVER.wheelieEnabled;
     }
 
     public boolean canWheelie()
     {
-        return true;
+        return VehicleConfig.SERVER.wheelieEnabled;
     }
 }
