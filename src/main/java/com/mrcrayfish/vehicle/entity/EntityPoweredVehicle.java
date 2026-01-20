@@ -108,6 +108,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
 
     protected double[] wheelPositions;
     protected boolean wheelsOnGround = true;
+    private boolean prevHasWheels = false;
     public float turnAngle;
     public float prevTurnAngle;
 
@@ -1338,9 +1339,10 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             ItemStack wheel = this.vehicleInventory.getStackInSlot(1);
             if(this.canChangeWheels())
             {
+                boolean currentHasWheels = this.hasWheels();
                 if(wheel.getItem() == ModItems.WHEEL)
                 {
-                    if(!this.hasWheels())
+                    if(!currentHasWheels)
                     {
                         world.playSound(null, getPosition(), ModSounds.AIR_WRENCH_GUN, SoundCategory.BLOCKS, 1.0F, 1.1F);
                         this.setWheels(true);
@@ -1359,10 +1361,14 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
                 }
                 else
                 {
-                    world.playSound(null, posX, posY, posZ, ModSounds.AIR_WRENCH_GUN, SoundCategory.BLOCKS, 1.0F, 0.8F);
+                    if(currentHasWheels)
+                    {
+                        world.playSound(null, posX, posY, posZ, ModSounds.AIR_WRENCH_GUN, SoundCategory.BLOCKS, 1.0F, 0.8F);
+                    }
                     this.setWheels(false);
                     this.setWheelColor(-1);
                 }
+                this.prevHasWheels = this.hasWheels();
             }
         }
     }
