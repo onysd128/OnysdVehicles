@@ -9,6 +9,7 @@ import com.mrcrayfish.vehicle.common.Seat;
 import com.mrcrayfish.vehicle.common.container.ContainerVehicle;
 import com.mrcrayfish.vehicle.common.entity.PartPosition;
 import com.mrcrayfish.vehicle.common.entity.SyncedPlayerData;
+import com.mrcrayfish.vehicle.entity.vehicle.EntityBicycle;
 import com.mrcrayfish.vehicle.entity.vehicle.EntityBumperCar;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.init.ModSounds;
@@ -1207,6 +1208,17 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
 
     public void setWheelType(WheelType wheelType)
     {
+        // Validate wheel type compatibility
+        if(wheelType == WheelType.BICYCLE && !(this instanceof EntityBicycle))
+        {
+            // BICYCLE wheels can only be installed on bicycles
+            return;
+        }
+        if(this instanceof EntityBicycle && wheelType != WheelType.BICYCLE)
+        {
+            // Bicycles can only accept BICYCLE wheel type
+            return;
+        }
         this.dataManager.set(WHEEL_TYPE, wheelType.ordinal());
     }
 

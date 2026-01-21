@@ -2,6 +2,8 @@ package com.mrcrayfish.vehicle.common.container;
 
 import com.mrcrayfish.vehicle.entity.EngineType;
 import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
+import com.mrcrayfish.vehicle.entity.WheelType;
+import com.mrcrayfish.vehicle.entity.vehicle.EntityBicycle;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.item.ItemEngine;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +45,22 @@ public class ContainerVehicle extends Container
         {
             public boolean isItemValid(ItemStack stack)
             {
-                return vehicle.canChangeWheels() && stack.getItem() == ModItems.WHEEL;
+                if(!vehicle.canChangeWheels() || stack.getItem() != ModItems.WHEEL)
+                {
+                    return false;
+                }
+                WheelType wheelType = WheelType.getType(stack.getMetadata());
+                // BICYCLE wheels can only be installed on bicycles
+                if(wheelType == WheelType.BICYCLE && !(vehicle instanceof EntityBicycle))
+                {
+                    return false;
+                }
+                // Bicycles can only accept BICYCLE wheel type
+                if(vehicle instanceof EntityBicycle && wheelType != WheelType.BICYCLE)
+                {
+                    return false;
+                }
+                return true;
             }
 
             @Override
