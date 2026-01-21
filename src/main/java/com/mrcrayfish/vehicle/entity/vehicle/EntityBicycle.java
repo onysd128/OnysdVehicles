@@ -105,4 +105,4 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
     }
 }
 
-//TODO: Add locking to bycicle, change ride and honk sounds.
+//TODO: Add locking to bycicle, change ride and honk sounds, change player position.
