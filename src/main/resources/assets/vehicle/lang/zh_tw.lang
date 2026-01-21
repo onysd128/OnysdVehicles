@@ -19,6 +19,7 @@ vehicle.wheel_type.racing.name=競速
 vehicle.wheel_type.off_road.name=越野
 vehicle.wheel_type.snow.name=雪地
 vehicle.wheel_type.all_terrain.name=全地形
+vehicle.wheel_type.bicycle.name=自行車
 vehicle.wheel_type.plastic.name=塑膠
 
 item.vehicle.small_engine.name=小型引擎
@@ -98,6 +99,7 @@ entity.vehicle.seeder_trailer.name=播種機拖車
 entity.vehicle.fertilizer_trailer.name=肥料拖車
 entity.vehicle.fluid_trailer.name=流體拖車
 entity.vehicle.tractor.name=拖拉機
+entity.vehicle.bicycle.name=自行車
 
 vehicle.config.title=MrCrayfish載具模組配置
 vehicle.config.client=用戶端

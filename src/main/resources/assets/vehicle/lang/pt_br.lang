@@ -19,6 +19,7 @@ vehicle.wheel_type.racing.name=Corrida
 vehicle.wheel_type.off_road.name=Off Road
 vehicle.wheel_type.snow.name=Neve
 vehicle.wheel_type.all_terrain.name=Todos os terrenos
+vehicle.wheel_type.bicycle.name=Bicicleta
 vehicle.wheel_type.plastic.name=Plástico
 
 item.vehicle.small_engine.name=Motor Pequeno
@@ -100,6 +101,7 @@ entity.vehicle.fertilizer_trailer.name=Fertilizadora
 entity.vehicle.fluid_trailer.name=Trailer de Fluidos
 entity.vehicle.tractor.name=Trator
 entity.vehicle.mini_bus.name=Mini Ônibus
+entity.vehicle.bicycle.name=Bicicleta
 
 vehicle.config.title=Onysd Vehicles Configuração
 vehicle.config.client=Cliente

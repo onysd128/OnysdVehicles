@@ -47,6 +47,9 @@ tile.vehicle.fluid_pump.info=使用此泵将任何兼容的流体存储器中的
 tile.vehicle.fuel_drum.info=该油桶可用于储存燃料元素或任何其他液体。它具有很强的爆炸性，因此请远离火源。
 
 entity.moped.name=助力车
+entity.vehicle.bicycle.name=自行车
+
+vehicle.wheel_type.bicycle.name=自行车
 
 vehicle.config.title=MrCrayfish 的载具模组配置文件
 vehicle.config.client=客户端

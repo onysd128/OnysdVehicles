@@ -19,6 +19,7 @@ vehicle.wheel_type.racing.name=Da corsa
 vehicle.wheel_type.off_road.name=Fuoristrada
 vehicle.wheel_type.snow.name=Da neve
 vehicle.wheel_type.all_terrain.name=All-terrain
+vehicle.wheel_type.bicycle.name=Bicicletta
 vehicle.wheel_type.plastic.name=Plastica
 
 item.vehicle.small_engine.name=Motore piccolo
@@ -98,6 +99,7 @@ entity.vehicle.seeder_trailer.name=Seminatrice
 entity.vehicle.fertilizer_trailer.name=Fertilizzante
 entity.vehicle.fluid_trailer.name=Rimorchio per liquidi
 entity.vehicle.tractor.name=Trattore
+entity.vehicle.bicycle.name=Bicicletta
 
 vehicle.config.title=Configurazione Onysd Vehicles
 vehicle.config.client=Client
