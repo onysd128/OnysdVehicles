@@ -91,4 +91,18 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
     {
         return false;
     }
+
+    @Override
+    public boolean canWheelie()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean canCharge()
+    {
+        return false;
+    }
 }
+
+//TODO: Add locking to bycicle, change ride and honk sounds.
