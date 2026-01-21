@@ -151,17 +151,27 @@ public class GuiWorkstation extends GuiContainer
                 ItemStack wheels = workstation.getStackInSlot(2);
                 if(!wheels.isEmpty() && wheels.getItem() instanceof ItemWheel)
                 {
-                    if(wheels.getTagCompound() != null)
+                    WheelType wheelType = WheelType.values()[wheels.getItemDamage()];
+                    // Check if wheel type is compatible with vehicle
+                    if(entityPoweredVehicle.canAcceptWheelType(wheelType))
                     {
-                        NBTTagCompound tagCompound = wheels.getTagCompound();
-                        if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                        if(wheels.getTagCompound() != null)
                         {
-                            entityPoweredVehicle.setWheelColor(tagCompound.getInteger("color"));
+                            NBTTagCompound tagCompound = wheels.getTagCompound();
+                            if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                            {
+                                entityPoweredVehicle.setWheelColor(tagCompound.getInteger("color"));
+                            }
                         }
+                        entityPoweredVehicle.setWheelType(wheelType);
+                        entityPoweredVehicle.setWheels(true);
+                        entityPoweredVehicle.notifyDataManagerChange(EntityPoweredVehicle.WHEEL_COLOR);
                     }
-                    entityPoweredVehicle.setWheelType(WheelType.values()[wheels.getItemDamage()]);
-                    entityPoweredVehicle.setWheels(true);
-                    entityPoweredVehicle.notifyDataManagerChange(EntityPoweredVehicle.WHEEL_COLOR);
+                    else
+                    {
+                        entityPoweredVehicle.setWheels(false);
+                        canCraft = false;
+                    }
                 }
                 else
                 {

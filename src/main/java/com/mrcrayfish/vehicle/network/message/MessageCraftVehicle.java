@@ -108,23 +108,33 @@ public class MessageCraftVehicle implements IMessage, IMessageHandler<MessageCra
 
                                         TileEntityWorkstation tileEntityWorkstation = workstation.getTileEntity();
                                         ItemStack engine = tileEntityWorkstation.getStackInSlot(1);
-                                        if(!engine.isEmpty() && engine.getItem() instanceof ItemEngine)
+                                        if(entityPoweredVehicle.getEngineType() != EngineType.NONE)
                                         {
-                                            EngineType engineType2 = ((ItemEngine) engine.getItem()).getEngineType();
-                                            if(entityPoweredVehicle.getEngineType() != EngineType.NONE && entityPoweredVehicle.getEngineType() != engineType2)
+                                            // Vehicle requires an engine
+                                            if(!engine.isEmpty() && engine.getItem() instanceof ItemEngine)
+                                            {
+                                                EngineType engineType2 = ((ItemEngine) engine.getItem()).getEngineType();
+                                                if(entityPoweredVehicle.getEngineType() != engineType2)
+                                                {
+                                                    return;
+                                                }
+                                            }
+                                            else
                                             {
                                                 return;
                                             }
-                                        }
-                                        else
-                                        {
-                                            return;
                                         }
 
                                         if(entityPoweredVehicle.canChangeWheels())
                                         {
                                             ItemStack wheel = tileEntityWorkstation.getInventory().get(2);
                                             if(wheel.getItem() != ModItems.WHEEL)
+                                            {
+                                                return;
+                                            }
+                                            // Check if wheel type is compatible with vehicle
+                                            WheelType wheelType = WheelType.values()[wheel.getMetadata()];
+                                            if(!entityPoweredVehicle.canAcceptWheelType(wheelType))
                                             {
                                                 return;
                                             }

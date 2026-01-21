@@ -1224,6 +1224,21 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         return WheelType.values()[this.dataManager.get(WHEEL_TYPE)];
     }
 
+    public boolean canAcceptWheelType(WheelType wheelType)
+    {
+        // BICYCLE wheels can only be installed on bicycles
+        if(wheelType == WheelType.BICYCLE && !(this instanceof EntityBicycle))
+        {
+            return false;
+        }
+        // Bicycles can only accept BICYCLE wheel type
+        if(this instanceof EntityBicycle && wheelType != WheelType.BICYCLE)
+        {
+            return false;
+        }
+        return true;
+    }
+
     public ItemStack getWheelStack()
     {
         if(this.hasWheels())
