@@ -400,8 +400,8 @@ public class VehicleProperties
         properties.setHeldOffset(new Vec3d(6.0, 0.0, 0.0));
         properties.setTrailerOffset(new Vec3d(0.0, -0.0625, -0.5));
         properties.setDisplayPosition(new PartPosition(0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0F, 1.5F));
-        properties.addWheel(Wheel.Side.NONE, Wheel.Position.REAR, 0.0F, -8.225F, 1.8F, true, true);
-        properties.addWheel(Wheel.Side.NONE, Wheel.Position.FRONT, 0.0F, -1F + 1.7F * 0.0625F, 13.0F, 1.8F, true, false);
+        properties.addWheel(Wheel.Side.NONE, Wheel.Position.REAR, 0.0F, -8.225F, 1.5F, true, false);
+        properties.addWheel(Wheel.Side.NONE, Wheel.Position.FRONT, 0.0F, -1.2F + 1.7F * 0.0625F, 13.0F, 1.5F, true, false);
         properties.setFrontAxelVec(0, 13);
         properties.setRearAxelVec(0, -6.7);
         properties.addSeat(new Seat(new Vec3d(0, 7, -2), true));
