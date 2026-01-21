@@ -102,6 +102,7 @@ entity.vehicle.fluid_trailer.name=Рідинний трейлер
 entity.vehicle.tractor.name=Трактор
 entity.vehicle.mini_bus.name=Міні-бус
 entity.vehicle.dirt_bike.name=Мотобайк
+entity.vehicle.bicycle.name=Велосипед
 
 vehicle.config.title=Onysd Vehicles Config
 vehicle.config.client=Client

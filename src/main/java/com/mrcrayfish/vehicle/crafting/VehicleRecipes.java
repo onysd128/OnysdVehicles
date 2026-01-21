@@ -54,6 +54,12 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(ModItems.PANEL, 8));
         mapBuilder.put(EntityBumperCar.class, builder.build());
 
+        /* Bicycle */
+        builder = new Builder();
+        builder.addMaterial(new ItemStack(Items.IRON_INGOT, 12));
+        builder.addMaterial(new ItemStack(Blocks.WOOL, 2, 15));
+        mapBuilder.put(EntityBicycle.class, builder.build());
+
         /* Dirt Bike */
         builder = new Builder();
         builder.addMaterial(new ItemStack(Items.IRON_INGOT, 36));
@@ -194,12 +200,6 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(ModItems.PANEL, 16));
         builder.addMaterial(new ItemStack(Blocks.GLASS_PANE, 2));
         mapBuilder.put(EntityFluidTrailer.class, builder.build());
-
-        /* Bicycle */
-        builder = new Builder();
-        builder.addMaterial(new ItemStack(Items.IRON_INGOT, 12));
-        builder.addMaterial(new ItemStack(Blocks.WOOL, 2, 15));
-        mapBuilder.put(EntityBicycle.class, builder.build());
 
         if(Loader.isModLoaded("cfm"))
         {
