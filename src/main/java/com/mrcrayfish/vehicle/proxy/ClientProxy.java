@@ -9,6 +9,8 @@ import com.mrcrayfish.vehicle.client.ClientEvents;
 import com.mrcrayfish.vehicle.client.ControllerEvents;
 import com.mrcrayfish.vehicle.client.EntityRaytracer;
 import com.mrcrayfish.vehicle.client.HeldVehicleEvents;
+import com.mrcrayfish.vehicle.client.audio.MovingSoundBicycle;
+import com.mrcrayfish.vehicle.client.audio.MovingSoundBicycleRiding;
 import com.mrcrayfish.vehicle.client.audio.MovingSoundVehicle;
 import com.mrcrayfish.vehicle.client.audio.MovingSoundVehicleRiding;
 import com.mrcrayfish.vehicle.client.gui.GuiEditVehicle;
@@ -194,24 +196,53 @@ public class ClientProxy implements Proxy
         Minecraft.getMinecraft().addScheduledTask(() ->
         {
             Map<SoundType, ITickableSound> soundMap = SOUND_TRACKER.computeIfAbsent(vehicle.getUniqueID(), uuid -> new HashMap<>());
-            if(vehicle.getRidingSound() != null && player.equals(Minecraft.getMinecraft().player))
+            
+            // Use custom sound classes for bicycle that check if vehicle is moving
+            if(vehicle instanceof EntityBicycle)
             {
-                ITickableSound sound = soundMap.get(SoundType.ENGINE_RIDING);
-                if(sound == null || sound.isDonePlaying() || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
+                if(vehicle.getRidingSound() != null && player.equals(Minecraft.getMinecraft().player))
                 {
-                    sound = new MovingSoundVehicleRiding(player, vehicle);
-                    soundMap.put(SoundType.ENGINE_RIDING, sound);
-                    Minecraft.getMinecraft().getSoundHandler().playSound(sound);
+                    ITickableSound sound = soundMap.get(SoundType.ENGINE_RIDING);
+                    if(sound == null || sound.isDonePlaying() || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
+                    {
+                        sound = new MovingSoundBicycleRiding(player, vehicle);
+                        soundMap.put(SoundType.ENGINE_RIDING, sound);
+                        Minecraft.getMinecraft().getSoundHandler().playSound(sound);
+                    }
+                }
+                if(vehicle.getMovingSound() != null && !player.equals(Minecraft.getMinecraft().player))
+                {
+                    ITickableSound sound = soundMap.get(SoundType.ENGINE);
+                    if(sound == null || sound.isDonePlaying() || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
+                    {
+                        sound = new MovingSoundBicycle(vehicle);
+                        soundMap.put(SoundType.ENGINE, sound);
+                        Minecraft.getMinecraft().getSoundHandler().playSound(sound);
+                    }
                 }
             }
-            if(vehicle.getMovingSound() != null && !player.equals(Minecraft.getMinecraft().player))
+            else
             {
-                ITickableSound sound = soundMap.get(SoundType.ENGINE);
-                if(sound == null || sound.isDonePlaying() || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
+                // Default sound behavior for other vehicles
+                if(vehicle.getRidingSound() != null && player.equals(Minecraft.getMinecraft().player))
                 {
-                    sound = new MovingSoundVehicle(vehicle);
-                    soundMap.put(SoundType.ENGINE, sound);
-                    Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundVehicle(vehicle));
+                    ITickableSound sound = soundMap.get(SoundType.ENGINE_RIDING);
+                    if(sound == null || sound.isDonePlaying() || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
+                    {
+                        sound = new MovingSoundVehicleRiding(player, vehicle);
+                        soundMap.put(SoundType.ENGINE_RIDING, sound);
+                        Minecraft.getMinecraft().getSoundHandler().playSound(sound);
+                    }
+                }
+                if(vehicle.getMovingSound() != null && !player.equals(Minecraft.getMinecraft().player))
+                {
+                    ITickableSound sound = soundMap.get(SoundType.ENGINE);
+                    if(sound == null || sound.isDonePlaying() || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
+                    {
+                        sound = new MovingSoundVehicle(vehicle);
+                        soundMap.put(SoundType.ENGINE, sound);
+                        Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundVehicle(vehicle));
+                    }
                 }
             }
             // Horn sounds are now handled via one-time playback on key press
