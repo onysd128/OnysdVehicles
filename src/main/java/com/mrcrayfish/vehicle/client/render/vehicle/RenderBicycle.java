@@ -72,8 +72,7 @@ public class RenderBicycle extends AbstractRenderVehicle<EntityBicycle>
         {
             GlStateManager.pushMatrix();
             {
-                // Rear wheel position from VehicleProperties: offsetY = -8.225F, offsetZ = 1.5F
-                GlStateManager.translate(0, -8.225F * 0.0625, 1.5F * 0.0625);
+                GlStateManager.translate(0, -0.38 + 1.7 * 0.0625, -9.2 * 0.0625);
                 float rearWheelSpin = entity.prevRearWheelRotation + (entity.rearWheelRotation - entity.prevRearWheelRotation) * partialTicks;
                 if(entity.isMoving())
                 {
