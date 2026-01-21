@@ -117,4 +117,4 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
     }
 }
 
-//TODO: Add locking to bycicle. add more wheel types. add strings to lang file.
+//TODO: Add locking to bycicle. add more wheel types.
