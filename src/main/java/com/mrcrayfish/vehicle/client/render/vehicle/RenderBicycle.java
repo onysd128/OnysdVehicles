@@ -24,13 +24,14 @@ public class RenderBicycle extends AbstractRenderVehicle<EntityBicycle>
     {
         this.renderDamagedPart(entity, SpecialModels.BICYCLE_BODY.getModel());
 
+        float wheelScale = 2.0F;
+
         //Render the handles bars
         GlStateManager.pushMatrix();
         {
             GlStateManager.translate(0, 0, 10.5 * 0.0625);
             GlStateManager.rotate(-22.5F, 1, 0, 0);
 
-            float wheelScale = 2.0F;
             float wheelAngle = entity.prevRenderWheelAngle + (entity.renderWheelAngle - entity.prevRenderWheelAngle) * partialTicks;
             float wheelAngleNormal = wheelAngle / 45F;
             float turnRotation = wheelAngleNormal * 25F;
@@ -43,6 +44,7 @@ public class RenderBicycle extends AbstractRenderVehicle<EntityBicycle>
 
             if(entity.hasWheels())
             {
+                // Render front wheel
                 GlStateManager.pushMatrix();
                 {
                     GlStateManager.translate(0, -0.38 + 1.7 * 0.0625, 9 * 0.0625);
@@ -53,7 +55,6 @@ public class RenderBicycle extends AbstractRenderVehicle<EntityBicycle>
                     }
                     GlStateManager.scale(wheelScale/2, wheelScale, wheelScale);
                     GlStateManager.rotate(180F, 0, 1, 0);
-                    // IBakedModel model = RenderUtil.getWheelModel(entity);
                     ItemStack wheelStack = new ItemStack(ModItems.WHEEL, 1, WheelType.BICYCLE.ordinal());
                     IBakedModel model = RenderUtil.getModel(wheelStack);
                     if(model != null)
@@ -65,6 +66,30 @@ public class RenderBicycle extends AbstractRenderVehicle<EntityBicycle>
             }
         }
         GlStateManager.popMatrix();
+
+        // Render rear wheel (outside of handlebar rotation)
+        if(entity.hasWheels())
+        {
+            GlStateManager.pushMatrix();
+            {
+                // Rear wheel position from VehicleProperties: offsetY = -8.225F, offsetZ = 1.5F
+                GlStateManager.translate(0, -8.225F * 0.0625, 1.5F * 0.0625);
+                float rearWheelSpin = entity.prevRearWheelRotation + (entity.rearWheelRotation - entity.prevRearWheelRotation) * partialTicks;
+                if(entity.isMoving())
+                {
+                    GlStateManager.rotate(-rearWheelSpin, 1, 0, 0);
+                }
+                GlStateManager.scale(wheelScale/2, wheelScale, wheelScale);
+                GlStateManager.rotate(180F, 0, 1, 0);
+                ItemStack wheelStack = new ItemStack(ModItems.WHEEL, 1, WheelType.BICYCLE.ordinal());
+                IBakedModel model = RenderUtil.getModel(wheelStack);
+                if(model != null)
+                {
+                    RenderUtil.renderColoredModel(model, ItemCameraTransforms.TransformType.NONE, entity.getWheelColor());
+                }
+            }
+            GlStateManager.popMatrix();
+        }
     }
 
     @Override

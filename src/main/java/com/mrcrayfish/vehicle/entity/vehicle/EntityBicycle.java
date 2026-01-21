@@ -16,6 +16,8 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
         super(worldIn);
         this.setMaxSpeed(10F);
         this.setTurnSensitivity(12);
+        this.setFuelCapacity(0F);
+        this.setFuelConsumption(0F);
     }
 
     @Override
@@ -81,7 +83,7 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
     @Override
     public boolean isLockable()
     {
-        return VehicleConfig.SERVER.VEHICLES.bicycleKey;
+        return false;
     }
 
     @Override
