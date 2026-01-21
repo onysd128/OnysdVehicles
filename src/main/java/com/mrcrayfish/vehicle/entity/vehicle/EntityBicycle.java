@@ -4,6 +4,8 @@ import com.mrcrayfish.vehicle.client.EntityRaytracer.IEntityRaytraceable;
 import com.mrcrayfish.vehicle.entity.EngineType;
 import com.mrcrayfish.vehicle.entity.EntityMotorcycle;
 import com.mrcrayfish.vehicle.init.ModSounds;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -114,6 +116,32 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
     public SoundEvent getHornRidingSound()
     {
         return ModSounds.BICYCLE_BELL;
+    }
+
+    @Override
+    public void onUpdateVehicle()
+    {
+        super.onUpdateVehicle();
+        
+        // Consume player hunger when riding bicycle, similar to sprinting
+        Entity controllingPassenger = this.getControllingPassenger();
+        if(controllingPassenger instanceof EntityPlayer && !world.isRemote)
+        {
+            EntityPlayer player = (EntityPlayer) controllingPassenger;
+            // Only consume hunger if player is not in creative mode and bicycle is moving
+            if(!player.isCreative())
+            {
+                float currentSpeed = Math.abs(this.getSpeed());
+                if(currentSpeed > 0.1F)
+                {
+                    // Calculate exhaustion based on speed (similar to sprinting)
+                    // Sprinting uses 0.1F per tick, we'll use slightly less for cycling
+                    float speedFactor = Math.min(currentSpeed / this.getMaxSpeed(), 1.0F);
+                    float exhaustion = 0.08F * speedFactor; // Max 0.08F when at full speed
+                    player.getFoodStats().addExhaustion(exhaustion);
+                }
+            }
+        }
     }
 }
 

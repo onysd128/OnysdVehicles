@@ -3,10 +3,10 @@
 	"credit": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
 	"textures": {
 		"3": "blocks/anvil_base",
+		"particle": "blocks/anvil_base",
 		"seat": "blocks/concrete_black",
 		"axel": "blocks/concrete_silver",
-		"body": "blocks/concrete_white",
-		"particle": "blocks/anvil_base"
+		"body": "blocks/concrete_white"
 	},
 	"elements": [
 		{
