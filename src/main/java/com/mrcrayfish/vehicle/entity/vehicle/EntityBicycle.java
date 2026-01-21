@@ -117,4 +117,4 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
     }
 }
 
-//TODO: Add locking to bycicle, change ride and honk sounds, change player position. add more wheel types. add crafting recipe for bicycle. add strings to lang file.
+//TODO: Add locking to bycicle. add more wheel types. add strings to lang file.

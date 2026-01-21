@@ -101,10 +101,10 @@ public class RenderBicycle extends AbstractRenderVehicle<EntityBicycle>
         model.bipedLeftArm.rotateAngleX = (float) Math.toRadians(-55F + turnRotation);
         model.bipedRightArm.offsetZ = -0.1F * wheelAngleNormal;
         model.bipedLeftArm.offsetZ = 0.1F * wheelAngleNormal;
-        model.bipedRightLeg.rotateAngleX = (float) Math.toRadians(-65F);
-        model.bipedRightLeg.rotateAngleY = (float) Math.toRadians(30F);
-        model.bipedLeftLeg.rotateAngleX = (float) Math.toRadians(-65F);
-        model.bipedLeftLeg.rotateAngleY = (float) Math.toRadians(-30F);
+        model.bipedRightLeg.rotateAngleX = (float) Math.toRadians(-30F);
+        model.bipedRightLeg.rotateAngleY = (float) Math.toRadians(20F);
+        model.bipedLeftLeg.rotateAngleX = (float) Math.toRadians(-30F);
+        model.bipedLeftLeg.rotateAngleY = (float) Math.toRadians(-20F);
     }
 
     @Override
