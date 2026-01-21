@@ -19,6 +19,7 @@ vehicle.wheel_type.racing.name=Гоночне
 vehicle.wheel_type.off_road.name=Позашляхове
 vehicle.wheel_type.snow.name=Снігове
 vehicle.wheel_type.all_terrain.name=Всюдихідне
+vehicle.wheel_type.bicycle.name=Велосипедне
 vehicle.wheel_type.plastic.name=Пластикове
 
 item.vehicle.small_engine.name=Малий двигун
@@ -163,6 +164,7 @@ vehicle.tooltip.not_applicable=Не застосовується
 vehicle.tooltip.paint_color=Колір Фарби
 vehicle.tooltip.engine=Двигун
 vehicle.tooltip.wheels=Колеса
+vehicle.tooltip.incompatible_wheels=Несумісний тип коліс: %s
 
 key.categories.vehicle=Onysd Vehicles
 key.vehicle.horn=Гудок
