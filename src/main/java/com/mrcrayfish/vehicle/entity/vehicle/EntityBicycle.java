@@ -8,12 +8,14 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import com.mrcrayfish.vehicle.VehicleConfig;
+import com.mrcrayfish.vehicle.entity.WheelType;
 
 public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceable
 {
     public EntityBicycle(World worldIn)
     {
         super(worldIn);
+        this.setWheelType(WheelType.BICYCLE);
         this.setMaxSpeed(10F);
         this.setTurnSensitivity(12);
         this.setFuelCapacity(0F);
