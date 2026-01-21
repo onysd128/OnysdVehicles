@@ -124,21 +124,24 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
         super.onUpdateVehicle();
         
         // Consume player hunger when riding bicycle, similar to sprinting
-        Entity controllingPassenger = this.getControllingPassenger();
-        if(controllingPassenger instanceof EntityPlayer && !world.isRemote)
+        if(VehicleConfig.SERVER.bikeHungerConsumption)
         {
-            EntityPlayer player = (EntityPlayer) controllingPassenger;
-            // Only consume hunger if player is not in creative mode and bicycle is moving
-            if(!player.isCreative())
+            Entity controllingPassenger = this.getControllingPassenger();
+            if(controllingPassenger instanceof EntityPlayer && !world.isRemote)
             {
-                float currentSpeed = Math.abs(this.getSpeed());
-                if(currentSpeed > 0.1F)
+                EntityPlayer player = (EntityPlayer) controllingPassenger;
+                // Only consume hunger if player is not in creative mode and bicycle is moving
+                if(!player.isCreative())
                 {
-                    // Calculate exhaustion based on speed (similar to sprinting)
-                    // Sprinting uses 0.1F per tick, we'll use slightly less for cycling
-                    float speedFactor = Math.min(currentSpeed / this.getMaxSpeed(), 1.0F);
-                    float exhaustion = 0.08F * speedFactor; // Max 0.08F when at full speed
-                    player.getFoodStats().addExhaustion(exhaustion);
+                    float currentSpeed = Math.abs(this.getSpeed());
+                    if(currentSpeed > 0.1F)
+                    {
+                        // Calculate exhaustion based on speed (similar to sprinting)
+                        // Sprinting uses 0.1F per tick, we'll use slightly less for cycling
+                        float speedFactor = Math.min(currentSpeed / this.getMaxSpeed(), 1.0F);
+                        float exhaustion = 0.08F * speedFactor; // Max 0.08F when at full speed
+                        player.getFoodStats().addExhaustion(exhaustion);
+                    }
                 }
             }
         }

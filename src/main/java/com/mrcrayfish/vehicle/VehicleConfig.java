@@ -88,6 +88,11 @@ public class VehicleConfig
         @Config.Comment("If true, vehicles can perform wheelies when pressing W & S simultaneously and then releasing S. When false, this feature is disabled.")
         @Config.LangKey(Reference.MOD_ID + ".config.server.wheelie_enabled")
         public boolean wheelieEnabled = true;
+
+        @Config.Name("Bike Hunger Consumption")
+        @Config.Comment("If true, bicycles will consume player hunger when riding, similar to sprinting. When false, bicycles will not consume hunger.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.bike_hunger_consumption")
+        public boolean bikeHungerConsumption = true;
         
         @Config.Name("Vehicles")
         @Config.Comment("Config for separate vehicle")
