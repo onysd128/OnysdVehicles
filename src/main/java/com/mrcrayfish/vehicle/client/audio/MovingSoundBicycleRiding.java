@@ -46,8 +46,19 @@ public class MovingSoundBicycleRiding extends MovingSound
             this.donePlaying = true;
             return;
         }
-        // Only play sound if vehicle is moving (speed > 1 or < -1)
-        this.volume = (vehicle.getControllingPassenger() != null && (vehicle.currentSpeed > 1 || vehicle.currentSpeed < -1)) ? 1.0F : 0.0F;
+        // Only play sound if vehicle is moving (speed > 1 or < -1), with smooth fade in/out
+        boolean shouldPlay = vehicle.getControllingPassenger() != null && (vehicle.currentSpeed > 1 || vehicle.currentSpeed < -1);
+        float targetVolume = shouldPlay ? 0.8F : 0.0F;
+        float fadeSpeed = 0.1F; // Speed of fade in/out
+        
+        if(this.volume < targetVolume)
+        {
+            this.volume = Math.min(targetVolume, this.volume + fadeSpeed);
+        }
+        else if(this.volume > targetVolume)
+        {
+            this.volume = Math.max(targetVolume, this.volume - fadeSpeed);
+        }
         this.pitch = vehicle.getMinEnginePitch() + (vehicle.getMaxEnginePitch() - vehicle.getMinEnginePitch()) * Math.abs(vehicle.getActualSpeed());
     }
 }

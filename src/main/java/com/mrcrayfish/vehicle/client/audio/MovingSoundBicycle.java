@@ -36,8 +36,19 @@ public class MovingSoundBicycle extends MovingSound
             this.donePlaying = true;
             return;
         }
-        // Only play sound if vehicle is moving (speed > 1 or < -1)
-        this.volume = ((vehicle.currentSpeed > 1 || vehicle.currentSpeed < -1) && !vehicle.equals(Minecraft.getMinecraft().player.getRidingEntity())) ? 1.0F : 0.0F;
+        // Only play sound if vehicle is moving (speed > 1 or < -1), with smooth fade in/out
+        boolean shouldPlay = (vehicle.currentSpeed > 1 || vehicle.currentSpeed < -1) && !vehicle.equals(Minecraft.getMinecraft().player.getRidingEntity());
+        float targetVolume = shouldPlay ? 0.8F : 0.0F;
+        float fadeSpeed = 0.1F; // Speed of fade in/out
+        
+        if(this.volume < targetVolume)
+        {
+            this.volume = Math.min(targetVolume, this.volume + fadeSpeed);
+        }
+        else if(this.volume > targetVolume)
+        {
+            this.volume = Math.max(targetVolume, this.volume - fadeSpeed);
+        }
         if(!vehicle.isDead && vehicle.getPassengers().size() > 0)
         {
             EntityPlayer localPlayer = Minecraft.getMinecraft().player;

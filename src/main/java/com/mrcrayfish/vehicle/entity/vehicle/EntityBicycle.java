@@ -43,13 +43,13 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
     @Override
     public float getMinEnginePitch()
     {
-        return 0.5F;
+        return 0.9F;
     }
 
     @Override
     public float getMaxEnginePitch()
     {
-        return 1.8F;
+        return 1.2F;
     }
 
     @Override
