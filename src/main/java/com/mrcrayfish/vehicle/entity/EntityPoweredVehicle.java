@@ -17,7 +17,6 @@ import com.mrcrayfish.vehicle.item.ItemEngine;
 import com.mrcrayfish.vehicle.item.ItemJerryCan;
 import com.mrcrayfish.vehicle.network.PacketHandler;
 import com.mrcrayfish.vehicle.network.message.MessageAccelerating;
-import com.mrcrayfish.vehicle.network.message.MessageHorn;
 import com.mrcrayfish.vehicle.network.message.MessagePower;
 import com.mrcrayfish.vehicle.network.message.MessageTurnAngle;
 import com.mrcrayfish.vehicle.network.message.MessageTurnDirection;
@@ -250,12 +249,12 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
     //TODO ability to change with nbt
     public SoundEvent getHornSound()
     {
-        return ModSounds.HORN_MONO;
+        return ModSounds.CAR_HONK;
     }
 
     public SoundEvent getHornRidingSound()
     {
-        return ModSounds.HORN_STEREO;
+        return ModSounds.CAR_HONK;
     }
 
     public void playFuelPortOpenSound()
@@ -694,9 +693,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
                 PacketHandler.INSTANCE.sendToServer(new MessageAccelerating(acceleration));
             }
 
-            boolean horn = VehicleMod.proxy.isHonking();
-            this.setHorn(horn);
-            PacketHandler.INSTANCE.sendToServer(new MessageHorn(horn));
+            // Horn is now handled via key press event in ClientEvents
 
             TurnDirection direction = VehicleMod.proxy.getTurnDirection(entity);
             if(this.getTurnDirection() != direction)

@@ -3,6 +3,9 @@ package com.mrcrayfish.vehicle.network.message;
 import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -10,25 +13,18 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageHorn implements IMessage, IMessageHandler<MessageHorn, IMessage>
 {
-	private boolean horn;
-
 	public MessageHorn() {}
-
-	public MessageHorn(boolean horn)
-	{
-		this.horn = horn;
-	}
 
 	@Override
 	public void toBytes(ByteBuf buf)
 	{
-		buf.writeBoolean(horn);
+		// No data needed for one-time sound
 	}
 
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
-		this.horn = buf.readBoolean();
+		// No data needed for one-time sound
 	}
 
 	@Override
@@ -36,10 +32,17 @@ public class MessageHorn implements IMessage, IMessageHandler<MessageHorn, IMess
 	{
 	    FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->
         {
-            Entity riding = ctx.getServerHandler().player.getRidingEntity();
+            EntityPlayer player = ctx.getServerHandler().player;
+            Entity riding = player.getRidingEntity();
             if(riding instanceof EntityPoweredVehicle)
             {
-                ((EntityPoweredVehicle) riding).setHorn(message.horn);
+                EntityPoweredVehicle vehicle = (EntityPoweredVehicle) riding;
+                SoundEvent hornSound = vehicle.getHornRidingSound();
+                if(hornSound != null)
+                {
+                    // Play sound on server to sync with all clients
+                    vehicle.world.playSound(null, vehicle.posX, vehicle.posY, vehicle.posZ, hornSound, SoundCategory.NEUTRAL, 1.0F, 0.85F);
+                }
             }
         });
 		return null;

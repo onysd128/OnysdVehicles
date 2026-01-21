@@ -9,8 +9,6 @@ import com.mrcrayfish.vehicle.client.ClientEvents;
 import com.mrcrayfish.vehicle.client.ControllerEvents;
 import com.mrcrayfish.vehicle.client.EntityRaytracer;
 import com.mrcrayfish.vehicle.client.HeldVehicleEvents;
-import com.mrcrayfish.vehicle.client.audio.MovingSoundHorn;
-import com.mrcrayfish.vehicle.client.audio.MovingSoundHornRiding;
 import com.mrcrayfish.vehicle.client.audio.MovingSoundVehicle;
 import com.mrcrayfish.vehicle.client.audio.MovingSoundVehicleRiding;
 import com.mrcrayfish.vehicle.client.gui.GuiEditVehicle;
@@ -216,26 +214,7 @@ public class ClientProxy implements Proxy
                     Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundVehicle(vehicle));
                 }
             }
-            if(vehicle.getHornSound() != null && !player.equals(Minecraft.getMinecraft().player))
-            {
-                ITickableSound sound = soundMap.get(SoundType.HORN);
-                if(sound == null || sound.isDonePlaying() || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
-                {
-                    sound = new MovingSoundHorn(vehicle);
-                    soundMap.put(SoundType.HORN, sound);
-                    Minecraft.getMinecraft().getSoundHandler().playSound(sound);
-                }
-            }
-            if(vehicle.getHornRidingSound() != null && player.equals(Minecraft.getMinecraft().player))
-            {
-                ITickableSound sound = soundMap.get(SoundType.HORN_RIDING);
-                if(sound == null || sound.isDonePlaying() || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
-                {
-                    sound = new MovingSoundHornRiding(player, vehicle);
-                    soundMap.put(SoundType.HORN_RIDING, sound);
-                    Minecraft.getMinecraft().getSoundHandler().playSound(sound);
-                }
-            }
+            // Horn sounds are now handled via one-time playback on key press
         });
     }
 
@@ -701,8 +680,6 @@ public class ClientProxy implements Proxy
     private enum SoundType
     {
         ENGINE,
-        ENGINE_RIDING,
-        HORN,
-        HORN_RIDING;
+        ENGINE_RIDING;
     }
 }

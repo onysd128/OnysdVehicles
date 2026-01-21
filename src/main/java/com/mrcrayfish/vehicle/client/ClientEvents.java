@@ -22,6 +22,7 @@ import com.mrcrayfish.vehicle.item.ItemSprayCan;
 import com.mrcrayfish.vehicle.network.PacketHandler;
 import com.mrcrayfish.vehicle.network.message.MessageCycleSeats;
 import com.mrcrayfish.vehicle.network.message.MessageHitchTrailer;
+import com.mrcrayfish.vehicle.network.message.MessageHorn;
 import com.mrcrayfish.vehicle.proxy.ClientProxy;
 import com.mrcrayfish.vehicle.tileentity.TileEntityFluidPipe;
 import com.mrcrayfish.vehicle.util.RenderUtil;
@@ -133,6 +134,14 @@ public class ClientEvents
             if(Minecraft.getMinecraft().player.getRidingEntity() instanceof EntityVehicle)
             {
                 PacketHandler.INSTANCE.sendToServer(new MessageCycleSeats());
+            }
+        }
+
+        if(ClientProxy.KEY_HORN.isPressed())
+        {
+            if(Minecraft.getMinecraft().player.getRidingEntity() instanceof EntityPoweredVehicle)
+            {
+                PacketHandler.INSTANCE.sendToServer(new MessageHorn());
             }
         }
     }
