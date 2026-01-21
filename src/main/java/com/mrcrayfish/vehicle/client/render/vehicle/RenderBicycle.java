@@ -34,7 +34,7 @@ public class RenderBicycle extends AbstractRenderVehicle<EntityBicycle>
 
             float wheelAngle = entity.prevRenderWheelAngle + (entity.renderWheelAngle - entity.prevRenderWheelAngle) * partialTicks;
             float wheelAngleNormal = wheelAngle / 45F;
-            float turnRotation = wheelAngleNormal * 25F;
+            float turnRotation = wheelAngleNormal * 5F;
 
             GlStateManager.rotate(turnRotation, 0, 1, 0);
             GlStateManager.rotate(22.5F, 1, 0, 0);
