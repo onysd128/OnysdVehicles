@@ -394,7 +394,7 @@ public class VehicleProperties
         /* Bicycle */
         properties = new VehicleProperties();
         properties.setAxleOffset(-1.7F);
-        properties.setWheelOffset(4.0F);
+        properties.setWheelOffset(2.3F);
         properties.setBodyPosition(new PartPosition(1.05));
         properties.setEnginePosition(new PartPosition(0, 1, 2.5, 0, 180F, 0, 1.0));
         properties.setHeldOffset(new Vec3d(6.0, 0.0, 0.0));
