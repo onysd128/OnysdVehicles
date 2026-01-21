@@ -14,6 +14,7 @@ import com.mrcrayfish.vehicle.common.entity.SyncedPlayerData;
 import com.mrcrayfish.vehicle.entity.EntityLandVehicle;
 import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
 import com.mrcrayfish.vehicle.entity.EntityVehicle;
+import com.mrcrayfish.vehicle.entity.vehicle.EntityBicycle;
 import com.mrcrayfish.vehicle.entity.VehicleProperties;
 import com.mrcrayfish.vehicle.init.ModBlocks;
 import com.mrcrayfish.vehicle.init.ModItems;
@@ -170,6 +171,17 @@ public class ClientEvents
                             DecimalFormat format = new DecimalFormat("0.0");
                             String fuel = format.format(vehicle.getCurrentFuel()) + "/" + format.format(vehicle.getFuelCapacity());
                             mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "Fuel: " + TextFormatting.YELLOW + fuel, 10, 25, Color.WHITE.getRGB());
+                        }
+
+                        // Display food level + saturation for bicycles
+                        if(entity instanceof EntityBicycle)
+                        {
+                            int foodLevel = player.getFoodStats().getFoodLevel();
+                            float saturation = player.getFoodStats().getSaturationLevel();
+                            float total = foodLevel + saturation;
+                            DecimalFormat format = new DecimalFormat("0.0");
+                            String totalText = format.format(total);
+                            mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "Food: " + TextFormatting.YELLOW + totalText, 10, 25, Color.WHITE.getRGB());
                         }
                     }
                 }
