@@ -2,16 +2,20 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "I I",
-        " I ",
-        " C "
+        " O ",
+        " S "
     ],
     "key": {
         "I": {
             "item": "minecraft:iron_ingot"
         },
-        "C": {
-            "item": "minecraft:concrete",
-            "data": 7
+        "O": {
+            "item": "planks",
+            "data": 0
+        },
+        "S": {
+            "item": "planks",
+            "data": 1
         }
     },
     "result": {
