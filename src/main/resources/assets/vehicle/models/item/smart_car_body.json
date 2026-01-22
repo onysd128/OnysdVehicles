@@ -3,6 +3,7 @@
 	"credit": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
 	"textures": {
 		"11": "vehicle:models/onys_industries",
+		"particle": "vehicle:models/onys_industries",
 		"seat": "blocks/wool_colored_black",
 		"indicator_light": "blocks/glass_orange",
 		"axel": "blocks/stone",
@@ -12,8 +13,7 @@
 		"windshield": "blocks/glass",
 		"grill": "vehicle:models/grill",
 		"frame": "blocks/anvil_base",
-		"base": "blocks/concrete_white",
-		"particle": "vehicle:models/onys_industries"
+		"base": "blocks/concrete_white"
 	},
 	"elements": [
 		{
@@ -465,7 +465,7 @@
 		},
 		{
 			"from": [-0.6, 20.2, -5.4],
-			"to": [13.6, 21.3, 10.6],
+			"to": [13.6, 21.825, 10.6],
 			"faces": {
 				"north": {"uv": [0, 0, 14.2, 1.1], "texture": "#base", "tintindex": 0},
 				"south": {"uv": [0, 0, 14.2, 1.1], "texture": "#base", "tintindex": 0},
@@ -486,7 +486,7 @@
 		},
 		{
 			"from": [13.6, 20.2, -5.4],
-			"to": [16.6, 21.3, 10.6],
+			"to": [16.6, 21.825, 10.6],
 			"faces": {
 				"north": {"uv": [0, 0, 3, 1.1], "texture": "#base", "tintindex": 0},
 				"east": {"uv": [0, 0, 16, 1.1], "texture": "#base", "tintindex": 0},
