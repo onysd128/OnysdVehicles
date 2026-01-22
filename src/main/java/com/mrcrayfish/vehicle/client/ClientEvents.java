@@ -188,7 +188,23 @@ public class ClientEvents
                             float total = foodLevel + saturation;
                             DecimalFormat format = new DecimalFormat("0.0");
                             String totalText = format.format(total);
-                            mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "Food: " + TextFormatting.YELLOW + totalText, 10, 25, Color.WHITE.getRGB());
+                            
+                            // Determine color based on food level
+                            TextFormatting color;
+                            if(total > 20)
+                            {
+                                color = TextFormatting.GREEN;
+                            }
+                            else if(total >= 10)
+                            {
+                                color = TextFormatting.YELLOW;
+                            }
+                            else
+                            {
+                                color = TextFormatting.RED;
+                            }
+                            
+                            mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "Food: " + color + totalText, 10, 25, Color.WHITE.getRGB());
                         }
                     }
                 }
