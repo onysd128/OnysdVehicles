@@ -2,9 +2,8 @@
 	"format_version": "1.21.11",
 	"credit": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
 	"textures": {
-		"7": "blocks/planks_oak",
-		"8": "blocks/planks_spruce",
 		"9": "blocks/anvil_base",
+		"10": "vehicle:models/tyre",
 		"metal_tip": "blocks/iron_block",
 		"particle": "blocks/concrete_purple"
 	},
@@ -13,10 +12,10 @@
 			"from": [7.2, 1, 7.3],
 			"to": [8.8, 6, 8.7],
 			"faces": {
-				"north": {"uv": [0, 0, 1.6, 6], "texture": "#7"},
-				"east": {"uv": [0, 0, 1.4, 6], "texture": "#7"},
-				"south": {"uv": [0, 0, 1.6, 6], "texture": "#7"},
-				"west": {"uv": [0, 0, 1.4, 6], "texture": "#7"}
+				"north": {"uv": [0, 0, 1.6, 6], "texture": "#10"},
+				"east": {"uv": [0, 0, 1.4, 6], "texture": "#10"},
+				"south": {"uv": [0, 0, 1.6, 6], "texture": "#10"},
+				"west": {"uv": [0, 0, 1.4, 6], "texture": "#10"}
 			}
 		},
 		{
@@ -74,24 +73,24 @@
 			"to": [8.9, 7, 8.8],
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, -1, 0]},
 			"faces": {
-				"north": {"uv": [0, 0, 1.8, 1.6], "texture": "#8"},
-				"east": {"uv": [0, 0, 1.6, 1.6], "texture": "#8"},
-				"south": {"uv": [0, 0, 1.8, 1.6], "texture": "#8"},
-				"west": {"uv": [0, 0, 1.6, 1.6], "texture": "#8"},
-				"up": {"uv": [0, 0, 1.8, 1.6], "texture": "#8"},
-				"down": {"uv": [0, 0, 1.8, 1.6], "texture": "#8"}
+				"north": {"uv": [0, 0, 1.8, 1.6], "texture": "#10"},
+				"east": {"uv": [0, 0, 1.6, 1.6], "texture": "#10"},
+				"south": {"uv": [0, 0, 1.8, 1.6], "texture": "#10"},
+				"west": {"uv": [0, 0, 1.6, 1.6], "texture": "#10"},
+				"up": {"uv": [0, 0, 1.8, 1.6], "texture": "#10"},
+				"down": {"uv": [0, 0, 1.8, 1.6], "texture": "#10"}
 			}
 		},
 		{
 			"from": [7.1, 0, 7.2],
 			"to": [8.9, 1.6, 8.8],
 			"faces": {
-				"north": {"uv": [0, 0, 1.8, 1.6], "texture": "#8"},
-				"east": {"uv": [0, 0, 1.6, 1.6], "texture": "#8"},
-				"south": {"uv": [0, 0, 1.8, 1.6], "texture": "#8"},
-				"west": {"uv": [0, 0, 1.6, 1.6], "texture": "#8"},
-				"up": {"uv": [0, 0, 1.8, 1.6], "texture": "#8"},
-				"down": {"uv": [0, 0, 1.8, 1.6], "texture": "#8"}
+				"north": {"uv": [0, 0, 1.8, 1.6], "texture": "#10"},
+				"east": {"uv": [0, 0, 1.6, 1.6], "texture": "#10"},
+				"south": {"uv": [0, 0, 1.8, 1.6], "texture": "#10"},
+				"west": {"uv": [0, 0, 1.6, 1.6], "texture": "#10"},
+				"up": {"uv": [0, 0, 1.8, 1.6], "texture": "#10"},
+				"down": {"uv": [0, 0, 1.8, 1.6], "texture": "#10"}
 			}
 		},
 		{
