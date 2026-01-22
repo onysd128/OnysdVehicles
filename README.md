@@ -26,7 +26,8 @@
 15. 📦 Changed vehicle crate logo.
 16. 🔧 Fix for fuel drum top flickering textures.
 17. ☕ Added new cup to workstation.
-18. 🚤 Added propeller to Aluminum Boat.<br>
+18. 🚤 Added propeller to Aluminum Boat.
+19. 🔧 Updated hammer and wrench models and recipes.<br>
 ### v1.3
 1. 💥 Implemented collision system. Now vehicle can push and damage mobs, players and another vehicles. 
 2. 📋 You can enable/disable collision system, or damage separately for each kind of entities in config file.
