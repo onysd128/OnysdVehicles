@@ -61,6 +61,11 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.server.pick_up_vehicles")
         public boolean pickUpVehicles = true;
 
+        @Config.Name("Allow Pickup Without Owner")
+        @Config.Comment("If true, players can pick up vehicles even if they are not the owner. If false (default), only owners can pick up their vehicles.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.allow_pickup_without_owner")
+        public boolean allowPickupWithoutOwner = false;
+
         @Config.Name("Max Hose Distance")
         @Config.Comment("The maximum distance before the hose from the gas pump or fluid hose breaks")
         @Config.LangKey(Reference.MOD_ID + ".config.server.max_hose_distance")

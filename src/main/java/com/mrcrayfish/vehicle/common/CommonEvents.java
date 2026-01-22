@@ -7,6 +7,7 @@ import com.mrcrayfish.vehicle.VehicleConfig;
 import com.mrcrayfish.vehicle.common.entity.HeldVehicleDataHandler;
 import com.mrcrayfish.vehicle.common.entity.SyncedPlayerData;
 import com.mrcrayfish.vehicle.entity.EntityJack;
+import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
 import com.mrcrayfish.vehicle.entity.EntityTrailer;
 import com.mrcrayfish.vehicle.entity.EntityVehicle;
 import com.mrcrayfish.vehicle.init.ModBlocks;
@@ -124,26 +125,37 @@ public class CommonEvents
                 if(targetEntity instanceof EntityVehicle)
                 { 
                     if (!targetEntity.isBeingRidden() && !targetEntity.isDead &&  ((EntityVehicle) targetEntity).canBePickedUp())
-                {
-                    NBTTagCompound tagCompound = new NBTTagCompound();
-                    String id = getEntityString(targetEntity);
-                    if(id != null)
                     {
-                        ((EntityVehicle) targetEntity).setTrailer(null);
+                        // Check owner for powered vehicles if pickup without owner is disabled
+                        if(targetEntity instanceof EntityPoweredVehicle && !VehicleConfig.SERVER.allowPickupWithoutOwner)
+                        {
+                            EntityPoweredVehicle poweredVehicle = (EntityPoweredVehicle) targetEntity;
+                            if(!poweredVehicle.isOwner(player))
+                            {
+                                CommonUtils.sendInfoMessage(player, "vehicle.status.invalid_owner");
+                                return false;
+                            }
+                        }
+                        
+                        NBTTagCompound tagCompound = new NBTTagCompound();
+                        String id = getEntityString(targetEntity);
+                        if(id != null)
+                        {
+                            ((EntityVehicle) targetEntity).setTrailer(null);
 
-                        tagCompound.setString("id", id);
-                        targetEntity.writeToNBT(tagCompound);
-                        HeldVehicleDataHandler.setHeldVehicle(player, tagCompound);
+                            tagCompound.setString("id", id);
+                            targetEntity.writeToNBT(tagCompound);
+                            HeldVehicleDataHandler.setHeldVehicle(player, tagCompound);
 
-                        //Removes the entity from the world
-                        world.removeEntity(targetEntity);
+                            //Removes the entity from the world
+                            world.removeEntity(targetEntity);
 
-                        //Plays pick up sound
-                        world.playSound(null, player.posX, player.posY, player.posZ, ModSounds.PICK_UP_VEHICLE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                            //Plays pick up sound
+                            world.playSound(null, player.posX, player.posY, player.posZ, ModSounds.PICK_UP_VEHICLE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
-                        return true;
+                            return true;
+                        }
                     }
-                }
             }
             }
             else if(targetEntity instanceof EntityTrailer && !targetEntity.isBeingRidden() && !targetEntity.isDead)
