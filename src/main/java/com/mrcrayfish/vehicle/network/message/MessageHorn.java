@@ -37,11 +37,15 @@ public class MessageHorn implements IMessage, IMessageHandler<MessageHorn, IMess
             if(riding instanceof EntityPoweredVehicle)
             {
                 EntityPoweredVehicle vehicle = (EntityPoweredVehicle) riding;
-                SoundEvent hornSound = vehicle.getHornRidingSound();
-                if(hornSound != null)
+                // Only allow the driver (controlling passenger) to use the horn
+                if(vehicle.getControllingPassenger() == player)
                 {
-                    // Play sound on server to sync with all clients
-                    vehicle.world.playSound(null, vehicle.posX, vehicle.posY, vehicle.posZ, hornSound, SoundCategory.NEUTRAL, 1.0F, 0.85F);
+                    SoundEvent hornSound = vehicle.getHornRidingSound();
+                    if(hornSound != null)
+                    {
+                        // Play sound on server to sync with all clients
+                        vehicle.world.playSound(null, vehicle.posX, vehicle.posY, vehicle.posZ, hornSound, SoundCategory.NEUTRAL, 1.0F, 0.85F);
+                    }
                 }
             }
         });

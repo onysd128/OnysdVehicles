@@ -140,9 +140,16 @@ public class ClientEvents
 
         if(ClientProxy.KEY_HORN.isPressed())
         {
-            if(Minecraft.getMinecraft().player.getRidingEntity() instanceof EntityPoweredVehicle)
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            Entity riding = player.getRidingEntity();
+            if(riding instanceof EntityPoweredVehicle)
             {
-                PacketHandler.INSTANCE.sendToServer(new MessageHorn());
+                EntityPoweredVehicle vehicle = (EntityPoweredVehicle) riding;
+                // Only allow the driver (controlling passenger) to use the horn
+                if(vehicle.getControllingPassenger() == player)
+                {
+                    PacketHandler.INSTANCE.sendToServer(new MessageHorn());
+                }
             }
         }
     }
