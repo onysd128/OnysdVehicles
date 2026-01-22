@@ -11,6 +11,7 @@ import com.mrcrayfish.vehicle.common.entity.PartPosition;
 import com.mrcrayfish.vehicle.common.entity.SyncedPlayerData;
 import com.mrcrayfish.vehicle.entity.vehicle.EntityBicycle;
 import com.mrcrayfish.vehicle.entity.vehicle.EntityBumperCar;
+import com.mrcrayfish.vehicle.entity.EntityJack;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.init.ModSounds;
 import com.mrcrayfish.vehicle.item.ItemEngine;
@@ -1175,6 +1176,11 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
 
     public boolean isEnginePowered()
     {
+        /* Engine cannot be powered when vehicle is on a jack */
+        if(this.getRidingEntity() instanceof EntityJack)
+        {
+            return false;
+        }
         return ((this.getEngineType() == EngineType.NONE || this.hasEngine()) && (this.isControllingPassengerCreative() || this.isFueled()) && this.getDestroyedStage() < 9) && (!this.isKeyNeeded() || !this.getKeyStack().isEmpty());
     }
 
