@@ -124,5 +124,11 @@
     },
     "car_honk": {
         "sounds": [ {"name": "vehicle:car_honk"}]
+    },
+    "engine_turn_on": {
+        "sounds": [ {"name": "vehicle:engine_turn_on"}]
+    },
+    "engine_turn_off": {
+        "sounds": [ {"name": "vehicle:engine_turn_off"}]
     }
 }

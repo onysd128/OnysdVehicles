@@ -25,13 +25,13 @@ public class EntityATV extends EntityLandVehicle implements IEntityRaytraceable
     @Override
     public SoundEvent getMovingSound()
     {
-        return ModSounds.ATV_ENGINE_MONO;
+        return ModSounds.GO_KART_ENGINE_MONO;
     }
 
     @Override
     public SoundEvent getRidingSound()
     {
-        return ModSounds.ATV_ENGINE_STEREO;
+        return ModSounds.GO_KART_ENGINE_STEREO;
     }
 
     @Override

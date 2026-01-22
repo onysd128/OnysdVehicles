@@ -50,4 +50,6 @@ public class SoundNames
     public static final String BICYCLE_BELL = PREFIX + "bicycle_bell";
     public static final String BICYCLE_RIDING = PREFIX + "bicycle_riding";
     public static final String CAR_HONK = PREFIX + "car_honk";
+    public static final String ENGINE_TURN_ON = PREFIX + "engine_turn_on";
+    public static final String ENGINE_TURN_OFF = PREFIX + "engine_turn_off";
 }
