@@ -17,15 +17,16 @@
 6. 📦 Bugfix for chest on moped, there is no more duplicating.
 7. 🔧 Engine sound fix for vehicles with no fuel or locked with keys. No more engine sound when there is no fuel or no key inserted.
 8. 🔊 Fix for sound when installing/removing engine.
-9. 📢 Changed honk logic, added ability to change honk sound for every vehicle in code.
-10. ⚙️ Added config param to change if electric motors needs fuel to work.
-11. 🎮 Added ability to disable wheelie in config file.
-12. 🔊 Changed vehicles sound, now its not that loud.
-13. 🎨 Changed textures from "Cray Industries" to "Onysd Industries".
-14. 📦 Changed vehicle crate logo.
-15. 🔧 Fix for fuel drum top flickering textures.
-16. ☕ Added new cup to workstation.
-17. 🚤 Added propeller to Aluminum Boat.<br>
+9. 🔊 Added engine start/stop sound for non-electric vehicles.
+10. 📢 Changed honk logic, added ability to change honk sound for every vehicle in code.
+11. ⚙️ Added config param to change if electric motors needs fuel to work.
+12. 🎮 Added ability to disable wheelie in config file.
+13. 🔊 Changed vehicles sound, now its not that loud.
+14. 🎨 Changed textures from "Cray Industries" to "Onysd Industries".
+15. 📦 Changed vehicle crate logo.
+16. 🔧 Fix for fuel drum top flickering textures.
+17. ☕ Added new cup to workstation.
+18. 🚤 Added propeller to Aluminum Boat.<br>
 ### v1.3
 1. 💥 Implemented collision system. Now vehicle can push and damage mobs, players and another vehicles. 
 2. 📋 You can enable/disable collision system, or damage separately for each kind of entities in config file.
