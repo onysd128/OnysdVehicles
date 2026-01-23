@@ -27,7 +27,8 @@
 16. 🔧 Fix for fuel drum top flickering textures.
 17. ☕ Added new cup to workstation.
 18. 🚤 Added propeller to Aluminum Boat.
-19. 🔧 Updated hammer and wrench models and recipes.<br>
+19. 🔧 Updated hammer and wrench models and recipes.
+20. 🔑 Vehicle pickup is now blocked when holding a key or bicycle lock (prevents interaction conflicts)<br>
 ### v1.3
 1. 💥 Implemented collision system. Now vehicle can push and damage mobs, players and another vehicles. 
 2. 📋 You can enable/disable collision system, or damage separately for each kind of entities in config file.

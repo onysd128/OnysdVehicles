@@ -23,7 +23,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import com.mrcrayfish.vehicle.init.ModItems;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
@@ -120,6 +122,15 @@ public class CommonEvents
         //CommonUtils.sendInfoMessage(player, targetEntity.getName());
         if(hand == EnumHand.MAIN_HAND && !world.isRemote && player.isSneaking() && !player.isSpectator() && VehicleConfig.SERVER.pickUpVehicles)
         {
+            // Check if player is holding a key or bicycle lock in any hand - prevent pickup in that case
+            ItemStack mainHand = player.getHeldItemMainhand();
+            ItemStack offHand = player.getHeldItemOffhand();
+            if((!mainHand.isEmpty() && (mainHand.getItem() == ModItems.KEY || mainHand.getItem() == ModItems.BICYCLE_LOCK)) ||
+               (!offHand.isEmpty() && (offHand.getItem() == ModItems.KEY || offHand.getItem() == ModItems.BICYCLE_LOCK)))
+            {
+                return false;
+            }
+            
             if(!HeldVehicleDataHandler.isHoldingVehicle(player))
             {
                 if(targetEntity instanceof EntityVehicle)

@@ -16,10 +16,10 @@
     4.8 Can be destroyed.<br>
     4.9 Etc.<br>
 5. 🛠️ Add working helicopter 🚁
-6. 🛠️ Add working bicycle 🚲
+6. 🛠️ Add working bicycle 🚲 ✅
 7. Add chest slot for storage trailer and moped, so chest can be removed or replaced, meybe with chests from other mods.
 8. Add integrations for other chests mods, like Iron Chests, so chests from this mod can be placed on moped, to have bigger storage, or can be used in storage trailer craft.
-9. Fix the sound issue, when if vehicles is not installed, it's play wrench sound even on placing/removing engine to/from slot.
+9. Fix the sound issue, when if vehicles is not installed, it's play wrench sound even on placing/removing engine to/from slot. ✅
 10. Improve engine sound logic:✅<br> 
     10.1 For now engine sound is playing even if vehicle has no fuel, its need to be fixed✅<br>
     10.2 If vehicle has been locked with key, engine sound will play only if key is inserted and vehicle has fuel.✅<br>
@@ -27,4 +27,4 @@
 12. Add spining propeller to aluminum boat. ✅
 13. Add a way to pay for fuel, so this feature can be used for servers.  
 14. Fix issue with chest on moped. When you place it on moped - you still have it in your hand. Seems like a bug. ✅
-15. Fix vehicle shading while its on jack
+15. Fix vehicle shading while its on jack ✅
