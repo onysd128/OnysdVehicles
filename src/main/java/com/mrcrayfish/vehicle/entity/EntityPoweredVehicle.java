@@ -539,7 +539,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         }
 
         /* Play engine turn on/off sounds for non-electric engines */
-        if(this.hasEngine() && this.getEngineType() != EngineType.ELECTRIC_MOTOR)
+        if(this.hasEngine() && this.getEngineType() != EngineType.ELECTRIC_MOTOR && this.getEngineType() != EngineType.NONE)
         {
             boolean currentEnginePowered = this.isEnginePowered();
             if(currentEnginePowered != this.prevEnginePowered)
@@ -567,7 +567,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         }
         else
         {
-            // Reset prevEnginePowered if no engine or electric engine
+            // Reset prevEnginePowered if no engine or electric engine or NONE engine type
             this.prevEnginePowered = false;
         }
 
