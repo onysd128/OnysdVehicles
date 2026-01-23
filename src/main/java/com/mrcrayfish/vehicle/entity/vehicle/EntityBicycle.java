@@ -254,6 +254,7 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
                     }
                     
                     this.setBicycleLocked(true);
+                    this.world.playSound(null, this.posX, this.posY, this.posZ, ModSounds.BICYCLE_LOCK, net.minecraft.util.SoundCategory.BLOCKS, 1.0F, 1.0F);
                     CommonUtils.sendInfoMessage(player, "vehicle.status.bicycle_locked");
                     return true;
                 }
@@ -307,6 +308,7 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
                     }
                     
                     this.setBicycleLocked(false);
+                    this.world.playSound(null, this.posX, this.posY, this.posZ, ModSounds.BICYCLE_UNLOCK, net.minecraft.util.SoundCategory.BLOCKS, 1.0F, 1.0F);
                     CommonUtils.sendInfoMessage(player, "vehicle.status.bicycle_unlocked");
                     return true;
                 }

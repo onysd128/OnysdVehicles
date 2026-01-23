@@ -122,6 +122,12 @@
     "bicycle_riding": {
         "sounds": [ {"name": "vehicle:bicycle_riding"}]
     },
+    "bicycle_lock": {
+        "sounds": [ {"name": "vehicle:bicycle_lock"}]
+    },
+    "bicycle_unlock": {
+        "sounds": [ {"name": "vehicle:bicycle_unlock"}]
+    },
     "car_honk": {
         "sounds": [ {"name": "vehicle:car_honk"}]
     },
