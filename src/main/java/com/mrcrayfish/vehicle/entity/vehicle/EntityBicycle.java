@@ -279,7 +279,7 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
                 NBTTagCompound tag = CommonUtils.getItemTagCompound(stack);
                 if(tag.hasUniqueId("vehicleId") && this.getUniqueID().equals(tag.getUniqueId("vehicleId")))
                 {
-                    // Valid key: spawn lock item, remove key, unlock bicycle
+                    // Valid key: create lock item and replace key in player's hand
                     ItemStack lockStack = new ItemStack(ModItems.BICYCLE_LOCK);
                     
                     // Copy color from key to lock if key has color
@@ -293,18 +293,14 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
                         }
                     }
                     
-                    EntityItem lockItem = new EntityItem(world, this.posX, this.posY + 0.5, this.posZ, lockStack);
-                    lockItem.setPickupDelay(0);
-                    world.spawnEntity(lockItem);
-                    
-                    // Remove key from player's hand
+                    // Replace key with lock in player's hand
                     if(hand == EnumHand.MAIN_HAND)
                     {
-                        player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                        player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, lockStack);
                     }
                     else
                     {
-                        player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack.EMPTY);
+                        player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, lockStack);
                     }
                     
                     this.setBicycleLocked(false);
