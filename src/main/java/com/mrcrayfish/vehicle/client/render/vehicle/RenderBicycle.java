@@ -24,6 +24,12 @@ public class RenderBicycle extends AbstractRenderVehicle<EntityBicycle>
     {
         this.renderDamagedPart(entity, SpecialModels.BICYCLE_BODY.getModel());
 
+        // Render lock model if bicycle is locked
+        if(entity.isBicycleLocked())
+        {
+            RenderUtil.renderModel(SpecialModels.BICYCLE_LOCK_ON_BICYCLE.getModel(), ItemCameraTransforms.TransformType.NONE);
+        }
+
         float wheelScale = 2.0F;
 
         //Render the handles bars

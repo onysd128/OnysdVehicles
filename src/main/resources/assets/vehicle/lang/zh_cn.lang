@@ -20,6 +20,7 @@ item.vehicle.industrial_jerry_can.name=工业简便油桶
 item.vehicle.industrial_jerry_can.info=使用工业简便油桶，可以为载具填充燃料元素。它能够存储 15 桶燃料元素。
 item.vehicle.industrial_jerry_can.fuel=燃料：%s
 item.vehicle.wrench.name=扳手
+item.vehicle.bicycle_lock.name=自行车锁
 
 tile.vehicle.traffic_cone.name=交通锥
 tile.vehicle.boost_pad.name=加速道
@@ -69,3 +70,8 @@ vehicle.chat.pump.power=§b能量模式：§r %s
 vehicle.chat.pump.power.off=需要关闭信号
 vehicle.chat.pump.power.on=需要信号开启
 vehicle.chat.pump.power.always=保持激活
+
+vehicle.status.bicycle_locked=自行车已锁定
+vehicle.status.bicycle_unlocked=自行车已解锁
+vehicle.status.bicycle_lock_invalid_owner=你不是这辆自行车的拥有者
+vehicle.status.bicycle_key_invalid=这把钥匙不匹配这辆自行车

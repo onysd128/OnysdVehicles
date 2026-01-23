@@ -72,6 +72,7 @@ public enum SpecialModels
     COUCH_HELICOPTER_SKID("couch_helicopter_skid"),
     BICYCLE_BODY("bicycle_body"),
     BICYCLE_HANDLE_BAR("bicycle_handle_bar"),
+    BICYCLE_LOCK_ON_BICYCLE("bicycle_lock_on_bicycle"),
 
     COUCH(new ModelResourceLocation("cfm:couch", "colour=14,facing=east,type=both"), false),
     BLADE(new ModelResourceLocation("cfm:ceiling_fan_fans", "inventory"), false),
