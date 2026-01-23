@@ -201,27 +201,28 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(Blocks.GLASS_PANE, 2));
         mapBuilder.put(EntityFluidTrailer.class, builder.build());
 
-        if(Loader.isModLoaded("cfm"))
-        {
-            /* Bath */
-            builder = new Builder();
-            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:bath_bottom"), 1));
-            builder.addMaterial(new ItemStack(Items.NETHER_STAR, 1));
-            mapBuilder.put(EntityBath.class, builder.build());
+        // Disabled vehicles - recipes commented out to match VehicleMod.registerVehicles()
+        // if(Loader.isModLoaded("cfm"))
+        // {
+        //     /* Bath */
+        //     builder = new Builder();
+        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:bath_bottom"), 1));
+        //     builder.addMaterial(new ItemStack(Items.NETHER_STAR, 1));
+        //     mapBuilder.put(EntityBath.class, builder.build());
 
-            /* Couch */
-            builder = new Builder();
-            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch_jeb"), 1));
-            builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
-            mapBuilder.put(EntityCouch.class, builder.build());
+        //     /* Couch */
+        //     builder = new Builder();
+        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch_jeb"), 1));
+        //     builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
+        //     mapBuilder.put(EntityCouch.class, builder.build());
 
-            /* Sofacopter */
-            builder = new Builder();
-            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch"), 1, 14));
-            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:ceiling_fan")));
-            builder.addMaterial(new ItemStack(Items.IRON_INGOT, 16));
-            mapBuilder.put(EntitySofacopter.class, builder.build());
-        }
+        //     /* Sofacopter */
+        //     builder = new Builder();
+        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch"), 1, 14));
+        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:ceiling_fan")));
+        //     builder.addMaterial(new ItemStack(Items.IRON_INGOT, 16));
+        //     mapBuilder.put(EntitySofacopter.class, builder.build());
+        // }
 
         RECIPES = mapBuilder.build();
     }
