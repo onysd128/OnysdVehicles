@@ -30,6 +30,7 @@ import com.mrcrayfish.vehicle.entity.trailer.*;
 import com.mrcrayfish.vehicle.entity.vehicle.*;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.init.RegistrationHandler;
+import com.mrcrayfish.vehicle.item.ItemBicycleLock;
 import com.mrcrayfish.vehicle.item.ItemKey;
 import com.mrcrayfish.vehicle.item.ItemPart;
 import com.mrcrayfish.vehicle.item.ItemSprayCan;
@@ -168,7 +169,7 @@ public class ClientProxy implements Proxy
         };
         RegistrationHandler.Items.getItems().forEach(item ->
         {
-            if(item instanceof ItemSprayCan || item instanceof ItemKey || (item instanceof ItemPart && ((ItemPart) item).isColored()) || item == ModItems.MODELS)
+            if(item instanceof ItemSprayCan || item instanceof ItemKey || item instanceof ItemBicycleLock || (item instanceof ItemPart && ((ItemPart) item).isColored()) || item == ModItems.MODELS)
             {
                 Minecraft.getMinecraft().getItemColors().registerItemColorHandler(color, item);
             }

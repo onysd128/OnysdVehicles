@@ -5,6 +5,7 @@ import com.mrcrayfish.vehicle.entity.EngineType;
 import com.mrcrayfish.vehicle.entity.EntityMotorcycle;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.init.ModSounds;
+import com.mrcrayfish.vehicle.item.IDyeable;
 import com.mrcrayfish.vehicle.util.CommonUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -231,6 +232,17 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
                     NBTTagCompound tag = CommonUtils.getItemTagCompound(keyStack);
                     tag.setUniqueId("vehicleId", this.getUniqueID());
                     
+                    // Copy color from lock to key if lock has color
+                    if(stack.getItem() instanceof IDyeable)
+                    {
+                        IDyeable dyeableLock = (IDyeable) stack.getItem();
+                        if(dyeableLock.hasColor(stack))
+                        {
+                            IDyeable dyeableKey = (IDyeable) ModItems.KEY;
+                            dyeableKey.setColor(keyStack, dyeableLock.getColor(stack));
+                        }
+                    }
+                    
                     // Replace lock item with key in player's hand
                     if(hand == EnumHand.MAIN_HAND)
                     {
@@ -268,6 +280,18 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
                 {
                     // Valid key: spawn lock item, remove key, unlock bicycle
                     ItemStack lockStack = new ItemStack(ModItems.BICYCLE_LOCK);
+                    
+                    // Copy color from key to lock if key has color
+                    if(stack.getItem() instanceof IDyeable)
+                    {
+                        IDyeable dyeableKey = (IDyeable) stack.getItem();
+                        if(dyeableKey.hasColor(stack))
+                        {
+                            IDyeable dyeableLock = (IDyeable) ModItems.BICYCLE_LOCK;
+                            dyeableLock.setColor(lockStack, dyeableKey.getColor(stack));
+                        }
+                    }
+                    
                     EntityItem lockItem = new EntityItem(world, this.posX, this.posY + 0.5, this.posZ, lockStack);
                     lockItem.setPickupDelay(0);
                     world.spawnEntity(lockItem);
