@@ -9,7 +9,7 @@
 
 # Full Changes List
 ### v1.4
-1. 🚴 Added fully functionable bicycles, along with new wheel type for them. Currently not lockable.
+1. 🚴 Added fully functionable bicycles, along with new wheel type and locks for them.
 2. 🚫 Disabled driving while vehicle is on jack. Fixed collision bugs and wheel rotation issues.
 3. 🎨 Fixed absent shading on jack. Vehicles now render properly with shadows when lifted.
 4. 🚗 Changed some vehicles models so no player head is seen through the roof.
