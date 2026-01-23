@@ -10,11 +10,11 @@
             "item": "minecraft:iron_ingot"
         },
         "O": {
-            "item": "planks",
+            "item": "minecraft:planks",
             "data": 0
         },
         "S": {
-            "item": "planks",
+            "item": "minecraft:planks",
             "data": 1
         }
     },
