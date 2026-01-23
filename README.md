@@ -8,6 +8,27 @@
 🌐 Also check original mod from MrCrayfish **[here](https://github.com/MrCrayfish/MrCrayfishVehicleMod)**.<br>
 
 # Full Changes List
+### v1.4
+1. 🚴 Added fully functionable bicycles, along with new wheel type and locks for them.
+2. 🚫 Disabled driving while vehicle is on jack. Fixed collision bugs and wheel rotation issues.
+3. 🎨 Fixed absent shading on jack. Vehicles now render properly with shadows when lifted.
+4. 🚗 Changed some vehicles models so no player head is seen through the roof.
+5. 🚤 Changed Aluminum Boat model, now there is no water inside it when on water.
+6. 📦 Bugfix for chest on moped, there is no more duplicating.
+7. 🔧 Engine sound fix for vehicles with no fuel or locked with keys. No more engine sound when there is no fuel or no key inserted.
+8. 🔊 Fix for sound when installing/removing engine.
+9. 🔊 Added engine start/stop sound for non-electric vehicles.
+10. 📢 Changed honk logic, added ability to change honk sound for every vehicle in code.
+11. ⚙️ Added config param to change if electric motors needs fuel to work.
+12. 🎮 Added ability to disable wheelie in config file.
+13. 🔊 Changed vehicles sound, now its not that loud.
+14. 🎨 Changed textures from "Cray Industries" to "Onysd Industries".
+15. 📦 Changed vehicle crate logo.
+16. 🔧 Fix for fuel drum top flickering textures.
+17. ☕ Added new cup to workstation.
+18. 🚤 Added propeller to Aluminum Boat.
+19. 🔧 Updated hammer and wrench models and recipes.
+20. 🔑 Vehicle pickup is now blocked when holding a key or bicycle lock (prevents interaction conflicts)<br>
 ### v1.3
 1. 💥 Implemented collision system. Now vehicle can push and damage mobs, players and another vehicles. 
 2. 📋 You can enable/disable collision system, or damage separately for each kind of entities in config file.

@@ -45,7 +45,8 @@ public class MovingSoundVehicleRiding extends MovingSound
         {
             this.donePlaying = true;
         }
-        this.volume = vehicle.getControllingPassenger() != null ? 1.0F : 0.0F;
+        // Only play engine sound if engine is powered (has fuel and key if needed)
+        this.volume = (vehicle.getControllingPassenger() != null && vehicle.isEnginePowered()) ? 1.0F : 0.0F;
         this.pitch = vehicle.getMinEnginePitch() + (vehicle.getMaxEnginePitch() - vehicle.getMinEnginePitch()) * Math.abs(vehicle.getActualSpeed());
     }
 }

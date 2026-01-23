@@ -65,6 +65,7 @@ public class GuiWorkstation extends GuiContainer
     private boolean transitioning;
     private int vehicleScale = 30;
     private int prevVehicleScale = 30;
+    private boolean incompatibleWheels = false;
 
     public GuiWorkstation(IInventory playerInventory, TileEntityWorkstation workstation)
     {
@@ -151,24 +152,41 @@ public class GuiWorkstation extends GuiContainer
                 ItemStack wheels = workstation.getStackInSlot(2);
                 if(!wheels.isEmpty() && wheels.getItem() instanceof ItemWheel)
                 {
-                    if(wheels.getTagCompound() != null)
+                    WheelType wheelType = WheelType.values()[wheels.getItemDamage()];
+                    // Check if wheel type is compatible with vehicle
+                    if(entityPoweredVehicle.canAcceptWheelType(wheelType))
                     {
-                        NBTTagCompound tagCompound = wheels.getTagCompound();
-                        if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                        if(wheels.getTagCompound() != null)
                         {
-                            entityPoweredVehicle.setWheelColor(tagCompound.getInteger("color"));
+                            NBTTagCompound tagCompound = wheels.getTagCompound();
+                            if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                            {
+                                entityPoweredVehicle.setWheelColor(tagCompound.getInteger("color"));
+                            }
                         }
+                        entityPoweredVehicle.setWheelType(wheelType);
+                        entityPoweredVehicle.setWheels(true);
+                        entityPoweredVehicle.notifyDataManagerChange(EntityPoweredVehicle.WHEEL_COLOR);
+                        incompatibleWheels = false;
                     }
-                    entityPoweredVehicle.setWheelType(WheelType.values()[wheels.getItemDamage()]);
-                    entityPoweredVehicle.setWheels(true);
-                    entityPoweredVehicle.notifyDataManagerChange(EntityPoweredVehicle.WHEEL_COLOR);
+                    else
+                    {
+                        entityPoweredVehicle.setWheels(false);
+                        canCraft = false;
+                        incompatibleWheels = true;
+                    }
                 }
                 else
                 {
                     entityPoweredVehicle.setWheels(false);
                     canCraft = false;
+                    incompatibleWheels = false;
                 }
             }
+        }
+        else
+        {
+            incompatibleWheels = false;
         }
         btnCraft.enabled = canCraft;
 
@@ -353,7 +371,22 @@ public class GuiWorkstation extends GuiContainer
 
         if(vehicle instanceof EntityPoweredVehicle && ((EntityPoweredVehicle) vehicle).canChangeWheels())
         {
-            this.drawSlotTooltip(Lists.newArrayList(TextFormatting.RED + I18n.format("vehicle.tooltip.required"), TextFormatting.GRAY + I18n.format("vehicle.tooltip.wheels")), startX, startY, 226, 29, mouseX, mouseY, 2);
+            ItemStack wheels = workstation.getStackInSlot(2);
+            if(!wheels.isEmpty() && wheels.getItem() instanceof ItemWheel && incompatibleWheels)
+            {
+                // Show incompatible wheels message
+                WheelType currentWheelType = WheelType.values()[wheels.getItemDamage()];
+                String wheelTypeName = I18n.format("vehicle.wheel_type." + currentWheelType.getId() + ".name");
+                this.drawSlotTooltip(Lists.newArrayList(
+                    TextFormatting.RED + I18n.format("vehicle.tooltip.required"),
+                    TextFormatting.GRAY + I18n.format("vehicle.tooltip.wheels"),
+                    TextFormatting.RED + I18n.format("vehicle.tooltip.incompatible_wheels", wheelTypeName)
+                ), startX, startY, 226, 29, mouseX, mouseY, 2);
+            }
+            else
+            {
+                this.drawSlotTooltip(Lists.newArrayList(TextFormatting.RED + I18n.format("vehicle.tooltip.required"), TextFormatting.GRAY + I18n.format("vehicle.tooltip.wheels")), startX, startY, 226, 29, mouseX, mouseY, 2);
+            }
         }
         else
         {
@@ -487,7 +520,7 @@ public class GuiWorkstation extends GuiContainer
 
     private void drawSlotTooltip(List<String> text, int startX, int startY, int x, int y, int mouseX, int mouseY, int slot)
     {
-        if(workstation.getStackInSlot(slot).isEmpty())
+        if(workstation.getStackInSlot(slot).isEmpty() || (slot == 2 && incompatibleWheels))
         {
             if(MouseHelper.isMouseWithin(mouseX, mouseY, startX + x, startY + y, 18, 18))
             {

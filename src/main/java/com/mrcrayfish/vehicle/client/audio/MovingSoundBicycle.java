@@ -1,0 +1,65 @@
+package com.mrcrayfish.vehicle.client.audio;
+
+import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.MovingSound;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.SoundCategory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.lang.ref.WeakReference;
+
+/**
+ * Author: onysd
+ */
+@SideOnly(Side.CLIENT)
+public class MovingSoundBicycle extends MovingSound
+{
+    private final WeakReference<EntityPoweredVehicle> vehicleRef;
+
+    public MovingSoundBicycle(EntityPoweredVehicle vehicle)
+    {
+        super(vehicle.getMovingSound(), SoundCategory.NEUTRAL);
+        this.vehicleRef = new WeakReference<>(vehicle);
+        this.repeat = true;
+        this.repeatDelay = 0;
+        this.volume = 0.001F;
+    }
+
+    @Override
+    public void update()
+    {
+        EntityPoweredVehicle vehicle = this.vehicleRef.get();
+        if(vehicle == null || Minecraft.getMinecraft().player == null)
+        {
+            this.donePlaying = true;
+            return;
+        }
+        // Only play sound if vehicle is moving (speed > 1 or < -1), with smooth fade in/out
+        boolean shouldPlay = (vehicle.currentSpeed > 1 || vehicle.currentSpeed < -1) && !vehicle.equals(Minecraft.getMinecraft().player.getRidingEntity());
+        float targetVolume = shouldPlay ? 0.8F : 0.0F;
+        float fadeSpeed = 0.1F; // Speed of fade in/out
+        
+        if(this.volume < targetVolume)
+        {
+            this.volume = Math.min(targetVolume, this.volume + fadeSpeed);
+        }
+        else if(this.volume > targetVolume)
+        {
+            this.volume = Math.max(targetVolume, this.volume - fadeSpeed);
+        }
+        if(!vehicle.isDead && vehicle.getPassengers().size() > 0)
+        {
+            EntityPlayer localPlayer = Minecraft.getMinecraft().player;
+            this.xPosF = (float) (vehicle.posX + (localPlayer.posX - vehicle.posX) * 0.65);
+            this.yPosF = (float) (vehicle.posY + (localPlayer.posY - vehicle.posY) * 0.65);
+            this.zPosF = (float) (vehicle.posZ + (localPlayer.posZ - vehicle.posZ) * 0.65);
+            this.pitch = vehicle.getMinEnginePitch() + (vehicle.getMaxEnginePitch() - vehicle.getMinEnginePitch()) * Math.abs(vehicle.getActualSpeed());
+        }
+        else
+        {
+            this.donePlaying = true;
+        }
+    }
+}

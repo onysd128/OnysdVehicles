@@ -19,5 +19,6 @@ public class ItemNames
     public static final String WRENCH = PREFIX + "wrench";
     public static final String HAMMER = PREFIX + "hammer";
     public static final String KEY = PREFIX + "key";
+    public static final String BICYCLE_LOCK = PREFIX + "bicycle_lock";
     public static final String MODELS = PREFIX + "models";
 }

@@ -78,9 +78,15 @@ public class EntityBumperCar extends EntityLandVehicle implements IEntityRaytrac
         return VehicleConfig.SERVER.VEHICLES.bumperCarKey;          
     }
 
-    // @Override
-    // public boolean requiresFuel()
-    // {
-    //     return false;
-    // }
+    @Override
+    public boolean requiresFuel()
+    {
+        return VehicleConfig.SERVER.fuelEnabledForElectricEngines;
+    }
+
+    @Override
+    public boolean canBePickedUp()
+    {
+        return false;
+    }
 }

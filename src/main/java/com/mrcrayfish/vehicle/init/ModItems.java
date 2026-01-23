@@ -25,6 +25,7 @@ public class ModItems
     public static final Item WRENCH = null;
     public static final Item HAMMER = null;
     public static final Item KEY = null;
+    public static final Item BICYCLE_LOCK = null;
     public static final Item MODELS = null;
 
     public static void register()
@@ -40,6 +41,7 @@ public class ModItems
         register(new ItemVehicleTool(ItemNames.WRENCH));
         register(new ItemHammer());
         register(new ItemKey());
+        register(new ItemBicycleLock());
         register(new ItemModels());
     }
 

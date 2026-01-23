@@ -31,6 +31,11 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.server.fuel_enabled")
         public boolean fuelEnabled = true;
 
+        @Config.Name("Fuel Enabled for Electric Engines")
+        @Config.Comment("If true, vehicles will require fuel for Electric Engines to be driven. If false - they will work without fuel. fuelEnabled must be set as true.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.fuel_enabled_for_electric_engines")
+        public boolean fuelEnabledForElectricEngines = false;
+
         @Config.Name("Vehicle Damage")
         @Config.Comment("If true, vehicles will take damage.")
         @Config.LangKey(Reference.MOD_ID + ".config.server.vehicle_damage")
@@ -56,6 +61,11 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.server.pick_up_vehicles")
         public boolean pickUpVehicles = true;
 
+        @Config.Name("Allow Pickup Without Owner")
+        @Config.Comment("If true, players can pick up vehicles even if they are not the owner. If false (default), only owners can pick up their vehicles.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.allow_pickup_without_owner")
+        public boolean allowPickupWithoutOwner = false;
+
         @Config.Name("Max Hose Distance")
         @Config.Comment("The maximum distance before the hose from the gas pump or fluid hose breaks")
         @Config.LangKey(Reference.MOD_ID + ".config.server.max_hose_distance")
@@ -78,6 +88,16 @@ public class VehicleConfig
         @Config.LangKey(Reference.MOD_ID + ".config.server.fuel_consumption_modifier")
         @Config.RangeDouble(min = 0.0)
         public double fuelConsumptionFactor = 1.0;
+
+        @Config.Name("Wheelie Enabled")
+        @Config.Comment("If true, vehicles can perform wheelies when pressing W & S simultaneously and then releasing S. When false, this feature is disabled.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.wheelie_enabled")
+        public boolean wheelieEnabled = true;
+
+        @Config.Name("Bike Hunger Consumption")
+        @Config.Comment("If true, bicycles will consume player hunger when riding, similar to sprinting. When false, bicycles will not consume hunger.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.bike_hunger_consumption")
+        public boolean bikeHungerConsumption = true;
         
         @Config.Name("Vehicles")
         @Config.Comment("Config for separate vehicle")
@@ -194,6 +214,11 @@ public class VehicleConfig
             @Config.Comment("Depends on value will enable/disable key system for Tractor")
             @Config.LangKey(Reference.MOD_ID + ".config.server.tractorKey")
             public boolean tractorKey = true;
+
+            // @Config.Name("Bicycle Key")
+            // @Config.Comment("Depends on value will enable/disable key system for Bicycle")
+            // @Config.LangKey(Reference.MOD_ID + ".config.server.bicycleKey")
+            // public boolean bicycleKey = true;
 
         }
     }

@@ -19,6 +19,7 @@ vehicle.wheel_type.racing.name=Гоночне
 vehicle.wheel_type.off_road.name=Позашляхове
 vehicle.wheel_type.snow.name=Снігове
 vehicle.wheel_type.all_terrain.name=Всюдихідне
+vehicle.wheel_type.bicycle.name=Велосипедне
 vehicle.wheel_type.plastic.name=Пластикове
 
 item.vehicle.small_engine.name=Малий двигун
@@ -35,6 +36,7 @@ item.vehicle.industrial_jerry_can.info=Використовуйте цю про�
 item.vehicle.industrial_jerry_can.fuel=Паливо: %s
 item.vehicle.wrench.name=Розвідний ключ
 item.vehicle.key.name=Ключ
+item.vehicle.bicycle_lock.name=Велосипедний замок
 item.vehicle.panel.name=Панель
 item.vehicle.wheel.name=Колесо
 item.vehicle.tow_bar.name=Фаркоп
@@ -101,6 +103,7 @@ entity.vehicle.fluid_trailer.name=Рідинний трейлер
 entity.vehicle.tractor.name=Трактор
 entity.vehicle.mini_bus.name=Міні-бус
 entity.vehicle.dirt_bike.name=Мотобайк
+entity.vehicle.bicycle.name=Велосипед
 
 vehicle.config.title=Onysd Vehicles Config
 vehicle.config.client=Client
@@ -156,6 +159,10 @@ vehicle.status.key_created=Ключ вдало прив'язано до тран
 vehicle.status.not_lockable=Цей транспорт неможливо закрити на ключ
 vehicle.status.key_invalid=Це не підходящий ключ!
 vehicle.status.key_removed=Транспорт більше не зв'язаний з ключем
+vehicle.status.bicycle_locked=Велосипед закрито
+vehicle.status.bicycle_unlocked=Велосипед відкрито
+vehicle.status.bicycle_lock_invalid_owner=Ви не є власником цього велосипеда
+vehicle.status.bicycle_key_invalid=Цей ключ не підходить до цього велосипеда
 
 vehicle.tooltip.optional=Опціонально
 vehicle.tooltip.required=Обов'язково
@@ -163,6 +170,7 @@ vehicle.tooltip.not_applicable=Не застосовується
 vehicle.tooltip.paint_color=Колір Фарби
 vehicle.tooltip.engine=Двигун
 vehicle.tooltip.wheels=Колеса
+vehicle.tooltip.incompatible_wheels=Несумісний тип коліс: %s
 
 key.categories.vehicle=Onysd Vehicles
 key.vehicle.horn=Гудок

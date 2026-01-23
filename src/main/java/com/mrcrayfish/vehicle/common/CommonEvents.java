@@ -7,6 +7,7 @@ import com.mrcrayfish.vehicle.VehicleConfig;
 import com.mrcrayfish.vehicle.common.entity.HeldVehicleDataHandler;
 import com.mrcrayfish.vehicle.common.entity.SyncedPlayerData;
 import com.mrcrayfish.vehicle.entity.EntityJack;
+import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
 import com.mrcrayfish.vehicle.entity.EntityTrailer;
 import com.mrcrayfish.vehicle.entity.EntityVehicle;
 import com.mrcrayfish.vehicle.init.ModBlocks;
@@ -22,7 +23,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import com.mrcrayfish.vehicle.init.ModItems;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
@@ -119,29 +122,52 @@ public class CommonEvents
         //CommonUtils.sendInfoMessage(player, targetEntity.getName());
         if(hand == EnumHand.MAIN_HAND && !world.isRemote && player.isSneaking() && !player.isSpectator() && VehicleConfig.SERVER.pickUpVehicles)
         {
+            // Check if player is holding a key or bicycle lock in any hand - prevent pickup in that case
+            ItemStack mainHand = player.getHeldItemMainhand();
+            ItemStack offHand = player.getHeldItemOffhand();
+            if((!mainHand.isEmpty() && (mainHand.getItem() == ModItems.KEY || mainHand.getItem() == ModItems.BICYCLE_LOCK)) ||
+               (!offHand.isEmpty() && (offHand.getItem() == ModItems.KEY || offHand.getItem() == ModItems.BICYCLE_LOCK)))
+            {
+                return false;
+            }
+            
             if(!HeldVehicleDataHandler.isHoldingVehicle(player))
             {
-                if(targetEntity instanceof EntityVehicle && !targetEntity.isBeingRidden() && !targetEntity.isDead)
-                {
-                    NBTTagCompound tagCompound = new NBTTagCompound();
-                    String id = getEntityString(targetEntity);
-                    if(id != null)
+                if(targetEntity instanceof EntityVehicle)
+                { 
+                    if (!targetEntity.isBeingRidden() && !targetEntity.isDead &&  ((EntityVehicle) targetEntity).canBePickedUp())
                     {
-                        ((EntityVehicle) targetEntity).setTrailer(null);
+                        // Check owner for powered vehicles if pickup without owner is disabled
+                        if(targetEntity instanceof EntityPoweredVehicle && !VehicleConfig.SERVER.allowPickupWithoutOwner)
+                        {
+                            EntityPoweredVehicle poweredVehicle = (EntityPoweredVehicle) targetEntity;
+                            if(!poweredVehicle.isOwner(player))
+                            {
+                                CommonUtils.sendInfoMessage(player, "vehicle.status.invalid_owner");
+                                return false;
+                            }
+                        }
+                        
+                        NBTTagCompound tagCompound = new NBTTagCompound();
+                        String id = getEntityString(targetEntity);
+                        if(id != null)
+                        {
+                            ((EntityVehicle) targetEntity).setTrailer(null);
 
-                        tagCompound.setString("id", id);
-                        targetEntity.writeToNBT(tagCompound);
-                        HeldVehicleDataHandler.setHeldVehicle(player, tagCompound);
+                            tagCompound.setString("id", id);
+                            targetEntity.writeToNBT(tagCompound);
+                            HeldVehicleDataHandler.setHeldVehicle(player, tagCompound);
 
-                        //Removes the entity from the world
-                        world.removeEntity(targetEntity);
+                            //Removes the entity from the world
+                            world.removeEntity(targetEntity);
 
-                        //Plays pick up sound
-                        world.playSound(null, player.posX, player.posY, player.posZ, ModSounds.PICK_UP_VEHICLE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                            //Plays pick up sound
+                            world.playSound(null, player.posX, player.posY, player.posZ, ModSounds.PICK_UP_VEHICLE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
-                        return true;
+                            return true;
+                        }
                     }
-                }
+            }
             }
             else if(targetEntity instanceof EntityTrailer && !targetEntity.isBeingRidden() && !targetEntity.isDead)
             {

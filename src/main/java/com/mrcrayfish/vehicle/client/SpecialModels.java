@@ -52,6 +52,7 @@ public enum SpecialModels
     SPORTS_PLANE_WHEEL_COVER("sports_plane_wheel_cover"),
     SPORTS_PLANE_LEG("sports_plane_leg"),
     SPORTS_PLANE_PROPELLER("sports_plane_propeller"),
+    ALUMINUM_BOAT_PROPELLER("aluminum_boat_propeller"),
     GOLF_CART_BODY("golf_cart_body"),
     OFF_ROADER_BODY("off_roader_body"),
     TRACTOR_BODY("tractor_body"),
@@ -69,6 +70,9 @@ public enum SpecialModels
     KEY_HOLE("key_hole"),
     COUCH_HELICOPTER_ARM("couch_helicopter_arm"),
     COUCH_HELICOPTER_SKID("couch_helicopter_skid"),
+    BICYCLE_BODY("bicycle_body"),
+    BICYCLE_HANDLE_BAR("bicycle_handle_bar"),
+    BICYCLE_LOCK_ON_BICYCLE("bicycle_lock_on_bicycle"),
 
     COUCH(new ModelResourceLocation("cfm:couch", "colour=14,facing=east,type=both"), false),
     BLADE(new ModelResourceLocation("cfm:ceiling_fan_fans", "inventory"), false),

@@ -54,6 +54,12 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(ModItems.PANEL, 8));
         mapBuilder.put(EntityBumperCar.class, builder.build());
 
+        /* Bicycle */
+        builder = new Builder();
+        builder.addMaterial(new ItemStack(Items.IRON_INGOT, 12));
+        builder.addMaterial(new ItemStack(Blocks.WOOL, 2, 15));
+        mapBuilder.put(EntityBicycle.class, builder.build());
+
         /* Dirt Bike */
         builder = new Builder();
         builder.addMaterial(new ItemStack(Items.IRON_INGOT, 36));
@@ -195,27 +201,28 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(Blocks.GLASS_PANE, 2));
         mapBuilder.put(EntityFluidTrailer.class, builder.build());
 
-        if(Loader.isModLoaded("cfm"))
-        {
-            /* Bath */
-            builder = new Builder();
-            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:bath_bottom"), 1));
-            builder.addMaterial(new ItemStack(Items.NETHER_STAR, 1));
-            mapBuilder.put(EntityBath.class, builder.build());
+        // Disabled vehicles - recipes commented out to match VehicleMod.registerVehicles()
+        // if(Loader.isModLoaded("cfm"))
+        // {
+        //     /* Bath */
+        //     builder = new Builder();
+        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:bath_bottom"), 1));
+        //     builder.addMaterial(new ItemStack(Items.NETHER_STAR, 1));
+        //     mapBuilder.put(EntityBath.class, builder.build());
 
-            /* Couch */
-            builder = new Builder();
-            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch_jeb"), 1));
-            builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
-            mapBuilder.put(EntityCouch.class, builder.build());
+        //     /* Couch */
+        //     builder = new Builder();
+        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch_jeb"), 1));
+        //     builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
+        //     mapBuilder.put(EntityCouch.class, builder.build());
 
-            /* Sofacopter */
-            builder = new Builder();
-            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch"), 1, 14));
-            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:ceiling_fan")));
-            builder.addMaterial(new ItemStack(Items.IRON_INGOT, 16));
-            mapBuilder.put(EntitySofacopter.class, builder.build());
-        }
+        //     /* Sofacopter */
+        //     builder = new Builder();
+        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch"), 1, 14));
+        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:ceiling_fan")));
+        //     builder.addMaterial(new ItemStack(Items.IRON_INGOT, 16));
+        //     mapBuilder.put(EntitySofacopter.class, builder.build());
+        // }
 
         RECIPES = mapBuilder.build();
     }

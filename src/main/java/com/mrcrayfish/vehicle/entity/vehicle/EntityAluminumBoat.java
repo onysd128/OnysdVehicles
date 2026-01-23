@@ -13,7 +13,11 @@ import com.mrcrayfish.vehicle.VehicleConfig;
  * Author: MrCrayfish
  */
 public class EntityAluminumBoat extends EntityBoat implements IEntityRaytraceable
-{
+{   
+    public float propellerSpeed;
+    public float propellerRotation;
+    public float prevPropellerRotation;
+
     public EntityAluminumBoat(World worldIn)
     {
         super(worldIn);
@@ -93,6 +97,34 @@ public class EntityAluminumBoat extends EntityBoat implements IEntityRaytraceabl
         return false;
     }
     
+    @Override
+    public void updateVehicle()
+    {   
+        previousState = state;
+        state = getState();
+        if(state == State.IN_AIR)
+        {
+            deltaYaw *= 2;
+        }
 
+        prevPropellerRotation = propellerRotation;
 
+        if(this.canDrive() && this.getControllingPassenger() != null && (this.currentSpeed>1||this.currentSpeed<-1))
+        {
+            propellerSpeed += 1F*this.currentSpeed;
+            if(propellerSpeed > 50F)
+            {
+                propellerSpeed = 50F;
+            }
+            if(propellerSpeed < -50F)
+            {
+                propellerSpeed = -50F;
+            }
+        }
+        else
+        {
+            propellerSpeed *= 0.95F;
+        }
+        propellerRotation += propellerSpeed;
+    }
 }

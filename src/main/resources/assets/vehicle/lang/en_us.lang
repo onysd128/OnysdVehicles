@@ -19,6 +19,7 @@ vehicle.wheel_type.racing.name=Racing
 vehicle.wheel_type.off_road.name=Off Road
 vehicle.wheel_type.snow.name=Snow
 vehicle.wheel_type.all_terrain.name=All Terrain
+vehicle.wheel_type.bicycle.name=Bicycle
 vehicle.wheel_type.plastic.name=Plastic
 
 item.vehicle.small_engine.name=Small Engine
@@ -35,6 +36,7 @@ item.vehicle.industrial_jerry_can.info=Use this Industrial Jerry Can to transpor
 item.vehicle.industrial_jerry_can.fuel=Fuel: %s
 item.vehicle.wrench.name=Wrench
 item.vehicle.key.name=Key
+item.vehicle.bicycle_lock.name=Bicycle Lock
 item.vehicle.panel.name=Panel
 item.vehicle.wheel.name=Wheel
 item.vehicle.tow_bar.name=Tow Bar
@@ -101,6 +103,7 @@ entity.vehicle.fluid_trailer.name=Fluid Trailer
 entity.vehicle.tractor.name=Tractor
 entity.vehicle.mini_bus.name=Mini Bus
 entity.vehicle.dirt_bike.name=Dirt Bike
+entity.vehicle.bicycle.name=Bicycle
 
 vehicle.config.title=Onysd Vehicles Config
 vehicle.config.client=Client
@@ -156,6 +159,10 @@ vehicle.status.key_created=Key successfully bound to vehicle
 vehicle.status.not_lockable=This vehicle cannot be locked
 vehicle.status.key_invalid=This key does not fit this vehicle
 vehicle.status.key_removed=Vehicle is no longer locked
+vehicle.status.bicycle_locked=Bicycle locked
+vehicle.status.bicycle_unlocked=Bicycle unlocked
+vehicle.status.bicycle_lock_invalid_owner=You are not the owner of this bicycle
+vehicle.status.bicycle_key_invalid=This key does not fit this bicycle
 
 vehicle.tooltip.optional=Optional
 vehicle.tooltip.required=Required
@@ -163,6 +170,7 @@ vehicle.tooltip.not_applicable=Not applicable
 vehicle.tooltip.paint_color=Paint Color
 vehicle.tooltip.engine=Engine
 vehicle.tooltip.wheels=Wheels
+vehicle.tooltip.incompatible_wheels=Incompatible wheel type: %s
 
 key.categories.vehicle=Onysd Vehicles
 key.vehicle.horn=Horn

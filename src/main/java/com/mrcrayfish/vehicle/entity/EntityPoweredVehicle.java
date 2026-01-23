@@ -9,14 +9,15 @@ import com.mrcrayfish.vehicle.common.Seat;
 import com.mrcrayfish.vehicle.common.container.ContainerVehicle;
 import com.mrcrayfish.vehicle.common.entity.PartPosition;
 import com.mrcrayfish.vehicle.common.entity.SyncedPlayerData;
+import com.mrcrayfish.vehicle.entity.vehicle.EntityBicycle;
 import com.mrcrayfish.vehicle.entity.vehicle.EntityBumperCar;
+import com.mrcrayfish.vehicle.entity.EntityJack;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.init.ModSounds;
 import com.mrcrayfish.vehicle.item.ItemEngine;
 import com.mrcrayfish.vehicle.item.ItemJerryCan;
 import com.mrcrayfish.vehicle.network.PacketHandler;
 import com.mrcrayfish.vehicle.network.message.MessageAccelerating;
-import com.mrcrayfish.vehicle.network.message.MessageHorn;
 import com.mrcrayfish.vehicle.network.message.MessagePower;
 import com.mrcrayfish.vehicle.network.message.MessageTurnAngle;
 import com.mrcrayfish.vehicle.network.message.MessageTurnDirection;
@@ -108,6 +109,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
 
     protected double[] wheelPositions;
     protected boolean wheelsOnGround = true;
+    private boolean prevHasWheels = false;
     public float turnAngle;
     public float prevTurnAngle;
 
@@ -130,6 +132,8 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
     public float vehicleMotionY;
     public float vehicleMotionZ;
     public int isMoving = 0;
+
+    private boolean prevEnginePowered = false;
 
     private UUID owner;
     private InventoryBasic vehicleInventory;
@@ -248,12 +252,30 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
     //TODO ability to change with nbt
     public SoundEvent getHornSound()
     {
-        return ModSounds.HORN_MONO;
+        return ModSounds.CAR_HONK;
     }
 
     public SoundEvent getHornRidingSound()
     {
-        return ModSounds.HORN_STEREO;
+        return ModSounds.CAR_HONK;
+    }
+
+    /**
+     * Returns the sound event played when the engine starts.
+     * Can be overridden by individual vehicles to use custom sounds.
+     */
+    public SoundEvent getEngineStartSound()
+    {
+        return ModSounds.ENGINE_TURN_ON;
+    }
+
+    /**
+     * Returns the sound event played when the engine stops.
+     * Can be overridden by individual vehicles to use custom sounds.
+     */
+    public SoundEvent getEngineOffSound()
+    {
+        return ModSounds.ENGINE_TURN_OFF;
     }
 
     public void playFuelPortOpenSound()
@@ -516,6 +538,39 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             this.setCurrentFuel(currentFuel);
         }
 
+        /* Play engine turn on/off sounds for non-electric engines */
+        if(this.hasEngine() && this.getEngineType() != EngineType.ELECTRIC_MOTOR && this.getEngineType() != EngineType.NONE)
+        {
+            boolean currentEnginePowered = this.isEnginePowered();
+            if(currentEnginePowered != this.prevEnginePowered)
+            {
+                if(currentEnginePowered)
+                {
+                    // Engine turned on
+                    SoundEvent startSound = this.getEngineStartSound();
+                    if(startSound != null)
+                    {
+                        this.world.playSound(null, this.posX, this.posY, this.posZ, startSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                    }
+                }
+                else
+                {
+                    // Engine turned off
+                    SoundEvent offSound = this.getEngineOffSound();
+                    if(offSound != null)
+                    {
+                        this.world.playSound(null, this.posX, this.posY, this.posZ, offSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                    }
+                }
+            }
+            this.prevEnginePowered = currentEnginePowered;
+        }
+        else
+        {
+            // Reset prevEnginePowered if no engine or electric engine or NONE engine type
+            this.prevEnginePowered = false;
+        }
+
         this.prevAcceleration = this.getAcceleration();
     }
 
@@ -692,9 +747,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
                 PacketHandler.INSTANCE.sendToServer(new MessageAccelerating(acceleration));
             }
 
-            boolean horn = VehicleMod.proxy.isHonking();
-            this.setHorn(horn);
-            PacketHandler.INSTANCE.sendToServer(new MessageHorn(horn));
+            // Horn is now handled via key press event in ClientEvents
 
             TurnDirection direction = VehicleMod.proxy.getTurnDirection(entity);
             if(this.getTurnDirection() != direction)
@@ -1176,6 +1229,11 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
 
     public boolean isEnginePowered()
     {
+        /* Engine cannot be powered when vehicle is on a jack */
+        if(this.getRidingEntity() instanceof EntityJack)
+        {
+            return false;
+        }
         return ((this.getEngineType() == EngineType.NONE || this.hasEngine()) && (this.isControllingPassengerCreative() || this.isFueled()) && this.getDestroyedStage() < 9) && (!this.isKeyNeeded() || !this.getKeyStack().isEmpty());
     }
 
@@ -1206,12 +1264,38 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
 
     public void setWheelType(WheelType wheelType)
     {
+        // Validate wheel type compatibility
+        if(wheelType == WheelType.BICYCLE && !(this instanceof EntityBicycle))
+        {
+            // BICYCLE wheels can only be installed on bicycles
+            return;
+        }
+        if(this instanceof EntityBicycle && wheelType != WheelType.BICYCLE)
+        {
+            // Bicycles can only accept BICYCLE wheel type
+            return;
+        }
         this.dataManager.set(WHEEL_TYPE, wheelType.ordinal());
     }
 
     public WheelType getWheelType()
     {
         return WheelType.values()[this.dataManager.get(WHEEL_TYPE)];
+    }
+
+    public boolean canAcceptWheelType(WheelType wheelType)
+    {
+        // BICYCLE wheels can only be installed on bicycles 
+        if(wheelType == WheelType.BICYCLE && !(this instanceof EntityBicycle))
+        {
+            return false;
+        }
+        // Bicycles can only accept BICYCLE wheel type
+        if(this instanceof EntityBicycle && wheelType != WheelType.BICYCLE)
+        {
+            return false;
+        }
+        return true;
     }
 
     public ItemStack getWheelStack()
@@ -1338,9 +1422,10 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             ItemStack wheel = this.vehicleInventory.getStackInSlot(1);
             if(this.canChangeWheels())
             {
+                boolean currentHasWheels = this.hasWheels();
                 if(wheel.getItem() == ModItems.WHEEL)
                 {
-                    if(!this.hasWheels())
+                    if(!currentHasWheels)
                     {
                         world.playSound(null, getPosition(), ModSounds.AIR_WRENCH_GUN, SoundCategory.BLOCKS, 1.0F, 1.1F);
                         this.setWheels(true);
@@ -1359,10 +1444,14 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
                 }
                 else
                 {
-                    world.playSound(null, posX, posY, posZ, ModSounds.AIR_WRENCH_GUN, SoundCategory.BLOCKS, 1.0F, 0.8F);
+                    if(currentHasWheels)
+                    {
+                        world.playSound(null, posX, posY, posZ, ModSounds.AIR_WRENCH_GUN, SoundCategory.BLOCKS, 1.0F, 0.8F);
+                    }
                     this.setWheels(false);
                     this.setWheelColor(-1);
                 }
+                this.prevHasWheels = this.hasWheels();
             }
         }
     }

@@ -31,7 +31,7 @@ public class EntitySmartCar extends EntityLandVehicle implements IEntityRaytrace
     @Override
     public SoundEvent getRidingSound()
     {
-        return ModSounds.GO_KART_ENGINE_MONO;
+        return ModSounds.GO_KART_ENGINE_STEREO;
     }
 
     @Override

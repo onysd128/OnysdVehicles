@@ -19,6 +19,7 @@ vehicle.wheel_type.racing.name=Da corsa
 vehicle.wheel_type.off_road.name=Fuoristrada
 vehicle.wheel_type.snow.name=Da neve
 vehicle.wheel_type.all_terrain.name=All-terrain
+vehicle.wheel_type.bicycle.name=Bicicletta
 vehicle.wheel_type.plastic.name=Plastica
 
 item.vehicle.small_engine.name=Motore piccolo
@@ -35,6 +36,7 @@ item.vehicle.industrial_jerry_can.info=Usa questa tanica industriale per traspor
 item.vehicle.industrial_jerry_can.fuel=Carburante: %s
 item.vehicle.wrench.name=Chiave inglese
 item.vehicle.key.name=Chiave
+item.vehicle.bicycle_lock.name=Lucchetto per Bicicletta
 item.vehicle.panel.name=Pannello
 item.vehicle.wheel.name=Ruota
 item.vehicle.tow_bar.name=Gancio di traino
@@ -98,6 +100,7 @@ entity.vehicle.seeder_trailer.name=Seminatrice
 entity.vehicle.fertilizer_trailer.name=Fertilizzante
 entity.vehicle.fluid_trailer.name=Rimorchio per liquidi
 entity.vehicle.tractor.name=Trattore
+entity.vehicle.bicycle.name=Bicicletta
 
 vehicle.config.title=Configurazione Onysd Vehicles
 vehicle.config.client=Client
@@ -153,6 +156,10 @@ vehicle.status.key_created=Chiave collegata al veicolo con successo
 vehicle.status.not_lockable=Questo veicolo non puo' essere bloccato
 vehicle.status.key_invalid=Questa chiave non ci sta nel veicolo
 vehicle.status.key_removed=Il veicolo non e' piu' bloccato
+vehicle.status.bicycle_locked=Bicicletta bloccata
+vehicle.status.bicycle_unlocked=Bicicletta sbloccata
+vehicle.status.bicycle_lock_invalid_owner=Non sei il proprietario di questa bicicletta
+vehicle.status.bicycle_key_invalid=Questa chiave non corrisponde a questa bicicletta
 
 vehicle.tooltip.optional=Facoltativo
 vehicle.tooltip.required=Obbligatorio

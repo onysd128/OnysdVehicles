@@ -14,6 +14,7 @@ import com.mrcrayfish.vehicle.common.entity.SyncedPlayerData;
 import com.mrcrayfish.vehicle.entity.EntityLandVehicle;
 import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
 import com.mrcrayfish.vehicle.entity.EntityVehicle;
+import com.mrcrayfish.vehicle.entity.vehicle.EntityBicycle;
 import com.mrcrayfish.vehicle.entity.VehicleProperties;
 import com.mrcrayfish.vehicle.init.ModBlocks;
 import com.mrcrayfish.vehicle.init.ModItems;
@@ -22,6 +23,7 @@ import com.mrcrayfish.vehicle.item.ItemSprayCan;
 import com.mrcrayfish.vehicle.network.PacketHandler;
 import com.mrcrayfish.vehicle.network.message.MessageCycleSeats;
 import com.mrcrayfish.vehicle.network.message.MessageHitchTrailer;
+import com.mrcrayfish.vehicle.network.message.MessageHorn;
 import com.mrcrayfish.vehicle.proxy.ClientProxy;
 import com.mrcrayfish.vehicle.tileentity.TileEntityFluidPipe;
 import com.mrcrayfish.vehicle.util.RenderUtil;
@@ -135,6 +137,21 @@ public class ClientEvents
                 PacketHandler.INSTANCE.sendToServer(new MessageCycleSeats());
             }
         }
+
+        if(ClientProxy.KEY_HORN.isPressed())
+        {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            Entity riding = player.getRidingEntity();
+            if(riding instanceof EntityPoweredVehicle)
+            {
+                EntityPoweredVehicle vehicle = (EntityPoweredVehicle) riding;
+                // Only allow the driver (controlling passenger) to use the horn
+                if(vehicle.getControllingPassenger() == player)
+                {
+                    PacketHandler.INSTANCE.sendToServer(new MessageHorn());
+                }
+            }
+        }
     }
 
     @SubscribeEvent
@@ -161,6 +178,33 @@ public class ClientEvents
                             DecimalFormat format = new DecimalFormat("0.0");
                             String fuel = format.format(vehicle.getCurrentFuel()) + "/" + format.format(vehicle.getFuelCapacity());
                             mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "Fuel: " + TextFormatting.YELLOW + fuel, 10, 25, Color.WHITE.getRGB());
+                        }
+
+                        // Display food level + saturation for bicycles
+                        if(entity instanceof EntityBicycle)
+                        {
+                            int foodLevel = player.getFoodStats().getFoodLevel();
+                            float saturation = player.getFoodStats().getSaturationLevel();
+                            float total = foodLevel + saturation;
+                            DecimalFormat format = new DecimalFormat("0.0");
+                            String totalText = format.format(total);
+                            
+                            // Determine color based on food level
+                            TextFormatting color;
+                            if(total > 20)
+                            {
+                                color = TextFormatting.GREEN;
+                            }
+                            else if(total >= 10)
+                            {
+                                color = TextFormatting.YELLOW;
+                            }
+                            else
+                            {
+                                color = TextFormatting.RED;
+                            }
+                            
+                            mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "Food: " + color + totalText, 10, 25, Color.WHITE.getRGB());
                         }
                     }
                 }

@@ -554,6 +554,11 @@ public abstract class EntityVehicle extends Entity implements IEntityAdditionalS
         return false;
     }
 
+    public boolean canBePickedUp()
+    {
+        return VehicleConfig.SERVER.pickUpVehicles;
+    }
+
     public void setColor(int color)
     {
         if(this.canBeColored())

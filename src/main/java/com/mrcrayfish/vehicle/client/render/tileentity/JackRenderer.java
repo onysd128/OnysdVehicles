@@ -105,6 +105,9 @@ public class JackRenderer extends TileEntitySpecialRenderer<TileEntityJack>
                         GlStateManager.translate(-heldOffset.z * 0.0625, -heldOffset.y * 0.0625, -heldOffset.x * 0.0625);
                         GlStateManager.rotate(-passenger.rotationYaw, 0, 1, 0);
 
+                        // Enable standard item lighting for proper vehicle shading
+                        RenderHelper.enableStandardItemLighting();
+
                         RenderVehicleWrapper wrapper = VehicleRenderRegistry.getRenderWrapper(vehicle.getClass());
                         if(wrapper != null)
                         {
