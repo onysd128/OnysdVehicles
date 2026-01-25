@@ -439,7 +439,35 @@ public class ClientEvents
                 GlStateManager.translate((float) handOffset * f, f1, f2);
                 GlStateManager.translate((float) handOffset * 0.65F, -0.52F + 0.25F, -0.72F);
                 GlStateManager.rotate(45F, 1, 0, 0);
-                RenderUtil.renderItemModel(new ItemStack(ModItems.MODELS), SpecialModels.NOZZLE.getModel(), ItemCameraTransforms.TransformType.NONE);
+                // Get color from gas pump
+                int color = -1;
+                com.google.common.base.Optional<net.minecraft.util.math.BlockPos> gasPumpPos = com.mrcrayfish.vehicle.common.entity.SyncedPlayerData.getGasPumpPos(player);
+                if(gasPumpPos.isPresent())
+                {
+                    net.minecraft.tileentity.TileEntity tileEntity = player.world.getTileEntity(gasPumpPos.get());
+                    if(tileEntity instanceof com.mrcrayfish.vehicle.tileentity.TileEntityGasPump)
+                    {
+                        com.mrcrayfish.vehicle.tileentity.TileEntityGasPump pump = (com.mrcrayfish.vehicle.tileentity.TileEntityGasPump) tileEntity;
+                        if(pump.hasColor())
+                        {
+                            color = pump.getColor();
+                        }
+                        else
+                        {
+                            // Check bottom part if top doesn't have color
+                            net.minecraft.tileentity.TileEntity bottomTile = player.world.getTileEntity(gasPumpPos.get().down());
+                            if(bottomTile instanceof com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank)
+                            {
+                                com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank tank = (com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank) bottomTile;
+                                if(tank.hasColor())
+                                {
+                                    color = tank.getColor();
+                                }
+                            }
+                        }
+                    }
+                }
+                RenderUtil.renderColoredModel(SpecialModels.NOZZLE.getModel(), ItemCameraTransforms.TransformType.NONE, color);
                 GlStateManager.popMatrix();
                 event.setCanceled(true);
             }
@@ -494,7 +522,35 @@ public class ClientEvents
                     boolean leftHanded = entity.getPrimaryHand() == EnumHandSide.LEFT;
                     GlStateManager.translate((float) (leftHanded ? -1 : 1) / 16.0F, 0.125F, -0.625F);
                     GlStateManager.translate(0, -9 * 0.0625F, 5.75 * 0.0625F);
-                    RenderUtil.renderItemModel(new ItemStack(ModItems.MODELS), SpecialModels.NOZZLE.getModel(), ItemCameraTransforms.TransformType.NONE);
+                    // Get color from gas pump
+                    int color = -1;
+                    com.google.common.base.Optional<net.minecraft.util.math.BlockPos> gasPumpPos = com.mrcrayfish.vehicle.common.entity.SyncedPlayerData.getGasPumpPos(entity);
+                    if(gasPumpPos.isPresent())
+                    {
+                        net.minecraft.tileentity.TileEntity tileEntity = entity.world.getTileEntity(gasPumpPos.get());
+                        if(tileEntity instanceof com.mrcrayfish.vehicle.tileentity.TileEntityGasPump)
+                        {
+                            com.mrcrayfish.vehicle.tileentity.TileEntityGasPump pump = (com.mrcrayfish.vehicle.tileentity.TileEntityGasPump) tileEntity;
+                            if(pump.hasColor())
+                            {
+                                color = pump.getColor();
+                            }
+                            else
+                            {
+                                // Check bottom part if top doesn't have color
+                                net.minecraft.tileentity.TileEntity bottomTile = entity.world.getTileEntity(gasPumpPos.get().down());
+                                if(bottomTile instanceof com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank)
+                                {
+                                    com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank tank = (com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank) bottomTile;
+                                    if(tank.hasColor())
+                                    {
+                                        color = tank.getColor();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    RenderUtil.renderColoredModel(SpecialModels.NOZZLE.getModel(), ItemCameraTransforms.TransformType.NONE, color);
                 }
                 GlStateManager.popMatrix();
             }

@@ -9,6 +9,7 @@ import com.mrcrayfish.vehicle.client.util.HermiteInterpolator;
 import com.mrcrayfish.vehicle.init.ModBlocks;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.tileentity.TileEntityGasPump;
+import com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank;
 import com.mrcrayfish.vehicle.util.CollisionHelper;
 import com.mrcrayfish.vehicle.util.RenderUtil;
 import net.minecraft.block.state.IBlockState;
@@ -30,6 +31,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
 import javax.vecmath.Matrix4d;
@@ -234,7 +236,21 @@ public class GasPumpRenderer extends TileEntitySpecialRenderer<TileEntityGasPump
                     GlStateManager.rotate(180F, 0, 1, 0);
                     GlStateManager.rotate(90F, 1, 0, 0);
                     GlStateManager.scale(0.8, 0.8, 0.8);
-                    RenderUtil.renderItemModel(new ItemStack(ModItems.MODELS), SpecialModels.NOZZLE.getModel(), ItemCameraTransforms.TransformType.NONE);
+                    int color = gasPump.hasColor() ? gasPump.getColor() : -1;
+                    if(color == -1)
+                    {
+                        // Check bottom part if top doesn't have color
+                        TileEntity bottomTile = gasPump.getWorld().getTileEntity(gasPump.getPos().down());
+                        if(bottomTile instanceof TileEntityGasPumpTank)
+                        {
+                            TileEntityGasPumpTank tank = (TileEntityGasPumpTank) bottomTile;
+                            if(tank.hasColor())
+                            {
+                                color = tank.getColor();
+                            }
+                        }
+                    }
+                    RenderUtil.renderColoredModel(SpecialModels.NOZZLE.getModel(), ItemCameraTransforms.TransformType.NONE, color);
                 }
                 GlStateManager.popMatrix();
             }

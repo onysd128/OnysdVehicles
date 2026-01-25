@@ -185,9 +185,13 @@ public class RenderUtil
                 {
                     tintColor = Minecraft.getMinecraft().getItemColors().colorMultiplier(stack, quad.getTintIndex());
                 }
-                else
+                else if(color != -1)
                 {
                     tintColor = color;
+                }
+                else
+                {
+                    tintColor = 0xFFFFFFFF; // White if no color specified
                 }
 
                 if(EntityRenderer.anaglyphEnable)
