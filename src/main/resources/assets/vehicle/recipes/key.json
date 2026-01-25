@@ -5,11 +5,10 @@
     ],
     "key": {
         "I": {
-            "item": "minecraft:iron_ingot"
+            "item": "minecraft:iron_nugget"
         },
         "C": {
-            "item": "minecraft:concrete",
-            "data": 7
+            "item": "minecraft:iron_ingot"
         }
     },
     "result": {
