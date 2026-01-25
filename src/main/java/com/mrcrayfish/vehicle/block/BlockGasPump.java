@@ -5,9 +5,11 @@ import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.init.ModSounds;
 import com.mrcrayfish.vehicle.item.ItemJerryCan;
 import com.mrcrayfish.vehicle.item.ItemSprayCan;
+import com.mrcrayfish.vehicle.common.entity.SyncedPlayerData;
 import com.mrcrayfish.vehicle.tileentity.TileEntityGasPump;
 import com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank;
 import com.mrcrayfish.vehicle.util.BlockNames;
+import com.google.common.base.Optional;
 import com.mrcrayfish.vehicle.util.Bounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -143,6 +145,13 @@ public class BlockGasPump extends BlockRotatedObject
                     }
                     else if(state.getValue(FACING).rotateY().equals(face))
                     {
+                        // Check if player already has a nozzle from another gas pump
+                        Optional<BlockPos> existingGasPumpPos = SyncedPlayerData.getGasPumpPos(playerIn);
+                        if(existingGasPumpPos.isPresent() && !existingGasPumpPos.get().equals(pos))
+                        {
+                            // Player already has a nozzle from another gas pump, don't allow taking a new one
+                            return false;
+                        }
                         gasPump.setFuelingEntity(playerIn);
                         worldIn.playSound(null, pos, ModSounds.NOZZLE_PICK_UP, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     }
