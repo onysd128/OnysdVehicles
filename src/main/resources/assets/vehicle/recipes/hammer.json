@@ -3,19 +3,14 @@
     "pattern": [
         "III",
         " O ",
-        " S "
+        " O "
     ],
     "key": {
         "I": {
             "item": "minecraft:iron_ingot"
         },
         "O": {
-            "item": "minecraft:planks",
-            "data": 0
-        },
-        "S": {
-            "item": "minecraft:planks",
-            "data": 1
+            "item": "minecraft:planks"
         }
     },
     "result": {
