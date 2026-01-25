@@ -1,18 +1,13 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "TTT",
-        "SWS",
-        "SCS"
+        "III",
+        "IWI",
+        "ICI"
     ],
     "key": {
-        "T": {
-            "item": "minecraft:concrete",
-            "data": 8
-        },
-        "S": {
-            "item": "minecraft:concrete",
-            "data": 14
+        "I": {
+            "item": "minecraft:iron_ingot"
         },
         "W": {
             "item": "minecraft:crafting_table"

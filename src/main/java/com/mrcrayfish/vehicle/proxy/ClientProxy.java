@@ -28,6 +28,7 @@ import com.mrcrayfish.vehicle.entity.EntityPoweredVehicle;
 import com.mrcrayfish.vehicle.entity.EntityVehicle;
 import com.mrcrayfish.vehicle.entity.trailer.*;
 import com.mrcrayfish.vehicle.entity.vehicle.*;
+import com.mrcrayfish.vehicle.init.ModBlocks;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.init.RegistrationHandler;
 import com.mrcrayfish.vehicle.item.ItemBicycleLock;
@@ -44,6 +45,7 @@ import net.minecraft.client.audio.ITickableSound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.particle.ParticleDigging;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.settings.GameSettings;
@@ -174,6 +176,41 @@ public class ClientProxy implements Proxy
                 Minecraft.getMinecraft().getItemColors().registerItemColorHandler(color, item);
             }
         });
+        
+        // Register item color handler for workstation block item
+        IItemColor blockItemColor = (stack, index) ->
+        {
+            if(index == 0 && stack.hasTagCompound() && stack.getTagCompound().hasKey("color", Constants.NBT.TAG_INT))
+            {
+                return stack.getTagCompound().getInteger("color");
+            }
+            return -1;
+        };
+        net.minecraft.item.Item workstationItem = net.minecraft.item.Item.getItemFromBlock(ModBlocks.WORKSTATION);
+        if(workstationItem != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(blockItemColor, workstationItem);
+        }
+        
+        // Register block color handler for workstation
+        IBlockColor blockColor = (state, world, pos, tintIndex) ->
+        {
+            if(world != null && pos != null && tintIndex == 0)
+            {
+                net.minecraft.tileentity.TileEntity tileEntity = world.getTileEntity(pos);
+                if(tileEntity instanceof TileEntityWorkstation)
+                {
+                    TileEntityWorkstation workstation = (TileEntityWorkstation) tileEntity;
+                    if(workstation.hasColor())
+                    {
+                        return workstation.getColor();
+                    }
+                }
+            }
+            return -1;
+        };
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(blockColor, ModBlocks.WORKSTATION);
+        
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager ->
         {
             FluidUtils.clearCacheFluidColor();
