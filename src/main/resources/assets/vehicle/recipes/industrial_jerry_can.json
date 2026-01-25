@@ -1,7 +1,7 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "DHD",
+        "IHI",
         "I I",
         "CIC"
     ],
@@ -11,10 +11,6 @@
         },
         "C": {
             "item": "minecraft:iron_block"
-        },
-        "D": {
-            "item": "minecraft:dye",
-            "data": 2
         },
         "H": {
             "item": "minecraft:hopper"

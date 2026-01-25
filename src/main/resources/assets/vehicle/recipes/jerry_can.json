@@ -1,17 +1,13 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "DHD",
+        "IHI",
         "I I",
         "III"
     ],
     "key": {
         "I": {
             "item": "minecraft:iron_ingot"
-        },
-        "D": {
-            "item": "minecraft:dye",
-            "data": 1
         },
         "H": {
             "item": "minecraft:hopper"
