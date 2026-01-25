@@ -1,8 +1,10 @@
 package com.mrcrayfish.vehicle.block;
 
 import com.mrcrayfish.vehicle.init.ModFluids;
+import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.init.ModSounds;
 import com.mrcrayfish.vehicle.item.ItemJerryCan;
+import com.mrcrayfish.vehicle.item.ItemSprayCan;
 import com.mrcrayfish.vehicle.tileentity.TileEntityGasPump;
 import com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank;
 import com.mrcrayfish.vehicle.util.BlockNames;
@@ -16,6 +18,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -25,6 +28,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
@@ -69,6 +73,61 @@ public class BlockGasPump extends BlockRotatedObject
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ)
     {
+        ItemStack heldItem = playerIn.getHeldItem(hand);
+        
+        // Check if player is holding a spray can
+        if(!heldItem.isEmpty() && heldItem.getItem() == ModItems.SPRAY_CAN)
+        {
+            if(!worldIn.isRemote)
+            {
+                NBTTagCompound tagCompound = ItemSprayCan.createTagCompound(heldItem);
+                int remainingSprays = tagCompound.getInteger("remainingSprays");
+                if(tagCompound.hasKey("color", Constants.NBT.TAG_INT) && remainingSprays > 0)
+                {
+                    int color = tagCompound.getInteger("color");
+                    
+                    // Get the bottom block position (where the tank is)
+                    BlockPos bottomPos = state.getValue(TOP) ? pos.down() : pos;
+                    BlockPos topPos = state.getValue(TOP) ? pos : pos.up();
+                    
+                    // Set color on both tile entities
+                    TileEntity bottomTile = worldIn.getTileEntity(bottomPos);
+                    TileEntity topTile = worldIn.getTileEntity(topPos);
+                    
+                    boolean colorChanged = false;
+                    
+                    // Set color on bottom first, which will sync to top
+                    if(bottomTile instanceof TileEntityGasPumpTank)
+                    {
+                        TileEntityGasPumpTank tank = (TileEntityGasPumpTank) bottomTile;
+                        if(tank.getColor() != color)
+                        {
+                            tank.setColor(color, true);
+                            colorChanged = true;
+                        }
+                    }
+                    
+                    // Set color on top (it won't sync back since bottom already has the color)
+                    if(topTile instanceof TileEntityGasPump)
+                    {
+                        TileEntityGasPump pump = (TileEntityGasPump) topTile;
+                        if(pump.getColor() != color)
+                        {
+                            pump.setColor(color, false); // Don't sync back to avoid double sync
+                            colorChanged = true;
+                        }
+                    }
+                    
+                    if(colorChanged)
+                    {
+                        worldIn.playSound(null, pos, ModSounds.SPRAY_CAN_SPRAY, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        tagCompound.setInteger("remainingSprays", remainingSprays - 1);
+                    }
+                }
+            }
+            return true;
+        }
+        
         if(!worldIn.isRemote)
         {
             if(state.getValue(TOP))
@@ -149,7 +208,34 @@ public class BlockGasPump extends BlockRotatedObject
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
+        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+        
+        // Create top block
         worldIn.setBlockState(pos.up(), state.withProperty(TOP, true));
+        
+        // Transfer color from ItemStack NBT to tile entities
+        if(!worldIn.isRemote && stack.hasTagCompound())
+        {
+            NBTTagCompound tagCompound = stack.getTagCompound();
+            if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+            {
+                int color = tagCompound.getInteger("color");
+                
+                // Set color on bottom tile entity (tank)
+                TileEntity bottomTile = worldIn.getTileEntity(pos);
+                if(bottomTile instanceof TileEntityGasPumpTank)
+                {
+                    ((TileEntityGasPumpTank) bottomTile).setColor(color);
+                }
+                
+                // Set color on top tile entity (pump)
+                TileEntity topTile = worldIn.getTileEntity(pos.up());
+                if(topTile instanceof TileEntityGasPump)
+                {
+                    ((TileEntityGasPump) topTile).setColor(color);
+                }
+            }
+        }
     }
 
     @Override

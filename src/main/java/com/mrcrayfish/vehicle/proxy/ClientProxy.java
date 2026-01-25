@@ -211,6 +211,70 @@ public class ClientProxy implements Proxy
         };
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(blockColor, ModBlocks.WORKSTATION);
         
+        // Register item color handler for gas pump block item
+        IItemColor gasPumpItemColor = (stack, index) ->
+        {
+            if(index == 0 && stack.hasTagCompound() && stack.getTagCompound().hasKey("color", Constants.NBT.TAG_INT))
+            {
+                return stack.getTagCompound().getInteger("color");
+            }
+            return -1;
+        };
+        net.minecraft.item.Item gasPumpItem = net.minecraft.item.Item.getItemFromBlock(ModBlocks.GAS_PUMP);
+        if(gasPumpItem != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(gasPumpItemColor, gasPumpItem);
+        }
+        
+        // Register block color handler for gas pump
+        IBlockColor gasPumpBlockColor = (state, world, pos, tintIndex) ->
+        {
+            if(world != null && pos != null && tintIndex == 0)
+            {
+                net.minecraft.tileentity.TileEntity tileEntity = world.getTileEntity(pos);
+                
+                // Check if it's TileEntityGasPump (top) or TileEntityGasPumpTank (bottom)
+                if(tileEntity instanceof TileEntityGasPump)
+                {
+                    TileEntityGasPump pump = (TileEntityGasPump) tileEntity;
+                    if(pump.hasColor())
+                    {
+                        return pump.getColor();
+                    }
+                    // If top doesn't have color, check bottom
+                    net.minecraft.tileentity.TileEntity bottomTile = world.getTileEntity(pos.down());
+                    if(bottomTile instanceof TileEntityGasPumpTank)
+                    {
+                        TileEntityGasPumpTank tank = (TileEntityGasPumpTank) bottomTile;
+                        if(tank.hasColor())
+                        {
+                            return tank.getColor();
+                        }
+                    }
+                }
+                else if(tileEntity instanceof TileEntityGasPumpTank)
+                {
+                    TileEntityGasPumpTank tank = (TileEntityGasPumpTank) tileEntity;
+                    if(tank.hasColor())
+                    {
+                        return tank.getColor();
+                    }
+                    // If bottom doesn't have color, check top
+                    net.minecraft.tileentity.TileEntity topTile = world.getTileEntity(pos.up());
+                    if(topTile instanceof TileEntityGasPump)
+                    {
+                        TileEntityGasPump pump = (TileEntityGasPump) topTile;
+                        if(pump.hasColor())
+                        {
+                            return pump.getColor();
+                        }
+                    }
+                }
+            }
+            return -1;
+        };
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(gasPumpBlockColor, ModBlocks.GAS_PUMP);
+        
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager ->
         {
             FluidUtils.clearCacheFluidColor();
