@@ -7,11 +7,11 @@
     ],
     "key": {
         "G": {
-            "item": "minecraft:concrete",
+            "item": "minecraft:stained_glass_pane",
             "data": 5
         },
         "C": {
-            "item": "minecraft:concrete",
+            "item": "minecraft:stained_glass_pane",
             "data": 15
         },
         "B": {
