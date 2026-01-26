@@ -9,7 +9,8 @@
             "item": "vehicle:boost_pad"
         },
         "C": {
-            "item": "minecraft:stone"
+            "item": "minecraft:stone",
+            "data": 0
         }
     },
     "result": {
