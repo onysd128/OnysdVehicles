@@ -7,6 +7,7 @@ import com.mrcrayfish.vehicle.recipe.RecipeDyeFluidMixer;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeFluidPipe;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeFluidPump;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeFuelDrum;
+import com.mrcrayfish.vehicle.recipe.RecipeDyeJerryCan;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeGasPump;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeJack;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeWorkstation;
@@ -30,5 +31,6 @@ public class ModRecipes
         RegistrationHandler.Recipes.add(new RecipeDyeFluidExtractor());
         RegistrationHandler.Recipes.add(new RecipeDyeFluidPipe());
         RegistrationHandler.Recipes.add(new RecipeDyeFluidPump());
+        RegistrationHandler.Recipes.add(new RecipeDyeJerryCan());
     }
 }

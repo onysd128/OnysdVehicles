@@ -597,6 +597,28 @@ public class ClientProxy implements Proxy
         };
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(fluidPumpBlockColor, ModBlocks.FLUID_PUMP);
         
+        // Register item color handler for jerry can items
+        IItemColor jerryCanItemColor = (stack, index) ->
+        {
+            if(stack.hasTagCompound())
+            {
+                NBTTagCompound tagCompound = stack.getTagCompound();
+                if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    return tagCompound.getInteger("color");
+                }
+            }
+            return -1;
+        };
+        if(ModItems.JERRY_CAN != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(jerryCanItemColor, ModItems.JERRY_CAN);
+        }
+        if(ModItems.INDUSTRIAL_JERRY_CAN != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(jerryCanItemColor, ModItems.INDUSTRIAL_JERRY_CAN);
+        }
+        
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager ->
         {
             FluidUtils.clearCacheFluidColor();
