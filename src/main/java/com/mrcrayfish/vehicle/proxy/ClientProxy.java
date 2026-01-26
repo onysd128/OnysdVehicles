@@ -180,9 +180,23 @@ public class ClientProxy implements Proxy
         // Register item color handler for workstation block item
         IItemColor blockItemColor = (stack, index) ->
         {
-            if(index == 0 && stack.hasTagCompound() && stack.getTagCompound().hasKey("color", Constants.NBT.TAG_INT))
+            if(stack.hasTagCompound())
             {
-                return stack.getTagCompound().getInteger("color");
+                NBTTagCompound tagCompound = stack.getTagCompound();
+                // Check root NBT first (for crafted items)
+                if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    return tagCompound.getInteger("color");
+                }
+                // Check BlockEntityTag (for items broken from world)
+                if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+                {
+                    NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
+                    if(blockEntityTag.hasKey("color", Constants.NBT.TAG_INT))
+                    {
+                        return blockEntityTag.getInteger("color");
+                    }
+                }
             }
             return -1;
         };
@@ -214,9 +228,23 @@ public class ClientProxy implements Proxy
         // Register item color handler for gas pump block item
         IItemColor gasPumpItemColor = (stack, index) ->
         {
-            if(index == 0 && stack.hasTagCompound() && stack.getTagCompound().hasKey("color", Constants.NBT.TAG_INT))
+            if(stack.hasTagCompound())
             {
-                return stack.getTagCompound().getInteger("color");
+                NBTTagCompound tagCompound = stack.getTagCompound();
+                // Check root NBT first (for crafted items)
+                if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    return tagCompound.getInteger("color");
+                }
+                // Check BlockEntityTag (for items broken from world)
+                if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+                {
+                    NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
+                    if(blockEntityTag.hasKey("color", Constants.NBT.TAG_INT))
+                    {
+                        return blockEntityTag.getInteger("color");
+                    }
+                }
             }
             return -1;
         };
@@ -274,6 +302,54 @@ public class ClientProxy implements Proxy
             return -1;
         };
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(gasPumpBlockColor, ModBlocks.GAS_PUMP);
+        
+        // Register item color handler for jack block item
+        IItemColor jackItemColor = (stack, index) ->
+        {
+            if(stack.hasTagCompound())
+            {
+                NBTTagCompound tagCompound = stack.getTagCompound();
+                // Check root NBT first (for crafted items)
+                if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    return tagCompound.getInteger("color");
+                }
+                // Check BlockEntityTag (for items broken from world)
+                if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+                {
+                    NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
+                    if(blockEntityTag.hasKey("color", Constants.NBT.TAG_INT))
+                    {
+                        return blockEntityTag.getInteger("color");
+                    }
+                }
+            }
+            return -1;
+        };
+        net.minecraft.item.Item jackItem = net.minecraft.item.Item.getItemFromBlock(ModBlocks.JACK);
+        if(jackItem != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(jackItemColor, jackItem);
+        }
+        
+        // Register block color handler for jack
+        IBlockColor jackBlockColor = (state, world, pos, tintIndex) ->
+        {
+            if(world != null && pos != null && tintIndex == 0)
+            {
+                net.minecraft.tileentity.TileEntity tileEntity = world.getTileEntity(pos);
+                if(tileEntity instanceof TileEntityJack)
+                {
+                    TileEntityJack jack = (TileEntityJack) tileEntity;
+                    if(jack.hasColor())
+                    {
+                        return jack.getColor();
+                    }
+                }
+            }
+            return -1;
+        };
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(jackBlockColor, ModBlocks.JACK);
         
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager ->
         {

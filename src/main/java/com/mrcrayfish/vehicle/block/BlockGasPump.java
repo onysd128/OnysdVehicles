@@ -18,7 +18,9 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -226,10 +228,25 @@ public class BlockGasPump extends BlockRotatedObject
         if(!worldIn.isRemote && stack.hasTagCompound())
         {
             NBTTagCompound tagCompound = stack.getTagCompound();
+            int color = -1;
+            
+            // Check root NBT first (for crafted items)
             if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
             {
-                int color = tagCompound.getInteger("color");
-                
+                color = tagCompound.getInteger("color");
+            }
+            // Check BlockEntityTag (for items broken from world)
+            else if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+            {
+                NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
+                if(blockEntityTag.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    color = blockEntityTag.getInteger("color");
+                }
+            }
+            
+            if(color != -1)
+            {
                 // Set color on bottom tile entity (tank)
                 TileEntity bottomTile = worldIn.getTileEntity(pos);
                 if(bottomTile instanceof TileEntityGasPumpTank)
@@ -245,6 +262,68 @@ public class BlockGasPump extends BlockRotatedObject
                 }
             }
         }
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune)
+    {
+        return net.minecraft.init.Items.AIR;
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    {
+        if(!world.isRemote && !player.capabilities.isCreativeMode)
+        {
+            // Get the bottom block position (where the tank is)
+            BlockPos bottomPos = state.getValue(TOP) ? pos.down() : pos;
+            TileEntity bottomTile = world.getTileEntity(bottomPos);
+            
+            if(bottomTile instanceof TileEntityGasPumpTank)
+            {
+                TileEntityGasPumpTank tank = (TileEntityGasPumpTank) bottomTile;
+                ItemStack drop = new ItemStack(Item.getItemFromBlock(this));
+                
+                // Save color to ItemStack NBT if it has a color
+                if(tank.hasColor())
+                {
+                    if(!drop.hasTagCompound())
+                    {
+                        drop.setTagCompound(new NBTTagCompound());
+                    }
+                    // Save color in root NBT (for recipe compatibility)
+                    drop.getTagCompound().setInteger("color", tank.getColor());
+                    
+                    // Also save in BlockEntityTag (for proper item rendering)
+                    NBTTagCompound tileEntityTag = new NBTTagCompound();
+                    tank.writeToNBT(tileEntityTag);
+                    tileEntityTag.removeTag("x");
+                    tileEntityTag.removeTag("y");
+                    tileEntityTag.removeTag("z");
+                    tileEntityTag.removeTag("id");
+                    drop.getTagCompound().setTag("BlockEntityTag", tileEntityTag);
+                }
+                
+                world.spawnEntity(new EntityItem(world, bottomPos.getX() + 0.5, bottomPos.getY() + 0.5, bottomPos.getZ() + 0.5, drop));
+            }
+        }
+        
+        if(state.getValue(TOP))
+        {
+            if(world.getBlockState(pos.down()).getBlock() instanceof BlockGasPump)
+            {
+                world.setBlockToAir(pos.down());
+            }
+        }
+        else
+        {
+            if(world.getBlockState(pos.up()).getBlock() instanceof BlockGasPump)
+            {
+                world.setBlockToAir(pos.up());
+            }
+        }
+        
+        return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
     @Override

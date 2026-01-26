@@ -9,7 +9,9 @@ import com.mrcrayfish.vehicle.util.BlockNames;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -55,13 +57,30 @@ public class BlockWorkstation extends BlockRotatedObject
         if(!worldIn.isRemote && stack.hasTagCompound())
         {
             NBTTagCompound tagCompound = stack.getTagCompound();
+            int color = -1;
+            
+            // Check root NBT first (for crafted items)
             if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+            {
+                color = tagCompound.getInteger("color");
+            }
+            // Check BlockEntityTag (for items broken from world)
+            else if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+            {
+                NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
+                if(blockEntityTag.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    color = blockEntityTag.getInteger("color");
+                }
+            }
+            
+            if(color != -1)
             {
                 TileEntity tileEntity = worldIn.getTileEntity(pos);
                 if(tileEntity instanceof TileEntityWorkstation)
                 {
                     TileEntityWorkstation workstation = (TileEntityWorkstation) tileEntity;
-                    workstation.setColor(tagCompound.getInteger("color"));
+                    workstation.setColor(color);
                 }
             }
         }
@@ -104,6 +123,50 @@ public class BlockWorkstation extends BlockRotatedObject
             }
         }
         return true;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune)
+    {
+        return net.minecraft.init.Items.AIR;
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    {
+        if(!world.isRemote && !player.capabilities.isCreativeMode)
+        {
+            TileEntity tileEntity = world.getTileEntity(pos);
+            if(tileEntity instanceof TileEntityWorkstation)
+            {
+                TileEntityWorkstation workstation = (TileEntityWorkstation) tileEntity;
+                ItemStack drop = new ItemStack(Item.getItemFromBlock(this));
+                
+                // Save color to ItemStack NBT if it has a color
+                if(workstation.hasColor())
+                {
+                    if(!drop.hasTagCompound())
+                    {
+                        drop.setTagCompound(new NBTTagCompound());
+                    }
+                    // Save color in root NBT (for recipe compatibility)
+                    drop.getTagCompound().setInteger("color", workstation.getColor());
+                    
+                    // Also save in BlockEntityTag (for proper item rendering)
+                    NBTTagCompound tileEntityTag = new NBTTagCompound();
+                    workstation.writeToNBT(tileEntityTag);
+                    tileEntityTag.removeTag("x");
+                    tileEntityTag.removeTag("y");
+                    tileEntityTag.removeTag("z");
+                    tileEntityTag.removeTag("id");
+                    drop.getTagCompound().setTag("BlockEntityTag", tileEntityTag);
+                }
+                
+                world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
+                return world.setBlockToAir(pos);
+            }
+        }
+        return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
     @Override
