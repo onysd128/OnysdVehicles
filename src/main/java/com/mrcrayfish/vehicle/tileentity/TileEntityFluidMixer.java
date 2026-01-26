@@ -12,6 +12,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -49,6 +51,7 @@ public class TileEntityFluidMixer extends TileEntitySynced implements IInventory
     private int extractionProgress;
 
     private String customName;
+    protected int color = -1; // -1 means no color (default)
 
     public TileEntityFluidMixer()
     {
@@ -331,6 +334,14 @@ public class TileEntityFluidMixer extends TileEntitySynced implements IInventory
         {
             extractionProgress = tag.getInteger("ExtractionProgress");
         }
+        if(tag.hasKey("color", Constants.NBT.TAG_INT))
+        {
+            color = tag.getInteger("color");
+        }
+        else
+        {
+            color = -1;
+        }
     }
 
     @Override
@@ -372,6 +383,10 @@ public class TileEntityFluidMixer extends TileEntitySynced implements IInventory
         tag.setInteger("RemainingFuel", remainingFuel);
         tag.setInteger("FuelMaxProgress", fuelMaxProgress);
         tag.setInteger("ExtractionProgress", extractionProgress);
+        if(color != -1)
+        {
+            tag.setInteger("color", color);
+        }
         return tag;
     }
 
@@ -391,6 +406,12 @@ public class TileEntityFluidMixer extends TileEntitySynced implements IInventory
         NBTTagCompound tagTankFuelium = new NBTTagCompound();
         tankFuelium.writeToNBT(tagTankFuelium);
         tag.setTag("TankFuelium", tagTankFuelium);
+        
+        // Include color in update tag
+        if(color != -1)
+        {
+            tag.setInteger("color", color);
+        }
 
         return tag;
     }
@@ -512,6 +533,41 @@ public class TileEntityFluidMixer extends TileEntitySynced implements IInventory
     public int getFueliumLevel()
     {
         return this.getField(5);
+    }
+
+    public boolean hasColor()
+    {
+        return color != -1;
+    }
+
+    public int getColor()
+    {
+        return color;
+    }
+
+    public void setColor(int color)
+    {
+        this.color = color;
+        this.markDirty();
+        if(this.world != null && !this.world.isRemote)
+        {
+            // Sync to clients
+            this.syncToClient();
+            // Force block update for rendering
+            IBlockState state = this.world.getBlockState(this.pos);
+            this.world.notifyBlockUpdate(this.pos, state, state, 3);
+        }
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        super.onDataPacket(net, pkt);
+        // Force client-side render update when color changes
+        if(this.world != null && this.world.isRemote)
+        {
+            this.world.markBlockRangeForRenderUpdate(this.pos, this.pos);
+        }
     }
 }
 

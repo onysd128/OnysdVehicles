@@ -48,6 +48,7 @@ public class TileEntityFluidExtractor extends TileFluidHandler implements IInven
     private int extractionProgress;
 
     private String customName;
+    protected int color = -1; // -1 means no color (default)
 
     public TileEntityFluidExtractor()
     {
@@ -307,6 +308,14 @@ public class TileEntityFluidExtractor extends TileFluidHandler implements IInven
         {
             customName = tag.getString("CustomName");
         }
+        if(tag.hasKey("color", Constants.NBT.TAG_INT))
+        {
+            color = tag.getInteger("color");
+        }
+        else
+        {
+            color = -1;
+        }
     }
 
     @Override
@@ -322,6 +331,10 @@ public class TileEntityFluidExtractor extends TileFluidHandler implements IInven
         if(this.hasCustomName())
         {
             tag.setString("CustomName", customName);
+        }
+        if(color != -1)
+        {
+            tag.setInteger("color", color);
         }
 
         return tag;
@@ -368,6 +381,11 @@ public class TileEntityFluidExtractor extends TileFluidHandler implements IInven
     public void onDataPacket(final NetworkManager net, final SPacketUpdateTileEntity pkt)
     {
         readFromNBT(pkt.getNbtCompound());
+        // Force client-side render update when color changes
+        if(this.world != null && this.world.isRemote)
+        {
+            this.world.markBlockRangeForRenderUpdate(this.pos, this.pos);
+        }
     }
 
     @Override
@@ -428,5 +446,29 @@ public class TileEntityFluidExtractor extends TileFluidHandler implements IInven
             return null;
         }
         return super.getCapability(capability, facing);
+    }
+
+    public boolean hasColor()
+    {
+        return color != -1;
+    }
+
+    public int getColor()
+    {
+        return color;
+    }
+
+    public void setColor(int color)
+    {
+        this.color = color;
+        this.markDirty();
+        if(this.world != null && !this.world.isRemote)
+        {
+            // Sync to clients
+            sendUpdate(wrap("color", color));
+            // Force block update for rendering
+            IBlockState state = this.world.getBlockState(this.pos);
+            this.world.notifyBlockUpdate(this.pos, state, state, 3);
+        }
     }
 }
