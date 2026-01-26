@@ -114,7 +114,70 @@ public class CommonEvents
         if(pickUpVehicle(event.getWorld(), event.getEntityPlayer(), event.getHand(), event.getTarget()))
         {
             event.setCanceled(true);
+            return;
         }
+        
+        // Handle spray can interaction with sheep
+        EntityPlayer player = event.getEntityPlayer();
+        ItemStack heldItem = player.getHeldItem(event.getHand());
+        Entity target = event.getTarget();
+        
+        if(!heldItem.isEmpty() && heldItem.getItem() == ModItems.SPRAY_CAN && target instanceof net.minecraft.entity.passive.EntitySheep)
+        {
+            if(!event.getWorld().isRemote)
+            {
+                net.minecraft.entity.passive.EntitySheep sheep = (net.minecraft.entity.passive.EntitySheep) target;
+                
+                NBTTagCompound tagCompound = com.mrcrayfish.vehicle.item.ItemSprayCan.createTagCompound(heldItem);
+                int remainingSprays = tagCompound.getInteger("remainingSprays");
+                if(tagCompound.hasKey("color", net.minecraftforge.common.util.Constants.NBT.TAG_INT) && remainingSprays > 0)
+                {
+                    int rgbColor = tagCompound.getInteger("color");
+                    net.minecraft.item.EnumDyeColor dyeColor = convertRGBToDyeColor(rgbColor);
+                    
+                    if(sheep.getFleeceColor() != dyeColor)
+                    {
+                        sheep.setFleeceColor(dyeColor);
+                        event.getWorld().playSound(null, sheep.posX, sheep.posY, sheep.posZ, ModSounds.SPRAY_CAN_SPRAY, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        tagCompound.setInteger("remainingSprays", remainingSprays - 1);
+                    }
+                }
+            }
+            event.setCanceled(true);
+        }
+    }
+    
+    /**
+     * Converts RGB color to the closest EnumDyeColor
+     */
+    private static net.minecraft.item.EnumDyeColor convertRGBToDyeColor(int rgbColor)
+    {
+        int r = (rgbColor >> 16) & 0xFF;
+        int g = (rgbColor >> 8) & 0xFF;
+        int b = rgbColor & 0xFF;
+        
+        // Get all dye colors and find the closest match
+        net.minecraft.item.EnumDyeColor closestColor = net.minecraft.item.EnumDyeColor.WHITE;
+        double minDistance = Double.MAX_VALUE;
+        
+        for(net.minecraft.item.EnumDyeColor dyeColor : net.minecraft.item.EnumDyeColor.values())
+        {
+            float[] dyeRGB = dyeColor.getColorComponentValues();
+            int dyeR = (int)(dyeRGB[0] * 255);
+            int dyeG = (int)(dyeRGB[1] * 255);
+            int dyeB = (int)(dyeRGB[2] * 255);
+            
+            // Calculate Euclidean distance
+            double distance = Math.sqrt(Math.pow(r - dyeR, 2) + Math.pow(g - dyeG, 2) + Math.pow(b - dyeB, 2));
+            
+            if(distance < minDistance)
+            {
+                minDistance = distance;
+                closestColor = dyeColor;
+            }
+        }
+        
+        return closestColor;
     }
 
     public static boolean pickUpVehicle(World world, EntityPlayer player, EnumHand hand, Entity targetEntity)
