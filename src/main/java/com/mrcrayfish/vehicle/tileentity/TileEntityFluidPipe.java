@@ -6,11 +6,14 @@ import com.mrcrayfish.vehicle.util.FluidUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -25,6 +28,7 @@ public class TileEntityFluidPipe extends TileFluidHandlerSynced implements ITick
 {
     protected int capacity, transferAmount;
     protected boolean[] disabledConnections;
+    protected int color = -1; // -1 means no color (default)
 
     public TileEntityFluidPipe()
     {
@@ -124,6 +128,14 @@ public class TileEntityFluidPipe extends TileFluidHandlerSynced implements ITick
         {
             disabledConnections[i] = byteArr[i] == (byte) 1;
         }
+        if(tag.hasKey("color", Constants.NBT.TAG_INT))
+        {
+            color = tag.getInteger("color");
+        }
+        else
+        {
+            color = -1;
+        }
     }
 
     @Override
@@ -136,6 +148,45 @@ public class TileEntityFluidPipe extends TileFluidHandlerSynced implements ITick
             byteArr[i] = (byte) (disabledConnections[i] ? 1 : 0);
         }
         tag.setByteArray("disabledConnections", byteArr);
+        if(color != -1)
+        {
+            tag.setInteger("color", color);
+        }
         return tag;
+    }
+
+    public boolean hasColor()
+    {
+        return color != -1;
+    }
+
+    public int getColor()
+    {
+        return color;
+    }
+
+    public void setColor(int color)
+    {
+        this.color = color;
+        this.markDirty();
+        if(this.world != null && !this.world.isRemote)
+        {
+            // Sync to clients
+            this.syncToClient();
+            // Force block update for rendering
+            IBlockState state = this.world.getBlockState(this.pos);
+            this.world.notifyBlockUpdate(this.pos, state, state, 3);
+        }
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        super.onDataPacket(net, pkt);
+        // Force client-side render update when color changes
+        if(this.world != null && this.world.isRemote)
+        {
+            this.world.markBlockRangeForRenderUpdate(this.pos, this.pos);
+        }
     }
 }

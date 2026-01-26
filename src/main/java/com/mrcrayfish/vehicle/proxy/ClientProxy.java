@@ -501,6 +501,102 @@ public class ClientProxy implements Proxy
         };
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(fluidExtractorBlockColor, ModBlocks.FLUID_EXTRACTOR);
         
+        // Register item color handler for fluid pipe block item
+        IItemColor fluidPipeItemColor = (stack, index) ->
+        {
+            if(stack.hasTagCompound())
+            {
+                NBTTagCompound tagCompound = stack.getTagCompound();
+                // Check root NBT first (for crafted items)
+                if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    return tagCompound.getInteger("color");
+                }
+                // Check BlockEntityTag (for items broken from world)
+                if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+                {
+                    NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
+                    if(blockEntityTag.hasKey("color", Constants.NBT.TAG_INT))
+                    {
+                        return blockEntityTag.getInteger("color");
+                    }
+                }
+            }
+            return -1;
+        };
+        net.minecraft.item.Item fluidPipeItem = net.minecraft.item.Item.getItemFromBlock(ModBlocks.FLUID_PIPE);
+        if(fluidPipeItem != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(fluidPipeItemColor, fluidPipeItem);
+        }
+        
+        // Register block color handler for fluid pipe
+        IBlockColor fluidPipeBlockColor = (state, world, pos, tintIndex) ->
+        {
+            if(world != null && pos != null && tintIndex == 0)
+            {
+                net.minecraft.tileentity.TileEntity tileEntity = world.getTileEntity(pos);
+                if(tileEntity instanceof TileEntityFluidPipe)
+                {
+                    TileEntityFluidPipe fluidPipe = (TileEntityFluidPipe) tileEntity;
+                    if(fluidPipe.hasColor())
+                    {
+                        return fluidPipe.getColor();
+                    }
+                }
+            }
+            return -1;
+        };
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(fluidPipeBlockColor, ModBlocks.FLUID_PIPE);
+        
+        // Register item color handler for fluid pump block item
+        IItemColor fluidPumpItemColor = (stack, index) ->
+        {
+            if(stack.hasTagCompound())
+            {
+                NBTTagCompound tagCompound = stack.getTagCompound();
+                // Check root NBT first (for crafted items)
+                if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    return tagCompound.getInteger("color");
+                }
+                // Check BlockEntityTag (for items broken from world)
+                if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+                {
+                    NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
+                    if(blockEntityTag.hasKey("color", Constants.NBT.TAG_INT))
+                    {
+                        return blockEntityTag.getInteger("color");
+                    }
+                }
+            }
+            return -1;
+        };
+        net.minecraft.item.Item fluidPumpItem = net.minecraft.item.Item.getItemFromBlock(ModBlocks.FLUID_PUMP);
+        if(fluidPumpItem != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(fluidPumpItemColor, fluidPumpItem);
+        }
+        
+        // Register block color handler for fluid pump
+        IBlockColor fluidPumpBlockColor = (state, world, pos, tintIndex) ->
+        {
+            if(world != null && pos != null && tintIndex == 0)
+            {
+                net.minecraft.tileentity.TileEntity tileEntity = world.getTileEntity(pos);
+                if(tileEntity instanceof TileEntityFluidPipe)
+                {
+                    TileEntityFluidPipe fluidPipe = (TileEntityFluidPipe) tileEntity;
+                    if(fluidPipe.hasColor())
+                    {
+                        return fluidPipe.getColor();
+                    }
+                }
+            }
+            return -1;
+        };
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(fluidPumpBlockColor, ModBlocks.FLUID_PUMP);
+        
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager ->
         {
             FluidUtils.clearCacheFluidColor();
