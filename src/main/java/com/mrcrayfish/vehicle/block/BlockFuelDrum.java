@@ -45,7 +45,7 @@ import java.util.Random;
  */
 public class BlockFuelDrum extends BlockRotatedObject
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(1, 0, 1, 15, 16, 15).toAABB();
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(1, 0, 1, 15, 14, 15).toAABB();
 
     private int capacity;
 
