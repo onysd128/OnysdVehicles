@@ -467,6 +467,36 @@ public class CommonEvents
         if(state.getBlock() != ModBlocks.GAS_PUMP && SyncedPlayerData.getGasPumpPos(event.getEntityPlayer()).isPresent())
         {
             event.setCanceled(true);
+            return;
+        }
+        
+        // Handle spray can interaction with wool blocks
+        EntityPlayer player = event.getEntityPlayer();
+        ItemStack heldItem = player.getHeldItem(event.getHand());
+        
+        if(!heldItem.isEmpty() && heldItem.getItem() == ModItems.SPRAY_CAN && state.getBlock() == net.minecraft.init.Blocks.WOOL)
+        {
+            if(!event.getWorld().isRemote)
+            {
+                NBTTagCompound tagCompound = com.mrcrayfish.vehicle.item.ItemSprayCan.createTagCompound(heldItem);
+                int remainingSprays = tagCompound.getInteger("remainingSprays");
+                if(tagCompound.hasKey("color", net.minecraftforge.common.util.Constants.NBT.TAG_INT) && remainingSprays > 0)
+                {
+                    int rgbColor = tagCompound.getInteger("color");
+                    net.minecraft.item.EnumDyeColor dyeColor = convertRGBToDyeColor(rgbColor);
+                    
+                    // Check if wool block already has this color
+                    if(state.getValue(net.minecraft.block.BlockColored.COLOR) != dyeColor)
+                    {
+                        // Set the new color
+                        IBlockState newState = state.withProperty(net.minecraft.block.BlockColored.COLOR, dyeColor);
+                        event.getWorld().setBlockState(event.getPos(), newState);
+                        event.getWorld().playSound(null, event.getPos(), ModSounds.SPRAY_CAN_SPRAY, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        tagCompound.setInteger("remainingSprays", remainingSprays - 1);
+                    }
+                }
+            }
+            event.setCanceled(true);
         }
     }
 }
