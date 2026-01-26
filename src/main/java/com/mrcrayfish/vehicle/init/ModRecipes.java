@@ -2,6 +2,7 @@ package com.mrcrayfish.vehicle.init;
 
 import com.mrcrayfish.vehicle.recipe.RecipeBicycleLock;
 import com.mrcrayfish.vehicle.recipe.RecipeColorSprayCan;
+import com.mrcrayfish.vehicle.recipe.RecipeDyeFuelDrum;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeGasPump;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeJack;
 import com.mrcrayfish.vehicle.recipe.RecipeDyeWorkstation;
@@ -20,5 +21,6 @@ public class ModRecipes
         RegistrationHandler.Recipes.add(new RecipeDyeWorkstation());
         RegistrationHandler.Recipes.add(new RecipeDyeGasPump());
         RegistrationHandler.Recipes.add(new RecipeDyeJack());
+        RegistrationHandler.Recipes.add(new RecipeDyeFuelDrum());
     }
 }

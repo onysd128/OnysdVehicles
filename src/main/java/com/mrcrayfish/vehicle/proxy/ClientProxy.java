@@ -351,6 +351,60 @@ public class ClientProxy implements Proxy
         };
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(jackBlockColor, ModBlocks.JACK);
         
+        // Register item color handler for fuel drum block items
+        IItemColor fuelDrumItemColor = (stack, index) ->
+        {
+            if(stack.hasTagCompound())
+            {
+                NBTTagCompound tagCompound = stack.getTagCompound();
+                // Check root NBT first (for crafted items)
+                if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
+                {
+                    return tagCompound.getInteger("color");
+                }
+                // Check BlockEntityTag (for items broken from world)
+                if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+                {
+                    NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
+                    if(blockEntityTag.hasKey("color", Constants.NBT.TAG_INT))
+                    {
+                        return blockEntityTag.getInteger("color");
+                    }
+                }
+            }
+            return -1;
+        };
+        net.minecraft.item.Item fuelDrumItem = net.minecraft.item.Item.getItemFromBlock(ModBlocks.FUEL_DRUM);
+        if(fuelDrumItem != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(fuelDrumItemColor, fuelDrumItem);
+        }
+        net.minecraft.item.Item industrialFuelDrumItem = net.minecraft.item.Item.getItemFromBlock(ModBlocks.INDUSTRIAL_FUEL_DRUM);
+        if(industrialFuelDrumItem != null)
+        {
+            Minecraft.getMinecraft().getItemColors().registerItemColorHandler(fuelDrumItemColor, industrialFuelDrumItem);
+        }
+        
+        // Register block color handler for fuel drums
+        IBlockColor fuelDrumBlockColor = (state, world, pos, tintIndex) ->
+        {
+            if(world != null && pos != null && tintIndex == 0)
+            {
+                net.minecraft.tileentity.TileEntity tileEntity = world.getTileEntity(pos);
+                if(tileEntity instanceof TileEntityFuelDrum)
+                {
+                    TileEntityFuelDrum fuelDrum = (TileEntityFuelDrum) tileEntity;
+                    if(fuelDrum.hasColor())
+                    {
+                        return fuelDrum.getColor();
+                    }
+                }
+            }
+            return -1;
+        };
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(fuelDrumBlockColor, ModBlocks.FUEL_DRUM);
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(fuelDrumBlockColor, ModBlocks.INDUSTRIAL_FUEL_DRUM);
+        
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager ->
         {
             FluidUtils.clearCacheFluidColor();
