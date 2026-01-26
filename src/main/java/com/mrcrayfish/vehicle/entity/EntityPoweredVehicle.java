@@ -329,6 +329,11 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
                 if(tileEntity instanceof TileEntityGasPumpTank)
                 {
                     TileEntityGasPumpTank gasPumpTank = (TileEntityGasPumpTank) tileEntity;
+                    // Check if tank has fuel before attempting to drain
+                    if(gasPumpTank.getFluidTank().getFluid() == null || gasPumpTank.getFluidTank().getFluidAmount() <= 0)
+                    {
+                        return; // Don't fuel if tank is empty
+                    }
                     FluidStack stack = gasPumpTank.getFluidTank().drain(200, true);
                     if(stack != null)
                     {

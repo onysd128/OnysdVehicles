@@ -44,6 +44,10 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import com.mrcrayfish.vehicle.tileentity.TileEntityGasPump;
+import com.mrcrayfish.vehicle.tileentity.TileEntityGasPumpTank;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.tileentity.TileEntity;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
@@ -171,6 +175,21 @@ public class EntityRaytracer
                 EntityPoweredVehicle poweredVehicle = (EntityPoweredVehicle) entity;
                 if(poweredVehicle.requiresFuel() && poweredVehicle.getCurrentFuel() < poweredVehicle.getFuelCapacity())
                 {
+                    // Check if gas pump tank has fuel before sending packet
+                    BlockPos gasPumpPos = SyncedPlayerData.getGasPumpPos(player).get();
+                    TileEntity tileEntity = Minecraft.getMinecraft().world.getTileEntity(gasPumpPos);
+                    if(tileEntity instanceof TileEntityGasPump)
+                    {
+                        tileEntity = Minecraft.getMinecraft().world.getTileEntity(gasPumpPos.down());
+                        if(tileEntity instanceof TileEntityGasPumpTank)
+                        {
+                            TileEntityGasPumpTank gasPumpTank = (TileEntityGasPumpTank) tileEntity;
+                            if(gasPumpTank.getFluidTank().getFluid() == null || gasPumpTank.getFluidTank().getFluidAmount() <= 0)
+                            {
+                                return null; // Don't send packet if tank is empty
+                            }
+                        }
+                    }
                     if(continuousInteractionTickCounter % 2 == 0)
                     {
                         PacketHandler.INSTANCE.sendToServer(new MessageFuelVehicle(Minecraft.getMinecraft().player, EnumHand.MAIN_HAND, rayTraceResult.entityHit));
