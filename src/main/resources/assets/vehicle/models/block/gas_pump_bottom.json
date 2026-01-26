@@ -3,9 +3,9 @@
 	"credit": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
 	"textures": {
 		"glass": "blocks/glass",
-		"particle": "blocks/concrete_red",
 		"metal": "blocks/iron_block",
-		"base": "blocks/anvil_base"
+		"base": "blocks/anvil_base",
+		"particle": "blocks/concrete_red"
 	},
 	"elements": [
 		{
@@ -28,14 +28,14 @@
 			}
 		},
 		{
-			"from": [0, 0, 3],
-			"to": [16, 1, 13],
+			"from": [0, 0, 0],
+			"to": [16, 1, 16],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 1], "texture": "#base"},
 				"east": {"uv": [0, 0, 10, 1], "texture": "#base"},
 				"south": {"uv": [0, 0, 16, 1], "texture": "#base"},
 				"west": {"uv": [0, 0, 10, 1], "texture": "#base"},
-				"up": {"uv": [0, 0, 16, 10], "texture": "#base"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#base"},
 				"down": {"uv": [0, 0, 16, 10], "texture": "#base"}
 			}
 		},
