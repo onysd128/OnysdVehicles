@@ -546,20 +546,28 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             {
                 if(currentEnginePowered)
                 {
-                    // Engine turned on
-                    SoundEvent startSound = this.getEngineStartSound();
-                    if(startSound != null)
+                    // Engine turned on - only play sound if there's a driver
+                    // This prevents sound from playing when refueling empty tank
+                    if(this.getControllingPassenger() != null)
                     {
-                        this.world.playSound(null, this.posX, this.posY, this.posZ, startSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                        SoundEvent startSound = this.getEngineStartSound();
+                        if(startSound != null)
+                        {
+                            this.world.playSound(null, this.posX, this.posY, this.posZ, startSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                        }
                     }
                 }
                 else
                 {
-                    // Engine turned off
-                    SoundEvent offSound = this.getEngineOffSound();
-                    if(offSound != null)
+                    // Engine turned off - only play sound if there's a driver
+                    // This prevents sound from playing when key is attached/detached while no one is in vehicle
+                    if(this.getControllingPassenger() != null)
                     {
-                        this.world.playSound(null, this.posX, this.posY, this.posZ, offSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                        SoundEvent offSound = this.getEngineOffSound();
+                        if(offSound != null)
+                        {
+                            this.world.playSound(null, this.posX, this.posY, this.posZ, offSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                        }
                     }
                 }
             }
@@ -1326,9 +1334,30 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
     public void addPassenger(Entity passenger)
     {
         super.addPassenger(passenger);
-        if(passenger instanceof EntityPlayer && world.isRemote)
+        if(passenger instanceof EntityPlayer)
         {
-            VehicleMod.proxy.playVehicleSound((EntityPlayer) passenger, this);
+            if(world.isRemote)
+            {
+                VehicleMod.proxy.playVehicleSound((EntityPlayer) passenger, this);
+            }
+            // Play engine start sound when driver sits in and engine is already powered
+            // This handles the case when tank is full and engine is already powered
+            if(!world.isRemote && passenger.equals(this.getControllingPassenger()))
+            {
+                if(this.hasEngine() && this.getEngineType() != EngineType.ELECTRIC_MOTOR && this.getEngineType() != EngineType.NONE)
+                {
+                    if(this.isEnginePowered())
+                    {
+                        SoundEvent startSound = this.getEngineStartSound();
+                        if(startSound != null)
+                        {
+                            this.world.playSound(null, this.posX, this.posY, this.posZ, startSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                            // Set prevEnginePowered to true to prevent duplicate sound on next tick
+                            this.prevEnginePowered = true;
+                        }
+                    }
+                }
+            }
         }
     }
 
