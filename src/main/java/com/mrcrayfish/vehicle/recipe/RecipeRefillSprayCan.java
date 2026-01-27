@@ -10,7 +10,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
 
 /**
  * Author: MrCrayfish
@@ -91,19 +90,10 @@ public class RecipeRefillSprayCan extends net.minecraftforge.registries.IForgeRe
             ItemStack copy = foundSprayCan.copy();
             copy.setCount(1);
             NBTTagCompound tagCompound = ItemSprayCan.createTagCompound(copy);
-            // Preserve color if it exists
-            int color = -1;
-            if(tagCompound.hasKey("color", Constants.NBT.TAG_INT))
-            {
-                color = tagCompound.getInteger("color");
-            }
             // Set remaining sprays to max
             tagCompound.setInteger("remainingSprays", ItemSprayCan.MAX_SPRAYS);
-            // Restore color if it existed
-            if(color != -1)
-            {
-                tagCompound.setInteger("color", color);
-            }
+            // Remove color - result should always be without color
+            tagCompound.removeTag("color");
             return copy;
         }
 
