@@ -3,14 +3,12 @@ package com.mrcrayfish.vehicle.recipe;
 import com.mrcrayfish.vehicle.Reference;
 import com.mrcrayfish.vehicle.init.ModItems;
 import com.mrcrayfish.vehicle.item.IDyeable;
-import com.mrcrayfish.vehicle.util.CommonUtils;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
 
 /**
  * Author: Onysd

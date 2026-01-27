@@ -39,11 +39,17 @@ repositories {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
     }
+    maven {
+        name = "JEI"
+        url = "https://dvs1.progwml6.com/files/maven"
+    }
 }
 
 dependencies {
     compile 'obfuscate:Obfuscate:0.4.2:1.12.2'
     compile 'controllable:Controllable:1.12.2:0.8.0'
+    compileOnly 'mezz.jei:jei_1.12.2:4.16.1.302:api'
+    runtimeOnly 'mezz.jei:jei_1.12.2:4.16.1.302'
 }
 
 processResources {
