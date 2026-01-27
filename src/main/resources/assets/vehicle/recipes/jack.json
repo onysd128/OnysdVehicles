@@ -7,8 +7,7 @@
     ],
     "key": {
         "C": {
-            "item": "minecraft:concrete",
-            "data": 14
+            "item": "minecraft:iron_block"
         },
         "E": {
             "item": "vehicle:electric_engine",
