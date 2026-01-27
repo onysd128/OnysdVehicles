@@ -134,6 +134,7 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
     public int isMoving = 0;
 
     private boolean prevEnginePowered = false;
+    private boolean prevHasDriver = false;
 
     private UUID owner;
     private InventoryBasic vehicleInventory;
@@ -548,6 +549,8 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
         {
             boolean currentEnginePowered = this.isEnginePowered();
             boolean hasDriver = this.getControllingPassenger() != null;
+            boolean driverJustSatIn = !this.prevHasDriver && hasDriver;
+            boolean driverJustGotOut = this.prevHasDriver && !hasDriver;
             
             if(currentEnginePowered != this.prevEnginePowered)
             {
@@ -566,9 +569,9 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
                 }
                 else
                 {
-                    // Engine turned off - only play sound if there's a driver
-                    // This prevents sound from playing when key is attached/detached while no one is in vehicle
-                    if(hasDriver)
+                    // Engine turned off - only play sound if there was a driver in previous tick
+                    // This ensures sound plays when driver gets out while engine is running
+                    if(this.prevHasDriver)
                     {
                         SoundEvent offSound = this.getEngineOffSound();
                         if(offSound != null)
@@ -576,6 +579,27 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
                             this.world.playSound(null, this.posX, this.posY, this.posZ, offSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         }
                     }
+                }
+            }
+            else if(driverJustSatIn && currentEnginePowered)
+            {
+                // Driver just sat in and engine is already running
+                // This handles the case when tank is full and engine is already powered
+                // Use same logic as engine sound: getControllingPassenger() != null
+                SoundEvent startSound = this.getEngineStartSound();
+                if(startSound != null)
+                {
+                    this.world.playSound(null, this.posX, this.posY, this.posZ, startSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                }
+            }
+            else if(driverJustGotOut && this.prevEnginePowered)
+            {
+                // Driver just got out and engine was running
+                // This handles the case when driver gets out while engine is still powered (has fuel)
+                SoundEvent offSound = this.getEngineOffSound();
+                if(offSound != null)
+                {
+                    this.world.playSound(null, this.posX, this.posY, this.posZ, offSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                 }
             }
             
@@ -589,11 +613,15 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             {
                 this.prevEnginePowered = false;
             }
+            
+            // Update prevHasDriver
+            this.prevHasDriver = hasDriver;
         }
         else
         {
-            // Reset prevEnginePowered if no engine or electric engine or NONE engine type
+            // Reset prevEnginePowered and prevHasDriver if no engine or electric engine or NONE engine type
             this.prevEnginePowered = false;
+            this.prevHasDriver = false;
         }
 
         this.prevAcceleration = this.getAcceleration();
@@ -1357,26 +1385,8 @@ public abstract class EntityPoweredVehicle extends EntityVehicle implements IInv
             {
                 VehicleMod.proxy.playVehicleSound((EntityPlayer) passenger, this);
             }
-            // Play engine start sound when driver sits in and engine is already powered
-            // This handles the case when tank is full and engine is already powered
-            // Since prevEnginePowered is false when no driver, this will play sound when driver sits in
-            if(!world.isRemote && passenger.equals(this.getControllingPassenger()))
-            {
-                if(this.hasEngine() && this.getEngineType() != EngineType.ELECTRIC_MOTOR && this.getEngineType() != EngineType.NONE)
-                {
-                    if(this.isEnginePowered() && !this.prevEnginePowered)
-                    {
-                        // Driver sat in and engine is running (prevEnginePowered was false because no driver before)
-                        SoundEvent startSound = this.getEngineStartSound();
-                        if(startSound != null)
-                        {
-                            this.world.playSound(null, this.posX, this.posY, this.posZ, startSound, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                        }
-                        // Set prevEnginePowered to true to prevent duplicate sound on next tick
-                        this.prevEnginePowered = true;
-                    }
-                }
-            }
+            // Engine start sound is now handled in updateVehicleMotion() using same logic as engine sound
+            // (getControllingPassenger() != null) to ensure it only plays for actual driver
         }
     }
 
