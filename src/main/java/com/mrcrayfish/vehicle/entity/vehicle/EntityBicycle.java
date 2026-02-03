@@ -160,7 +160,7 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
                         // Calculate exhaustion based on speed (similar to sprinting)
                         // Sprinting uses 0.1F per tick, we'll use slightly less for cycling
                         float speedFactor = Math.min(currentSpeed / this.getMaxSpeed(), 1.0F);
-                        float exhaustion = 0.08F * speedFactor; // Max 0.08F when at full speed
+                        float exhaustion = 0.05F * speedFactor; // Max 0.08F when at full speed
                         player.getFoodStats().addExhaustion(exhaustion);
                     }
                 }
