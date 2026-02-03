@@ -26,7 +26,7 @@ public class EntityDuneBuggy extends EntityLandVehicle implements IEntityRaytrac
     public void entityInit()
     {
         super.entityInit();
-        this.dataManager.set(WHEEL_TYPE, WheelType.PLASTIC.ordinal());
+        this.dataManager.set(WHEEL_TYPE, WheelType.STANDARD.ordinal());
     }
 
     @Override
