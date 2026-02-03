@@ -139,7 +139,7 @@ public class CommonEvents
                     {
                         sheep.setFleeceColor(dyeColor);
                         event.getWorld().playSound(null, sheep.posX, sheep.posY, sheep.posZ, ModSounds.SPRAY_CAN_SPRAY, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                        tagCompound.setInteger("remainingSprays", remainingSprays - 1);
+                        com.mrcrayfish.vehicle.item.ItemSprayCan.useSpray(heldItem, player, event.getHand());
                     }
                 }
             }
@@ -492,7 +492,7 @@ public class CommonEvents
                         IBlockState newState = state.withProperty(net.minecraft.block.BlockColored.COLOR, dyeColor);
                         event.getWorld().setBlockState(event.getPos(), newState);
                         event.getWorld().playSound(null, event.getPos(), ModSounds.SPRAY_CAN_SPRAY, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                        tagCompound.setInteger("remainingSprays", remainingSprays - 1);
+                        com.mrcrayfish.vehicle.item.ItemSprayCan.useSpray(heldItem, player, event.getHand());
                     }
                 }
             }

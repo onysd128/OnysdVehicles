@@ -135,7 +135,7 @@ public abstract class EntityVehicle extends Entity implements IEntityAdditionalS
                         {
                             this.setColor(tagCompound.getInteger("color"));
                             player.world.playSound(null, posX, posY, posZ, ModSounds.SPRAY_CAN_SPRAY, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                            tagCompound.setInteger("remainingSprays", remainingSprays - 1);
+                            ItemSprayCan.useSpray(heldItem, player, hand);
                         }
                     }
                 }

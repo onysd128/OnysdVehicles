@@ -99,7 +99,7 @@ public class BlockFuelDrum extends BlockRotatedObject
                         {
                             fuelDrum.setColor(color);
                             worldIn.playSound(null, pos, ModSounds.SPRAY_CAN_SPRAY, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                            tagCompound.setInteger("remainingSprays", remainingSprays - 1);
+                            ItemSprayCan.useSpray(heldItem, playerIn, hand);
                         }
                     }
                 }
