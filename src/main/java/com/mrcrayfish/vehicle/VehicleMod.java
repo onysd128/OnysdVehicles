@@ -52,7 +52,7 @@ public class VehicleMod
         @Override
         public ItemStack getTabIconItem()
         {
-            return new ItemStack(ModItems.SMALL_ENGINE);
+            return new ItemStack(ModItems.LARGE_ENGINE);
         }
 
         @Override
