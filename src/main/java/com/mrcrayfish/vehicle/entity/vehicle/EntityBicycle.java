@@ -214,6 +214,12 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
             // Handle locking with bicycle lock item
             if(!stack.isEmpty() && stack.getItem() == ModItems.BICYCLE_LOCK)
             {
+                // Check if bicycle locking is enabled in config
+                if(!VehicleConfig.SERVER.VEHICLES.bicycleKey)
+                {
+                    return super.processInitialInteract(player, hand);
+                }
+
                 // Check ownership: only owner can lock, or anyone if no owner
                 if(!this.isOwner(player))
                 {
@@ -262,6 +268,12 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
             // Handle unlocking with key
             else if(!stack.isEmpty() && stack.getItem() == ModItems.KEY)
             {
+                // Check if bicycle locking is enabled in config
+                if(!VehicleConfig.SERVER.VEHICLES.bicycleKey)
+                {
+                    return super.processInitialInteract(player, hand);
+                }
+
                 // Check if bicycle is locked
                 if(!this.isBicycleLocked())
                 {
@@ -319,5 +331,3 @@ public class EntityBicycle extends EntityMotorcycle implements IEntityRaytraceab
         return super.processInitialInteract(player, hand);
     }
 }
-
-//TODO: Add locking to bycicle. add more wheel types.
