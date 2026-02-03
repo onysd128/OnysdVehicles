@@ -98,6 +98,11 @@ public class VehicleConfig
         @Config.Comment("If true, bicycles will consume player hunger when riding, similar to sprinting. When false, bicycles will not consume hunger.")
         @Config.LangKey(Reference.MOD_ID + ".config.server.bike_hunger_consumption")
         public boolean bikeHungerConsumption = true;
+
+        @Config.Name("Enable Meme Vehicles")
+        @Config.Comment("If true, meme vehicles (Bath, Couch, Sofacopter, Dune Buggy, Shopping Cart) will be enabled. When false, these vehicles will be disabled.")
+        @Config.LangKey(Reference.MOD_ID + ".config.server.enable_meme_vehicles")
+        public boolean enableMemeVehicles = true;
         
         @Config.Name("Vehicles")
         @Config.Comment("Config for separate vehicle")

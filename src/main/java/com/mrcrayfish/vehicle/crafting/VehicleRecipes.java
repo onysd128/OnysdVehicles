@@ -2,6 +2,7 @@ package com.mrcrayfish.vehicle.crafting;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.vehicle.VehicleConfig;
 import com.mrcrayfish.vehicle.entity.EntityVehicle;
 import com.mrcrayfish.vehicle.entity.trailer.*;
 import com.mrcrayfish.vehicle.entity.vehicle.*;
@@ -67,11 +68,14 @@ public class VehicleRecipes
         mapBuilder.put(EntityDirtBike.class, builder.build());
 
         /* Dune Buggy */
-        // builder = new Builder();
-        // builder.addMaterial(new ItemStack(Blocks.CONCRETE, 16, EnumDyeColor.YELLOW.getMetadata()));
-        // builder.addMaterial(new ItemStack(Blocks.CONCRETE, 8, EnumDyeColor.BLUE.getMetadata()));
-        // builder.addMaterial(new ItemStack(Blocks.CONCRETE, 4, EnumDyeColor.RED.getMetadata()));
-        // mapBuilder.put(EntityDuneBuggy.class, builder.build());
+        if(VehicleConfig.SERVER.enableMemeVehicles)
+        {
+            builder = new Builder();
+            builder.addMaterial(new ItemStack(Blocks.CONCRETE, 16, EnumDyeColor.YELLOW.getMetadata()));
+            builder.addMaterial(new ItemStack(Blocks.CONCRETE, 8, EnumDyeColor.BLUE.getMetadata()));
+            builder.addMaterial(new ItemStack(Blocks.CONCRETE, 4, EnumDyeColor.RED.getMetadata()));
+            mapBuilder.put(EntityDuneBuggy.class, builder.build());
+        }
 
         /* Go Kart */
         builder = new Builder();
@@ -133,12 +137,15 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(ModItems.PANEL, 24));
         mapBuilder.put(EntityOffRoader.class, builder.build());
 
-        // /* Shopping Cart */
-        // builder = new Builder();
-        // builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
-        // builder.addMaterial(new ItemStack(Blocks.IRON_BARS, 4));
-        // builder.addMaterial(new ItemStack(Items.DYE, 2, EnumDyeColor.RED.getDyeDamage()));
-        // mapBuilder.put(EntityShoppingCart.class, builder.build());
+        /* Shopping Cart */
+        if(VehicleConfig.SERVER.enableMemeVehicles)
+        {
+            builder = new Builder();
+            builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
+            builder.addMaterial(new ItemStack(Blocks.IRON_BARS, 4));
+            builder.addMaterial(new ItemStack(Items.DYE, 2, EnumDyeColor.RED.getDyeDamage()));
+            mapBuilder.put(EntityShoppingCart.class, builder.build());
+        }
 
         /* Smart Car */
         builder = new Builder();
@@ -201,28 +208,28 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(Blocks.GLASS_PANE, 2));
         mapBuilder.put(EntityFluidTrailer.class, builder.build());
 
-        // Disabled vehicles - recipes commented out to match VehicleMod.registerVehicles()
-        // if(Loader.isModLoaded("cfm"))
-        // {
-        //     /* Bath */
-        //     builder = new Builder();
-        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:bath_bottom"), 1));
-        //     builder.addMaterial(new ItemStack(Items.NETHER_STAR, 1));
-        //     mapBuilder.put(EntityBath.class, builder.build());
+        /* Meme vehicles - recipes for cfm mod vehicles */
+        if(VehicleConfig.SERVER.enableMemeVehicles && Loader.isModLoaded("cfm"))
+        {
+            /* Bath */
+            builder = new Builder();
+            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:bath_bottom"), 1));
+            builder.addMaterial(new ItemStack(Items.NETHER_STAR, 1));
+            mapBuilder.put(EntityBath.class, builder.build());
 
-        //     /* Couch */
-        //     builder = new Builder();
-        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch_jeb"), 1));
-        //     builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
-        //     mapBuilder.put(EntityCouch.class, builder.build());
+            /* Couch */
+            builder = new Builder();
+            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch_jeb"), 1));
+            builder.addMaterial(new ItemStack(Items.IRON_INGOT, 8));
+            mapBuilder.put(EntityCouch.class, builder.build());
 
-        //     /* Sofacopter */
-        //     builder = new Builder();
-        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch"), 1, 14));
-        //     builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:ceiling_fan")));
-        //     builder.addMaterial(new ItemStack(Items.IRON_INGOT, 16));
-        //     mapBuilder.put(EntitySofacopter.class, builder.build());
-        // }
+            /* Sofacopter */
+            builder = new Builder();
+            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:couch"), 1, 14));
+            builder.addMaterial(new ItemStack(Item.getByNameOrId("cfm:ceiling_fan")));
+            builder.addMaterial(new ItemStack(Items.IRON_INGOT, 16));
+            mapBuilder.put(EntitySofacopter.class, builder.build());
+        }
 
         RECIPES = mapBuilder.build();
     }

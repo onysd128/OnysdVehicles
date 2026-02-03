@@ -284,14 +284,17 @@ public class EntityRaytracer
         registerEntityStatic(EntityDirtBike.class, dirtBikeParts);
 
         // Dune buggy
-        // List<MatrixTransformation> duneBuggyTransformGlobal = Lists.newArrayList();
-        // createBodyTransforms(duneBuggyTransformGlobal, EntityDuneBuggy.class);
-        // HashMap<RayTracePart, List<MatrixTransformation>> duneBuggyParts = Maps.newHashMap();
-        // createTransformListForPart(SpecialModels.DUNE_BUGGY_BODY, duneBuggyParts, duneBuggyTransformGlobal);
-        // createTransformListForPart(SpecialModels.DUNE_BUGGY_HANDLE_BAR, duneBuggyParts, duneBuggyTransformGlobal,
-        //         MatrixTransformation.createTranslation(0, 0, -0.0046875));
-        // createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityDuneBuggy.class, duneBuggyParts, duneBuggyTransformGlobal);
-        // registerEntityStatic(EntityDuneBuggy.class, duneBuggyParts);
+        if(VehicleConfig.SERVER.enableMemeVehicles)
+        {
+            List<MatrixTransformation> duneBuggyTransformGlobal = Lists.newArrayList();
+            createBodyTransforms(duneBuggyTransformGlobal, EntityDuneBuggy.class);
+            HashMap<RayTracePart, List<MatrixTransformation>> duneBuggyParts = Maps.newHashMap();
+            createTransformListForPart(SpecialModels.DUNE_BUGGY_BODY, duneBuggyParts, duneBuggyTransformGlobal);
+            createTransformListForPart(SpecialModels.DUNE_BUGGY_HANDLE_BAR, duneBuggyParts, duneBuggyTransformGlobal,
+                    MatrixTransformation.createTranslation(0, 0, -0.0046875));
+            createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityDuneBuggy.class, duneBuggyParts, duneBuggyTransformGlobal);
+            registerEntityStatic(EntityDuneBuggy.class, duneBuggyParts);
+        }
 
         // Go kart
         List<MatrixTransformation> goKartTransformGlobal = Lists.newArrayList();
@@ -365,12 +368,15 @@ public class EntityRaytracer
         createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityMoped.class, mopedParts, mopedTransformGlobal);
         registerEntityStatic(EntityMoped.class, mopedParts);
 
-        // // Shopping cart
-        // List<MatrixTransformation> cartTransformGlobal = Lists.newArrayList();
-        // createBodyTransforms(cartTransformGlobal, EntityShoppingCart.class);
-        // HashMap<RayTracePart, List<MatrixTransformation>> cartParts = Maps.newHashMap();
-        // createTransformListForPart(SpecialModels.SHOPPING_CART_BODY, cartParts, cartTransformGlobal);
-        // registerEntityStatic(EntityShoppingCart.class, cartParts);
+        // Shopping cart
+        if(VehicleConfig.SERVER.enableMemeVehicles)
+        {
+            List<MatrixTransformation> cartTransformGlobal = Lists.newArrayList();
+            createBodyTransforms(cartTransformGlobal, EntityShoppingCart.class);
+            HashMap<RayTracePart, List<MatrixTransformation>> cartParts = Maps.newHashMap();
+            createTransformListForPart(SpecialModels.SHOPPING_CART_BODY, cartParts, cartTransformGlobal);
+            registerEntityStatic(EntityShoppingCart.class, cartParts);
+        }
 
         // Smart car
         List<MatrixTransformation> smartCarTransformGlobal = Lists.newArrayList();
@@ -492,7 +498,7 @@ public class EntityRaytracer
         createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityMiniBus.class, miniBusParts, miniBusTransformGlobal);
         registerEntityStatic(EntityMiniBus.class, miniBusParts);
 
-        if(Loader.isModLoaded("cfm"))
+        if(VehicleConfig.SERVER.enableMemeVehicles && Loader.isModLoaded("cfm"))
         {
             // Bath
             List<MatrixTransformation> bathTransformGlobal = Lists.newArrayList();
