@@ -102,7 +102,7 @@ public class VehicleConfig
         @Config.Name("Enable Meme Vehicles")
         @Config.Comment("If true, meme vehicles (Bath, Couch, Sofacopter, Children's Bicycle, Shopping Cart) will be enabled. When false, these vehicles will be disabled.")
         @Config.LangKey(Reference.MOD_ID + ".config.server.enable_meme_vehicles")
-        public boolean enableMemeVehicles = true;
+        public boolean enableMemeVehicles = false;
         
         @Config.Name("Vehicles")
         @Config.Comment("Config for separate vehicle")
