@@ -67,14 +67,14 @@ public class VehicleRecipes
         builder.addMaterial(new ItemStack(Blocks.WOOL, 2, EnumDyeColor.GRAY.getMetadata()));
         mapBuilder.put(EntityDirtBike.class, builder.build());
 
-        /* Dune Buggy */
+        /* Children's Bicycle */
         if(VehicleConfig.SERVER.enableMemeVehicles)
         {
             builder = new Builder();
             builder.addMaterial(new ItemStack(Blocks.CONCRETE, 16, EnumDyeColor.YELLOW.getMetadata()));
             builder.addMaterial(new ItemStack(Blocks.CONCRETE, 8, EnumDyeColor.BLUE.getMetadata()));
             builder.addMaterial(new ItemStack(Blocks.CONCRETE, 4, EnumDyeColor.RED.getMetadata()));
-            mapBuilder.put(EntityDuneBuggy.class, builder.build());
+            mapBuilder.put(EntityChildrensBicycle.class, builder.build());
         }
 
         /* Go Kart */

@@ -2,7 +2,7 @@ package com.mrcrayfish.vehicle.client.render.vehicle;
 
 import com.mrcrayfish.vehicle.client.SpecialModels;
 import com.mrcrayfish.vehicle.client.render.AbstractRenderVehicle;
-import com.mrcrayfish.vehicle.entity.vehicle.EntityDuneBuggy;
+import com.mrcrayfish.vehicle.entity.vehicle.EntityChildrensBicycle;
 import com.mrcrayfish.vehicle.util.RenderUtil;
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -13,12 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * Author: MrCrayfish
  */
-public class RenderDuneBuggy extends AbstractRenderVehicle<EntityDuneBuggy>
+public class RenderChildrensBicycle extends AbstractRenderVehicle<EntityChildrensBicycle>
 {
     @Override
-    public void render(EntityDuneBuggy entity, float partialTicks)
+    public void render(EntityChildrensBicycle entity, float partialTicks)
     {
-        this.renderDamagedPart(entity, SpecialModels.DUNE_BUGGY_BODY.getModel());
+        this.renderDamagedPart(entity, SpecialModels.CHILDRENS_BICYCLE_BODY.getModel());
 
         float wheelAngle = entity.prevRenderWheelAngle + (entity.renderWheelAngle - entity.prevRenderWheelAngle) * partialTicks;
         double wheelScale = 1.0F;
@@ -34,7 +34,7 @@ public class RenderDuneBuggy extends AbstractRenderVehicle<EntityDuneBuggy>
             GlStateManager.rotate(22.5F, 1, 0, 0);
             GlStateManager.translate(0, 0, -0.2);
 
-            this.renderDamagedPart(entity, SpecialModels.DUNE_BUGGY_HANDLE_BAR.getModel());
+            this.renderDamagedPart(entity, SpecialModels.CHILDRENS_BICYCLE_HANDLE_BAR.getModel());
 
             if(entity.hasWheels())
             {
@@ -61,7 +61,7 @@ public class RenderDuneBuggy extends AbstractRenderVehicle<EntityDuneBuggy>
     }
 
     @Override
-    public void applyPlayerModel(EntityDuneBuggy entity, EntityPlayer player, ModelPlayer model, float partialTicks)
+    public void applyPlayerModel(EntityChildrensBicycle entity, EntityPlayer player, ModelPlayer model, float partialTicks)
     {
         float wheelAngle = entity.prevRenderWheelAngle + (entity.renderWheelAngle - entity.prevRenderWheelAngle) * partialTicks;
         float wheelAngleNormal = wheelAngle / 45F;

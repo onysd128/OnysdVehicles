@@ -11,9 +11,9 @@ import net.minecraft.world.World;
 /**
  * Author: MrCrayfish
  */
-public class EntityDuneBuggy extends EntityLandVehicle implements IEntityRaytraceable
+public class EntityChildrensBicycle extends EntityLandVehicle implements IEntityRaytraceable
 {
-    public EntityDuneBuggy(World worldIn)
+    public EntityChildrensBicycle(World worldIn)
     {
         super(worldIn);
         this.setMaxSpeed(10);

@@ -100,7 +100,7 @@ public class VehicleConfig
         public boolean bikeHungerConsumption = true;
 
         @Config.Name("Enable Meme Vehicles")
-        @Config.Comment("If true, meme vehicles (Bath, Couch, Sofacopter, Dune Buggy, Shopping Cart) will be enabled. When false, these vehicles will be disabled.")
+        @Config.Comment("If true, meme vehicles (Bath, Couch, Sofacopter, Children's Bicycle, Shopping Cart) will be enabled. When false, these vehicles will be disabled.")
         @Config.LangKey(Reference.MOD_ID + ".config.server.enable_meme_vehicles")
         public boolean enableMemeVehicles = true;
         

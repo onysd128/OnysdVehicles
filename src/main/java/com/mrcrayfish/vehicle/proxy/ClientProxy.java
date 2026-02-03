@@ -99,7 +99,7 @@ public class ClientProxy implements Proxy
         registerVehicleRender(EntityATV.class, new RenderLandVehicleWrapper<>(new RenderATV()));
         if(VehicleConfig.SERVER.enableMemeVehicles)
         {
-            registerVehicleRender(EntityDuneBuggy.class, new RenderLandVehicleWrapper<>(new RenderDuneBuggy()));
+            registerVehicleRender(EntityChildrensBicycle.class, new RenderLandVehicleWrapper<>(new RenderChildrensBicycle()));
         }
         registerVehicleRender(EntityGoKart.class, new RenderLandVehicleWrapper<>(new RenderGoKart()));
         if(VehicleConfig.SERVER.enableMemeVehicles)

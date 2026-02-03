@@ -49,6 +49,7 @@ tile.vehicle.fuel_drum.info=该油桶可用于储存燃料元素或任何其他�
 
 entity.moped.name=助力车
 entity.vehicle.bicycle.name=自行车
+entity.vehicle.childrens_bicycle.name=儿童自行车
 
 vehicle.wheel_type.bicycle.name=自行车
 

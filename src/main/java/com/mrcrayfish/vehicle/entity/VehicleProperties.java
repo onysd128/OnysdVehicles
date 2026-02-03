@@ -113,7 +113,7 @@ public class VehicleProperties
         properties.setKeyPosition(new PartPosition(-2.4, 9, 4, 0, 90 , 0, 0.15));
         VehicleProperties.setProperties(EntityDirtBike.class, properties);
 
-        /* Dune Buggy */
+        /* Children's Bicycle */
         if(VehicleConfig.SERVER.enableMemeVehicles)
         {
             properties = new VehicleProperties();
@@ -129,7 +129,7 @@ public class VehicleProperties
             properties.setFrontAxelVec(0, 5.3);
             properties.setRearAxelVec(0, -5.7);
             properties.addSeat(new Seat(new Vec3d(0, 2, -3), true));
-            VehicleProperties.setProperties(EntityDuneBuggy.class, properties);
+            VehicleProperties.setProperties(EntityChildrensBicycle.class, properties);
         }
 
         /* Go Kart */

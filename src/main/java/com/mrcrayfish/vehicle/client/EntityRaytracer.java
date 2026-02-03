@@ -283,17 +283,17 @@ public class EntityRaytracer
         createKeyPortTransforms(SpecialModels.KEY_HOLE, EntityDirtBike.class, dirtBikeParts, dirtBikeTransformGlobal);
         registerEntityStatic(EntityDirtBike.class, dirtBikeParts);
 
-        // Dune buggy
+        // Children's Bicycle
         if(VehicleConfig.SERVER.enableMemeVehicles)
         {
-            List<MatrixTransformation> duneBuggyTransformGlobal = Lists.newArrayList();
-            createBodyTransforms(duneBuggyTransformGlobal, EntityDuneBuggy.class);
-            HashMap<RayTracePart, List<MatrixTransformation>> duneBuggyParts = Maps.newHashMap();
-            createTransformListForPart(SpecialModels.DUNE_BUGGY_BODY, duneBuggyParts, duneBuggyTransformGlobal);
-            createTransformListForPart(SpecialModels.DUNE_BUGGY_HANDLE_BAR, duneBuggyParts, duneBuggyTransformGlobal,
+            List<MatrixTransformation> childrensBicycleTransformGlobal = Lists.newArrayList();
+            createBodyTransforms(childrensBicycleTransformGlobal, EntityChildrensBicycle.class);
+            HashMap<RayTracePart, List<MatrixTransformation>> childrensBicycleParts = Maps.newHashMap();
+            createTransformListForPart(SpecialModels.CHILDRENS_BICYCLE_BODY, childrensBicycleParts, childrensBicycleTransformGlobal);
+            createTransformListForPart(SpecialModels.CHILDRENS_BICYCLE_HANDLE_BAR, childrensBicycleParts, childrensBicycleTransformGlobal,
                     MatrixTransformation.createTranslation(0, 0, -0.0046875));
-            createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityDuneBuggy.class, duneBuggyParts, duneBuggyTransformGlobal);
-            registerEntityStatic(EntityDuneBuggy.class, duneBuggyParts);
+            createFuelablePartTransforms(SpecialModels.FUEL_PORT_CLOSED, EntityChildrensBicycle.class, childrensBicycleParts, childrensBicycleTransformGlobal);
+            registerEntityStatic(EntityChildrensBicycle.class, childrensBicycleParts);
         }
 
         // Go kart

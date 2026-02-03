@@ -104,7 +104,7 @@ public class VehicleMod
         registerVehicle("atv", EntityATV.class);
         if(VehicleConfig.SERVER.enableMemeVehicles)
         {
-            registerVehicle("dune_buggy", EntityDuneBuggy.class);
+            registerVehicle("childrens_bicycle", EntityChildrensBicycle.class);
         }
         registerVehicle("go_kart", EntityGoKart.class);
         if(VehicleConfig.SERVER.enableMemeVehicles)
