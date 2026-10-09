@@ -11,6 +11,15 @@
 🌐 Also check original mod from MrCrayfish **[here](https://github.com/MrCrayfish/MrCrayfishVehicleMod)**.<br>
 
 # Full Changes List
+### v1.5
+1. 🎨 Added coloring: spray can paints wool, sheep, workstation, gas pump, jack, fuel drums and fluid machines; these can also be dyed in the crafting table, jerry cans — only there.
+2. 🛢️ Split the fuel drum into two models — regular (smaller) and industrial.
+3. 🚴 Renamed Dune Buggy into Children's Bicycle, changed its wheel type and hunger consumption.
+4. 🚲 Added config options for the Bicycle Key and re-enabled meme vehicles behind `enableMemeVehicles` (off by default).
+5. 🛠️ Reworked recipes for tools, key, panel, workstation, jerry cans, traffic cone, jack and boost pads.
+6. 🔧 Changed hammer and wrench models and the creative tab logo.
+7. 📖 Registered bicycle lock in JEI.
+8. 🐛 Fixes (engine sounds, fueling in creative, nozzles, spray can stack).<br>
 ### v1.4
 1. 🚴 Added fully functionable bicycles, along with new wheel type and locks for them.
 2. 🚫 Disabled driving while vehicle is on jack. Fixed collision bugs and wheel rotation issues.
