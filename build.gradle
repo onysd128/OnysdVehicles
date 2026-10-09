@@ -65,9 +65,10 @@ processResources {
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
-    // copy everything else except the mcmod.info
+    // copy everything else except the mcmod.info and dev-only vanilla textures
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+        exclude 'assets/minecraft/**'
     }
 }
 
